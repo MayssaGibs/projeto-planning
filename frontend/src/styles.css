@@ -1,1 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
+/* CORES ESCOLHIDAS (SUNRISE)
+  --azul-escuro: #41589c;  Fundo do Header e Cards do Login
+  --azul-medio: #7983c1;  Botoes ativos, abas e links
+  --lavanda: #a99cd2;     Destaques secundarios e badges
+  --rosa: #d1a3c6;        Status pendente e alertas leves
+  --pessego: #febdb8;     Botao entrar do Login e avisos
+CORES NEUTRAS
+  --fundo-tela: #f3f4f8;      Fundo claro da Dashboard
+  --fundo-card: #ffffff;      Cards brancos do painel
+  --texto-principal: #2c304e; Texto escuro para titulos e leitura
+  --texto-mutado: #7c82a1;    Textos secundarios e datas
+}*/
+
+/* serve para remover margens padrao e padronizar o tamanho dos elementos*/
+  *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f3f4f8;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: #2c304e;
+}
+
+/* Titulo principal */
+h1 {
+  font-size: 28px;
+  color: #2c304e;
+}
+
+/* Titulos de secoes: tamanho, margem no topo e cor azul escuro */
+h2 {
+  font-size: 22px;
+  margin-top: 16px;
+  color: #41589c;
+}
+
+/* Subtitulos de cards e blocos */
+h3 {
+  font-size: 18px;
+  color: #2c304e;
+}
+
+/* Textos e paragrafos */
+p {
+  font-size: 14px;
+  color: #4a4e69;
+}
