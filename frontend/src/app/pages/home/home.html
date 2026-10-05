@@ -1,0 +1,345 @@
+<div class="home-page">
+
+  <!-- TOPO -->
+  <header class="topbar">
+    <div class="brand-small">⌛</div>
+
+    <div class="search-box">
+      <span>⌕</span>
+      <input type="text" placeholder="Buscar..." />
+    </div>
+
+    <div class="top-actions">
+      <span class="notification">♧</span>
+
+      <div class="top-avatar">
+        J
+      </div>
+    </div>
+  </header>
+
+
+  <!-- SIDEBAR -->
+  <aside
+    class="sidebar"
+    [class.open]="sidebarOpen"
+    (mouseenter)="sidebarOpen = true"
+    (mouseleave)="sidebarOpen = false"
+  >
+
+    <div class="sidebar-profile">
+      <div class="avatar">J</div>
+
+      <div class="user-info">
+        <strong>jaqueliny</strong>
+        <small>jaqu@gmail.com</small>
+      </div>
+    </div>
+
+    <div class="sidebar-line"></div>
+
+    <nav>
+      <button type="button">
+        <span class="icon">⌂</span>
+        <span class="label">Início</span>
+      </button>
+
+      <button type="button">
+        <span class="icon">▱</span>
+        <span class="label">Reserve uma sala/lab</span>
+      </button>
+
+      <button type="button">
+        <span class="icon">▤</span>
+        <span class="label">Agenda</span>
+      </button>
+
+      <button type="button">
+        <span class="icon">⚒</span>
+        <span class="label">Em manutenção</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-line"></div>
+
+    <nav>
+      <button type="button">
+        <span class="icon">♧</span>
+        <span class="label">Suporte</span>
+      </button>
+
+      <button type="button">
+        <span class="icon">↪</span>
+        <span class="label">Sair</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-line"></div>
+
+    <div class="planning-logo">
+      ⌛ <span class="label">PLANNING</span>
+    </div>
+
+  </aside>
+
+
+  <!-- CONTEÚDO -->
+  <main class="content">
+
+    <!-- DECORAÇÕES -->
+    <div class="decoration decoration-left"></div>
+    <div class="decoration decoration-right"></div>
+
+    <span class="star star-one">✦</span>
+    <span class="star star-two">✦</span>
+    <span class="star star-three">✦</span>
+
+
+    <!-- TÍTULO -->
+    <section class="welcome">
+      <h1>Bem vinda, Jaqueliny!</h1>
+
+      <div class="welcome-decoration">
+        <span></span>
+        <b>✦</b>
+        <span></span>
+      </div>
+    </section>
+
+
+    <!-- DASHBOARD -->
+    <div class="dashboard">
+
+      <!-- CARD PRINCIPAL -->
+      <section class="main-card">
+
+        <!-- RESUMO -->
+        <div class="summary-cards">
+
+          <article class="summary-card course">
+            <div class="summary-icon">▣</div>
+
+            <div class="summary-info">
+              <strong>1</strong>
+              <span>Cursos</span>
+            </div>
+          </article>
+
+          <article class="summary-card classes">
+            <div class="summary-icon">▣</div>
+
+            <div class="summary-info">
+              <strong>2</strong>
+              <span>Turmas</span>
+            </div>
+          </article>
+
+        </div>
+
+
+        <h2 class="schedule-title">
+          Horários de aulas
+        </h2>
+
+
+        <!-- GRADE DE HORÁRIOS -->
+        <div class="schedule">
+
+          <!-- CABEÇALHO -->
+          <div class="schedule-header">
+
+            <div class="week-label">
+              Semana
+            </div>
+
+            <div>
+              <strong>12</strong>
+              <span>Seg</span>
+            </div>
+
+            <div>
+              <strong>13</strong>
+              <span>Ter</span>
+            </div>
+
+            <div>
+              <strong>14</strong>
+              <span>Qua</span>
+            </div>
+
+            <div>
+              <strong>15</strong>
+              <span>Qui</span>
+            </div>
+
+            <div>
+              <strong>16</strong>
+              <span>Sex</span>
+            </div>
+
+            <div>
+              <strong>17</strong>
+              <span>Sab</span>
+            </div>
+
+            <div>
+              <strong>19</strong>
+              <span>Dom</span>
+            </div>
+
+          </div>
+
+
+          <!-- CORPO -->
+          <div class="schedule-body">
+
+            <!-- HORÁRIOS -->
+            <div class="time-column">
+              <span>07:30</span>
+              <span>08:30</span>
+              <span>09:45</span>
+              <span>10:00</span>
+              <span>11:30</span>
+              <span>12:30</span>
+              <span>13:00</span>
+              <span>14:00</span>
+              <span>15:00</span>
+            </div>
+
+
+            <!-- LINHAS -->
+            <div class="schedule-grid">
+
+              <div class="grid-line"></div>
+              <div class="grid-line"></div>
+              <div class="grid-line"></div>
+              <div class="grid-line"></div>
+              <div class="grid-line"></div>
+              <div class="grid-line"></div>
+              <div class="grid-line"></div>
+              <div class="grid-line"></div>
+              <div class="grid-line"></div>
+
+
+              <!-- AULA 1 -->
+              <article class="lesson lesson-one">
+                <strong>Informática 01</strong>
+
+                <span>
+                  ◷ 07:30 - 11:30
+                </span>
+              </article>
+
+
+              <!-- AULA 2 -->
+              <article class="lesson lesson-two">
+                <strong>Informática 02</strong>
+
+                <span>
+                  ◷ 11:30 - 12:30
+                </span>
+              </article>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PAINEL DIREITO -->
+      <aside class="right-panel">
+
+        <!-- CALENDÁRIO REUTILIZÁVEL -->
+        <div class="calendar-container">
+          <app-calendario></app-calendario>
+        </div>
+
+
+        <!-- SALAS RESERVADAS -->
+        <section class="status-section">
+
+          <h3>Salas reservadas</h3>
+          <small>12 Ago</small>
+
+          <div class="room-title">
+            LAB - A - 01
+          </div>
+
+          <article class="status-card reserved">
+
+            <div class="status-bar"></div>
+
+            <div class="status-icon">
+              !
+            </div>
+
+            <div class="status-content">
+              <strong>Informática 01</strong>
+
+              <span>
+                12 de Agosto - Segunda
+              </span>
+
+              <span>
+                ◷ 07:30 - 11:30
+              </span>
+            </div>
+
+          </article>
+
+        </section>
+
+
+        <!-- MANUTENÇÃO -->
+        <section class="status-section maintenance-section">
+
+          <h3>Em manutenção</h3>
+
+          <small>
+            DE 12 Ago A 21 Ago
+          </small>
+
+          <article class="status-card maintenance">
+
+            <div class="status-bar"></div>
+
+            <div class="status-icon">
+              !
+            </div>
+
+            <div class="status-content">
+              <strong>
+                Motivo: Troca de lampadas
+              </strong>
+
+              <span>
+                12 de Agosto - Segunda
+              </span>
+
+              <span>
+                ◷ 11:30 - 12:30
+              </span>
+            </div>
+
+          </article>
+
+        </section>
+
+
+        <button
+          class="more-reservations"
+          type="button"
+        >
+          Ver mais
+        </button>
+
+      </aside>
+
+    </div>
+
+  </main>
+
+</div>
