@@ -1,0 +1,62 @@
+<div class="calendar">
+
+  <!-- CABEÇALHO -->
+  <div class="calendar-header">
+
+    <button
+      type="button"
+      (click)="previousMonth()"
+    >
+      ←
+    </button>
+
+    <strong>
+      {{ monthName }}
+    </strong>
+
+    <button
+      type="button"
+      (click)="nextMonth()"
+    >
+      →
+    </button>
+
+  </div>
+
+
+  <!-- DIAS DA SEMANA -->
+  <div class="weekdays">
+
+    <span>SEG</span>
+    <span>TER</span>
+    <span>QUA</span>
+    <span>QUI</span>
+    <span>SEX</span>
+    <span>SAB</span>
+    <span>DOM</span>
+
+  </div>
+
+
+  <!-- DIAS DO CALENDÁRIO -->
+  <div class="days">
+
+    @for (date of calendarDays; track date.getTime()) {
+
+      <button
+        type="button"
+        class="day"
+        [class.selected]="isSelected(date)"
+        [class.other-month]="!isCurrentMonth(date)"
+        (click)="selectDate(date)"
+      >
+
+        {{ date.getDate() }}
+
+      </button>
+
+    }
+
+  </div>
+
+</div>
