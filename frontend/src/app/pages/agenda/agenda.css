@@ -1,0 +1,559 @@
+/* ============================================
+   CONTAINER
+============================================ */
+
+.agenda-container {
+  width: 100%;
+  min-height: 100%;
+  padding: 35px 45px;
+  box-sizing: border-box;
+
+  background: #f8f5f8;
+}
+.sidebar {
+  position: fixed;
+
+  top: 64px;
+  left: 0;
+  bottom: 0;
+
+  width: 64px;
+
+  padding: 16px 8px;
+
+  overflow: hidden;
+
+  background: #5262ad;
+
+  z-index: 950;
+
+  transition: width 0.8s ease;
+
+  border-radius: 0 0 10px 0;
+}
+
+.sidebar.open {
+  width: 205px;
+}
+
+.sidebar-profile {
+  min-height: 55px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 0 7px;
+}
+
+.avatar {
+  min-width: 35px;
+  width: 35px;
+  height: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #e8baca;
+  color: #5262ad;
+
+  font-weight: bold;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+
+  white-space: nowrap;
+
+  color: white;
+
+  opacity: 0;
+  transform: translateX(-10px);
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.sidebar.open .user-info {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.user-info strong {
+  font-size: 12px;
+}
+
+.user-info small {
+  margin-top: 3px;
+  font-size: 9px;
+}
+
+.sidebar-line {
+  height: 1px;
+
+  margin: 10px 2px;
+
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sidebar nav button {
+  width: 100%;
+  height: 43px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 7px;
+
+  border: 0;
+  border-radius: 7px;
+
+  background: transparent;
+  color: white;
+
+  cursor: pointer;
+}
+
+.sidebar nav button:hover {
+  background: rgba(255, 255, 255, 0.13);
+}
+
+.sidebar .icon {
+  min-width: 35px;
+
+  display: flex;
+  justify-content: center;
+
+  font-size: 17px;
+}
+
+.sidebar .label {
+  margin-left: 10px;
+
+  white-space: nowrap;
+
+  font-size: 11px;
+
+  opacity: 0;
+  transform: translateX(-10px);
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.sidebar.open .label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.planning-logo {
+  display: flex;
+  align-items: center;
+
+  padding: 7px;
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* ============================================
+   TÍTULO
+============================================ */
+
+.agenda-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: 40px;
+}
+
+.agenda-title h1 {
+  margin: 0;
+
+  padding: 12px 28px;
+
+  background: #a99bd8;
+  color: #3f477d;
+
+  border-radius: 6px;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+}
+
+
+/* ============================================
+   DECORAÇÃO DO TÍTULO
+============================================ */
+
+.agenda-decoration {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  margin-top: 20px;
+}
+
+.agenda-decoration span {
+  width: 65px;
+  height: 1px;
+
+  background: #7b76bd;
+}
+
+.agenda-decoration strong {
+  color: #5865b3;
+
+  font-size: 23px;
+}
+
+
+/* ============================================
+   CARD PRINCIPAL
+============================================ */
+
+.today-card {
+  width: min(100%, 700px);
+
+  margin: 0 auto;
+
+  padding: 28px 30px;
+
+  box-sizing: border-box;
+
+  background: #555ca6;
+
+  border-radius: 9px;
+
+  color: white;
+}
+
+
+/* ============================================
+   TÍTULO DO CARD
+============================================ */
+
+.today-card h2 {
+  margin: 0 0 24px;
+
+  text-align: center;
+
+  color: #e7c2c8;
+
+  font-size: 16px;
+  font-weight: 600;
+}
+
+
+/* ============================================
+   INFORMAÇÕES
+============================================ */
+
+.agenda-info {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 8px;
+}
+
+
+/* ============================================
+   ITEM
+============================================ */
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 4px;
+}
+
+
+/* ============================================
+   LABEL
+============================================ */
+
+.info-label {
+  min-height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  color: #aaa9d2;
+
+  font-size: 10px;
+  line-height: 11px;
+
+  font-weight: 500;
+}
+
+
+/* ============================================
+   VALOR
+============================================ */
+
+.info-value {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 6px 8px;
+
+  background: #777bbd;
+
+  border: 1px solid #a4a6d5;
+
+  border-radius: 5px;
+
+  text-align: center;
+
+  color: #f5f4fa;
+
+  font-size: 9px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* ============================================
+   HORÁRIO
+============================================ */
+
+.schedule {
+  width: fit-content;
+
+  margin: 34px auto -1px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  padding: 6px 20px;
+
+  background: #e6c5ca;
+
+  color: #7773ad;
+
+  border-radius: 20px;
+
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.clock-icon {
+  font-size: 12px;
+}
+
+
+/* ============================================
+   LISTA
+============================================ */
+
+.agenda-list {
+  width: min(100%, 700px);
+
+  margin: 30px auto 0;
+}
+
+
+/* ============================================
+   HEADER DA LISTA
+============================================ */
+
+.list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+}
+
+.list-header h2 {
+  margin: 0;
+
+  color: #555ca6;
+
+  font-size: 14px;
+}
+
+
+/* ============================================
+   BOTÃO NOVO
+============================================ */
+
+.add-button {
+  border: none;
+
+  padding: 7px 14px;
+
+  border-radius: 6px;
+
+  background: #a99bd8;
+
+  color: #3f477d;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.add-button:hover {
+  background: #9385c8;
+
+  transform: translateY(-1px);
+}
+
+
+/* ============================================
+   CARD DE AGENDAMENTO
+============================================ */
+
+.schedule-card {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 10px;
+
+  padding: 13px 16px;
+
+  background: white;
+
+  border-radius: 9px;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+
+/* ============================================
+   HORÁRIO DA LISTA
+============================================ */
+
+.schedule-time {
+  min-width: 70px;
+
+  color: #5865b3;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+/* ============================================
+   CONTEÚDO
+============================================ */
+
+.schedule-content {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.schedule-content strong {
+  color: #444;
+
+  font-size: 12px;
+}
+
+.schedule-content span {
+  color: #8a8a8a;
+
+  font-size: 10px;
+}
+
+
+/* ============================================
+   STATUS
+============================================ */
+
+.schedule-status {
+  padding: 5px 9px;
+
+  border-radius: 12px;
+
+  font-size: 8px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+}
+
+.schedule-status.confirmed {
+  background: #e1f1e7;
+
+  color: #47805a;
+}
+
+.schedule-status.pending {
+  background: #f5e5d9;
+
+  color: #a66d42;
+}
+
+
+/* ============================================
+   RESPONSIVO
+============================================ */
+
+@media (max-width: 650px) {
+
+  .agenda-container {
+    padding: 25px 18px;
+  }
+
+  .agenda-info {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .info-label {
+    min-height: auto;
+  }
+
+  .schedule-card {
+    align-items: flex-start;
+  }
+
+  .schedule-status {
+    display: none;
+  }
+
+
+}
