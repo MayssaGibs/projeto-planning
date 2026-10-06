@@ -1,0 +1,75 @@
+<div class="maintenance-container">
+
+  <!-- CABEÇALHO -->
+  <div class="maintenance-header">
+
+    <div>
+      <h2>SALAS EM MANUTENÇÃO</h2>
+
+      <span>
+        Salas indisponíveis no momento
+      </span>
+    </div>
+
+    <div class="maintenance-icon">
+      ⚒
+    </div>
+
+  </div>
+
+
+  <!-- LISTA -->
+  <div class="rooms-list">
+
+    @for (room of rooms; track room.id) {
+
+      <div class="room-card">
+
+        <div class="room-number">
+          {{ room.number }}
+        </div>
+
+
+        <div class="room-info">
+
+          <strong>
+            {{ room.name }}
+          </strong>
+
+          <span>
+            {{ room.location }}
+          </span>
+
+          <small>
+            {{ room.reason }}
+          </small>
+
+        </div>
+
+
+        <div class="room-status">
+          MANUTENÇÃO
+        </div>
+
+      </div>
+
+    }
+
+
+    @if (rooms.length === 0) {
+
+      <div class="empty-maintenance">
+
+        <span>✓</span>
+
+        <p>
+          Nenhuma sala em manutenção
+        </p>
+
+      </div>
+
+    }
+
+  </div>
+
+</div>
