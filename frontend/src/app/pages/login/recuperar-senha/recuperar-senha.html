@@ -1,0 +1,111 @@
+<div class="pagina">
+
+  <!-- DECORAÇÃO DO CANTO SUPERIOR -->
+  <div class="decoracao decoracao-topo"></div>
+
+  <!-- LOGO -->
+  <div class="logo">
+
+    <div class="ampulheta">
+      ⌛
+    </div>
+
+    <div class="linha"></div>
+
+    <div class="titulo">
+
+      <h1>PLANNING</h1>
+
+      <p>SUA AGENDA MAIS ORGANIZADA</p>
+
+    </div>
+
+  </div>
+
+
+  <!-- CARD DE RECUPERAÇÃO -->
+  <form
+    class="recuperar"
+    [formGroup]="formulario"
+    (ngSubmit)="enviar()">
+
+    <h2>Esqueci minha senha</h2>
+
+    <p class="descricao">
+      Digite seu e-mail institucional para receber
+      um link para redefinir sua senha.
+    </p>
+
+
+    <!-- E-MAIL -->
+    <div class="campo">
+
+      <span class="icone">✉</span>
+
+      <input
+        type="email"
+        formControlName="email"
+        placeholder="E-mail institucional">
+
+    </div>
+
+
+    <!-- ERRO DO E-MAIL -->
+    @if (
+      formulario.get('email')?.invalid &&
+      formulario.get('email')?.touched
+    ) {
+
+      <p class="erro">
+        Digite um e-mail válido.
+      </p>
+
+    }
+
+
+    <!-- BOTÃO ENVIAR -->
+    <button
+      type="submit"
+      class="btn-primary"
+      [disabled]="formulario.invalid">
+
+      <span class="seta">→</span>
+
+      <span>ENVIAR</span>
+
+    </button>
+
+
+    <!-- VOLTAR -->
+    <button
+      type="button"
+      class="voltar"
+      (click)="voltarLogin()">
+
+      ← Voltar para o login
+
+    </button>
+
+  </form>
+
+
+  <!-- RODAPÉ -->
+  <div class="rodape">
+
+    <span>────</span>
+
+    <span>PLANNING</span>
+
+    <span>•</span>
+
+    <span>2026</span>
+
+    <span>────</span>
+
+  </div>
+
+
+  <!-- DECORAÇÃO INFERIOR -->
+  <div class="decoracao decoracao-baixo"></div>
+
+</div>

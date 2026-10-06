@@ -1,0 +1,58 @@
+<div class="pagina">
+  <!-- DECORAÇÃO SUPERIOR -->
+  <div class="decoracao decoracao-topo"></div>
+  <!-- LOGO -->
+  <div class="logo">
+    <div class="ampulheta">
+      ⌛
+    </div>
+    <div class="linha"></div>
+    <div class="titulo">
+      <h1>PLANNING</h1>
+      <p>SUA AGENDA MAIS ORGANIZADA</p>
+    </div>
+  </div>
+
+  <!-- FORMULÁRIO -->
+  <form class="login" [formGroup]="formulario"  (ngSubmit)="entrar()">
+
+    <!-- E-MAIL -->
+    <div class="campo">
+
+      <span class="icone">✉</span>
+
+      <input type="email" formControlName="email"  placeholder="E-mail institucional">
+
+    </div>
+
+    <!-- SENHA -->
+    <div class="campo">
+
+      <span class="icone">♙</span>
+
+      <input [type]="mostrarSenha ? 'text' : 'password'" formControlName="senha"  placeholder="Senha">
+
+      <button type="button" class="olho" (click)="mostrarSenha = !mostrarSenha">
+        {{ mostrarSenha ? '◉' : '◌' }}
+      </button>
+    </div>
+    <!-- RECUPERAR SENHA -->
+    <button type="button"  class="esqueci" (click)="recuperarSenha()"> Esqueci minha senha</button>
+    <!-- ENTRAR -->
+    <button type="submit" class="btn-primary" [disabled]="formulario.invalid">
+      <span class="seta">→</span>
+      <span>ENTRAR</span>
+    </button>
+  </form>
+  <!-- RODAPÉ -->
+  <div class="rodape">
+    <span>────</span>
+    <span>PLANNING</span>
+    <span>•</span>
+    <span>2026</span>
+    <span>────</span>
+  </div>
+  <!-- DECORAÇÃO INFERIOR -->
+  <div class="decoracao decoracao-baixo"></div>
+
+</div>
