@@ -11,4 +11,9 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/reserva/reserva').then((m) => m.Reserva),
   },
+  {
+    path: 'agenda',
+    loadComponent: () =>
+      import('./pages/agenda/agenda').then((m) => m.Agenda),
+  },
 ];

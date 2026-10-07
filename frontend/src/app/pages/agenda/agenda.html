@@ -1,0 +1,189 @@
+<div class="agenda-container">
+
+  <!-- TÍTULO -->
+  <div class="agenda-title">
+    <h1>AGENDA</h1>
+
+    <div class="agenda-decoration">
+      <span></span>
+      <strong>✦</strong>
+      <span></span>
+    </div>
+  </div>
+
+
+  <!-- SALAS E LABORATÓRIOS -->
+  <section class="today-card">
+
+    <h2>SALAS E LABS DE HOJE</h2>
+
+    <div class="agenda-info">
+
+      <!-- TURMA -->
+      <div class="info-item">
+        <span class="info-label">TURMAS</span>
+
+        <div class="info-value">
+          INFORMÁTICA 01
+        </div>
+      </div>
+
+
+      <!-- SALA -->
+      <div class="info-item">
+        <span class="info-label">SALAS</span>
+
+        <div class="info-value">
+          111
+        </div>
+      </div>
+
+
+      <!-- LABORATÓRIO -->
+      <div class="info-item">
+        <span class="info-label">
+          LABORATÓRIOS<br>
+          RESERVADOS
+        </span>
+
+        <div class="info-value">
+          LAB - A - 01
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- HORÁRIO -->
+    <div class="schedule">
+
+      <span class="clock-icon">◷</span>
+
+      <span>
+        {{ startTime }} - {{ endTime }}
+      </span>
+
+    </div>
+
+  </section>
+
+
+  <!-- LISTA DE AGENDAMENTOS -->
+  <section class="agenda-list">
+
+    <div class="list-header">
+      <h2>PRÓXIMOS AGENDAMENTOS</h2>
+
+      <button
+        type="button"
+        class="add-button"
+        (click)="newSchedule()"
+      >
+        + Novo
+      </button>
+    </div>
+
+
+    @for (schedule of schedules; track schedule.id) {
+
+      <div class="schedule-card">
+
+        <div class="schedule-time">
+          {{ schedule.time }}
+        </div>
+
+        <div class="schedule-content">
+
+          <strong>
+            {{ schedule.className }}
+          </strong>
+
+          <span>
+            Sala {{ schedule.room }}
+          </span>
+
+          @if (schedule.lab) {
+            <span>
+              {{ schedule.lab }}
+            </span>
+          }
+
+        </div>
+
+        <div
+          class="schedule-status"
+          [class.confirmed]="schedule.status === 'confirmado'"
+          [class.pending]="schedule.status === 'pendente'"
+        >
+          {{ schedule.status }}
+        </div>
+
+      </div>
+
+    }
+
+  </section>
+
+</div>
+<aside
+  class="sidebar"
+  [class.open]="sidebarOpen"
+  (mouseenter)="sidebarOpen = true"
+  (mouseleave)="sidebarOpen = false"
+>
+
+  <div class="sidebar-profile">
+    <div class="avatar">J</div>
+
+    <div class="user-info">
+      <strong>jaqueliny</strong>
+      <small>jaqu@gmail.com</small>
+    </div>
+  </div>
+
+  <div class="sidebar-line"></div>
+
+  <nav>
+    <button type="button">
+      <span class="icon">⌂</span>
+      <span class="label">Início</span>
+    </button>
+
+    <button type="button">
+      <span class="icon">▱</span>
+      <span class="label">Reserve uma sala/lab</span>
+    </button>
+
+    <button type="button">
+      <span class="icon">▤</span>
+      <span class="label">Agenda</span>
+    </button>
+
+    <button type="button">
+      <span class="icon">⚒</span>
+      <span class="label">Em manutenção</span>
+    </button>
+  </nav>
+
+  <div class="sidebar-line"></div>
+
+  <nav>
+    <button type="button">
+      <span class="icon">♧</span>
+      <span class="label">Suporte</span>
+    </button>
+
+    <button type="button">
+      <span class="icon">↪</span>
+      <span class="label">Sair</span>
+    </button>
+  </nav>
+
+  <div class="sidebar-line"></div>
+
+  <div class="planning-logo">
+    ⌛
+    <span class="label">PLANNING</span>
+  </div>
+
+</aside>
