@@ -1,0 +1,593 @@
+<div class="reserva-page">
+
+  <!-- TOPO -->
+  <header class="topbar">
+    <div class="brand-small">⌛</div>
+
+    <div class="search-box">
+      <span>⌕</span>
+      <input type="text" placeholder="Buscar..." />
+    </div>
+
+    <div class="top-actions">
+      <span class="notification">♧</span>
+      <div class="top-avatar">J</div>
+    </div>
+  </header>
+
+
+  <!-- SIDEBAR -->
+  <aside
+    class="sidebar"
+    [class.open]="sidebarOpen"
+    (mouseenter)="sidebarOpen = true"
+    (mouseleave)="sidebarOpen = false"
+  >
+
+    <div class="sidebar-profile">
+      <div class="avatar">J</div>
+
+      <div class="user-info">
+        <strong>jaqueliny</strong>
+        <small>jaqu@gmail.com</small>
+      </div>
+    </div>
+
+    <div class="sidebar-line"></div>
+
+    <nav>
+      <button type="button">
+        <span class="icon">⌂</span>
+        <span class="label">Início</span>
+      </button>
+
+      <button type="button">
+        <span class="icon">▱</span>
+        <span class="label">Reserve uma sala/lab</span>
+      </button>
+
+      <button type="button">
+        <span class="icon">▤</span>
+        <span class="label">Agenda</span>
+      </button>
+
+      <button type="button">
+        <span class="icon">⚒</span>
+        <span class="label">Em manutenção</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-line"></div>
+
+    <nav>
+      <button type="button">
+        <span class="icon">♧</span>
+        <span class="label">Suporte</span>
+      </button>
+
+      <button type="button">
+        <span class="icon">↪</span>
+        <span class="label">Sair</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-line"></div>
+
+    <div class="planning-logo">
+      ⌛
+      <span class="label">PLANNING</span>
+    </div>
+
+  </aside>
+
+
+  <!-- CONTEÚDO -->
+  <main class="content">
+
+    <!-- DECORAÇÕES -->
+    <div class="decoration decoration-left"></div>
+    <div class="decoration decoration-right"></div>
+
+
+    <!-- TÍTULO -->
+    <section class="page-title">
+      <h1>
+        {{ titulo }}
+      </h1>
+
+      <div class="title-decoration">
+        <span></span>
+        <b>✦</b>
+        <span></span>
+      </div>
+    </section>
+
+
+    <div class="reservation-layout">
+
+      <!-- CARD PRINCIPAL -->
+      <section class="reservation-card">
+
+        <!-- SALAS / LABS -->
+        <div class="type-selector">
+
+          <button
+            type="button"
+            [class.active]="tipoReserva === 'sala'"
+            (click)="selecionarTipo('sala')"
+          >
+            <small>Salas</small>
+            <span>▤</span>
+          </button>
+
+          <button
+            type="button"
+            [class.active]="tipoReserva === 'laboratorio'"
+            (click)="selecionarTipo('laboratorio')"
+          >
+            <small>Labs</small>
+            <span>♙</span>
+          </button>
+
+        </div>
+
+
+        <!-- FORMULÁRIO -->
+        <div class="form-grid">
+
+          <!-- SALA / LAB -->
+          <div class="field">
+
+            <label>
+              {{
+                tipoReserva === 'sala'
+                  ? 'Salas disponíveis'
+                  : 'Laboratórios'
+              }}
+            </label>
+
+            <select [(ngModel)]="localSelecionado">
+
+              <option value="">
+                Selecione uma opção
+              </option>
+
+              @if (tipoReserva === 'sala') {
+
+                @for (sala of salas; track sala) {
+                  <option [value]="sala">
+                    {{ sala }}
+                  </option>
+                }
+
+              } @else {
+
+                @for (laboratorio of laboratorios; track laboratorio) {
+                  <option [value]="laboratorio">
+                    {{ laboratorio }}
+                  </option>
+                }
+
+              }
+
+            </select>
+
+          </div>
+
+
+          <!-- TURMAS -->
+          <div class="field">
+
+            <label>
+              Turmas
+            </label>
+
+            <select [(ngModel)]="turmaSelecionada">
+
+              <option value="">
+                Selecione uma opção
+              </option>
+
+              @for (turma of turmas; track turma) {
+                <option [value]="turma">
+                  {{ turma }}
+                </option>
+              }
+
+            </select>
+
+          </div>
+
+
+          <!-- PRIORIDADE -->
+          <div class="field priority-field">
+
+            <label>
+              Nível de prioridade
+            </label>
+
+            <select [(ngModel)]="prioridadeSelecionada">
+
+              <option value="">
+                Selecione uma opção
+              </option>
+
+              <option value="Alta">
+                ALTA ●
+              </option>
+
+              <option value="Média">
+                MÉDIA ●
+              </option>
+
+              <option value="Baixa">
+                BAIXA ●
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <!-- DATA -->
+          <div class="date-area">
+
+            <label>
+              Escolha uma data
+            </label>
+
+            <!-- NAVEGAÇÃO DAS DATAS -->
+            <div class="date-navigation">
+
+              <!-- SETA PARA VOLTAR -->
+              <button
+                type="button"
+                class="date-arrow"
+                (click)="voltarDatas()"
+                [disabled]="inicioDatas === 0"
+              >
+                ‹
+              </button>
+
+
+              <!-- DATAS -->
+              <div class="date-options">
+
+                @for (
+                  data of datasVisiveis;
+                  track data.getTime();
+                  let i = $index
+                ) {
+
+                  <button
+                    type="button"
+                    class="date-button"
+                    [class.selected-date]="isDataSelecionada(data)"
+                    (click)="selecionarData(data)"
+                  >
+                    {{ formatarDataBotao(data, inicioDatas + i) }}
+                  </button>
+
+                }
+
+              </div>
+
+
+              <!-- SETA PARA AVANÇAR -->
+              <button
+                type="button"
+                class="date-arrow"
+                (click)="avancarDatas()"
+                [disabled]="
+                  inicioDatas + quantidadeDatasVisiveis >=
+                  datasDisponiveis.length
+                "
+              >
+                ›
+              </button>
+
+            </div>
+
+
+            <!-- DISPONIBILIDADE -->
+            <div class="availability">
+
+              <strong>
+                {{
+                  localSelecionado ||
+                  (
+                    tipoReserva === 'sala'
+                      ? 'Sala - 112'
+                      : 'Laboratório - A - 01'
+                  )
+                }}
+              </strong>
+
+              <span>
+                {{ formatarDataCompleta(dataSelecionada) }}
+              </span>
+
+              <p>
+                5 horários disponíveis
+              </p>
+
+              <small>
+                07:30 AM - 15:20 AM
+              </small>
+
+            </div>
+
+
+            <!-- HORÁRIOS -->
+            <div class="time-options">
+
+              @for (horario of horarios; track horario.inicio) {
+
+                <button
+                  type="button"
+                  [disabled]="horario.ocupado"
+                  [class.occupied]="horario.ocupado"
+                  [class.selected-time]="
+                    horarioSelecionado === horario
+                  "
+                  (click)="selecionarHorario(horario)"
+                >
+                  {{ horario.inicio }} - {{ horario.fim }}
+                </button>
+
+              }
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PAINEL DIREITO -->
+      <aside class="right-panel">
+
+        <!-- CALENDÁRIO -->
+        <div class="calendar-container">
+          <app-calendario></app-calendario>
+        </div>
+
+
+        <!-- SALAS RESERVADAS -->
+        <section class="status-section">
+
+          <h3>
+            Salas reservadas
+          </h3>
+
+          <small>
+            12 Ago
+          </small>
+
+          <div class="room-title">
+            LAB - A - 01
+          </div>
+
+          <article class="status-card reserved">
+
+            <div class="status-bar"></div>
+
+            <div class="status-icon">
+              !
+            </div>
+
+            <div class="status-content">
+
+              <strong>
+                Informática 01
+              </strong>
+
+              <span>
+                12 de Agosto - Segunda
+              </span>
+
+              <span>
+                ◷ 07:30 - 11:30
+              </span>
+
+            </div>
+
+          </article>
+
+        </section>
+
+
+        <!-- MANUTENÇÃO -->
+        <section class="status-section">
+
+          <h3>
+            Em manutenção
+          </h3>
+
+          <small>
+            DE 12 Ago A 21 Ago
+          </small>
+
+          <article class="status-card maintenance">
+
+            <div class="status-bar"></div>
+
+            <div class="status-icon">
+              !
+            </div>
+
+            <div class="status-content">
+
+              <strong>
+                Motivo: Troca de lampadas
+              </strong>
+
+              <span>
+                12 de Agosto - Segunda
+              </span>
+
+              <span>
+                ◷ 11:30 - 12:30
+              </span>
+
+            </div>
+
+          </article>
+
+        </section>
+
+      </aside>
+
+    </div>
+
+
+    <!-- BOTÃO PRINCIPAL -->
+    <button
+      type="button"
+      class="confirm-button"
+      (click)="abrirConfirmacao()"
+    >
+      CONFIRMAR
+    </button>
+
+
+    <!-- MODAL DE CONFIRMAÇÃO -->
+    @if (modalConfirmacaoAberto) {
+
+      <div class="modal-overlay">
+
+        <section class="confirmation-modal">
+
+          <h2>
+            Confirme sua reserva
+          </h2>
+
+          <div class="confirmation-decoration">
+            <span></span>
+            <b>✦</b>
+            <span></span>
+          </div>
+
+
+          <div class="confirmation-info">
+
+            <!-- LOCAL -->
+            <div class="confirmation-item">
+
+              <span>
+                {{
+                  tipoReserva === 'sala'
+                    ? 'Sala'
+                    : 'Laboratório'
+                }}
+              </span>
+
+              <strong>
+                {{ localSelecionado }}
+              </strong>
+
+            </div>
+
+
+            <!-- TURMA -->
+            <div class="confirmation-item">
+
+              <span>
+                Turma
+              </span>
+
+              <strong>
+                {{ turmaSelecionada }}
+              </strong>
+
+            </div>
+
+
+            <!-- DATA -->
+            <div class="confirmation-item">
+
+              <span>
+                Data
+              </span>
+
+              <strong>
+                {{ formatarDataCompleta(dataSelecionada) }}
+              </strong>
+
+            </div>
+
+
+            <!-- HORÁRIO -->
+            <div class="confirmation-item">
+
+              <span>
+                Horário
+              </span>
+
+              <strong>
+                {{ horarioSelecionado?.inicio }}
+                -
+                {{ horarioSelecionado?.fim }}
+              </strong>
+
+            </div>
+
+
+            <!-- RESPONSÁVEL -->
+            <div class="confirmation-item">
+
+              <span>
+                Responsável
+              </span>
+
+              <strong>
+                Jaqueliny
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <!-- BOTÕES DO MODAL -->
+          <div class="confirmation-actions">
+
+            <button
+              type="button"
+              class="cancel-button"
+              (click)="cancelarConfirmacao()"
+            >
+              CANCELAR
+            </button>
+
+            <button
+              type="button"
+              class="modal-confirm-button"
+              (click)="confirmarReserva()"
+            >
+              CONFIRMAR
+            </button>
+
+          </div>
+
+        </section>
+
+      </div>
+
+    }
+
+
+    <!-- MENSAGEM DE SUCESSO -->
+    @if (mensagemSucesso) {
+
+      <div class="success-message">
+        ✓ Reserva realizada com sucesso!
+      </div>
+
+    }
+
+  </main>
+
+</div>
