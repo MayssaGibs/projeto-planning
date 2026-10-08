@@ -1,10 +1,8 @@
+
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Calendario } from '../../components/calendario/calendario';
-import {
-  ReservaService,
-  Horario,
-} from '../../services/reserva';
+import { ReservaService, Horario } from '../../services/reserva';
 
 @Component({
   selector: 'app-reserva',
@@ -25,12 +23,39 @@ export class Reserva {
   localSelecionado = '';
   turmaSelecionada = '';
   prioridadeSelecionada = '';
-
   horarioSelecionado: Horario | null = null;
 
-  // DATAS
   datasDisponiveis: Date[] = [];
   dataSelecionada: Date = new Date();
+
+  // NAVEGAÇÃO ENTRE AS DATAS
+  inicioDatas = 0;
+  quantidadeDatasVisiveis = 5;
+
+  // MOSTRAR 5 DATAS POR VEZ
+  get datasVisiveis(): Date[] {
+    return this.datasDisponiveis.slice(
+      this.inicioDatas,
+      this.inicioDatas + this.quantidadeDatasVisiveis
+    );
+  }
+
+  // VOLTAR DATAS
+  voltarDatas(): void {
+    if (this.inicioDatas > 0) {
+      this.inicioDatas--;
+    }
+  }
+
+  // AVANÇAR DATAS
+  avancarDatas(): void {
+    if (
+      this.inicioDatas + this.quantidadeDatasVisiveis <
+      this.datasDisponiveis.length
+    ) {
+      this.inicioDatas++;
+    }
+  }
 
   modalConfirmacaoAberto = false;
   mensagemSucesso = false;
@@ -44,42 +69,34 @@ export class Reserva {
     this.gerarDatas();
   }
 
-  selecionarTipo(tipo: 'sala' | 'laboratorio') {
+  selecionarTipo(tipo: 'sala' | 'laboratorio'): void {
     this.tipoReserva = tipo;
-
-    // Limpa o local ao trocar entre Sala e Lab
     this.localSelecionado = '';
   }
 
-  selecionarHorario(horario: Horario) {
-    if (horario.ocupado) {
-      return;
-    }
+  selecionarHorario(horario: Horario): void {
+    if (horario.ocupado) return;
 
     this.horarioSelecionado = horario;
   }
 
-  // GERA OS PRÓXIMOS 14 DIAS
-  gerarDatas() {
+  gerarDatas(): void {
     const hoje = new Date();
-
     this.datasDisponiveis = [];
 
     for (let i = 0; i < 14; i++) {
       const data = new Date(hoje);
-
       data.setDate(hoje.getDate() + i);
-
       this.datasDisponiveis.push(data);
     }
+
+    this.inicioDatas = 0;
   }
 
-  // SELECIONA UMA DATA
-  selecionarData(data: Date) {
+  selecionarData(data: Date): void {
     this.dataSelecionada = data;
   }
 
-  // VERIFICA QUAL DATA ESTÁ SELECIONADA
   isDataSelecionada(data: Date): boolean {
     return (
       data.getDate() === this.dataSelecionada.getDate() &&
@@ -88,58 +105,43 @@ export class Reserva {
     );
   }
 
-  // TEXTO DOS BOTÕES
   formatarDataBotao(data: Date, index: number): string {
-    if (index === 0) {
-      return 'Hoje';
-    }
-
-    if (index === 1) {
-      return 'Amanhã';
-    }
+    if (index === 0) return 'Hoje';
+    if (index === 1) return 'Amanhã';
 
     return data.toLocaleDateString('pt-BR', {
       day: '2-digit',
-      month: 'short',
+      month: 'short'
     });
   }
 
-  // DATA PARA A CONFIRMAÇÃO
   formatarDataCompleta(data: Date): string {
     return data.toLocaleDateString('pt-BR');
   }
 
-  abrirConfirmacao() {
+  abrirConfirmacao(): void {
     if (
       !this.localSelecionado ||
       !this.turmaSelecionada ||
       !this.horarioSelecionado
     ) {
-      alert(
-        'Selecione a sala/laboratório, a turma e um horário.'
-      );
-
+      alert('Selecione a sala/laboratório, a turma e um horário.');
       return;
     }
 
     this.modalConfirmacaoAberto = true;
   }
 
-  cancelarConfirmacao() {
+  cancelarConfirmacao(): void {
     this.modalConfirmacaoAberto = false;
   }
 
-  confirmarReserva() {
-    if (!this.horarioSelecionado) {
-      return;
-    }
+  confirmarReserva(): void {
+    if (!this.horarioSelecionado) return;
 
-    // Depois de reservar, o horário fica ocupado
     this.horarioSelecionado.ocupado = true;
-
     this.modalConfirmacaoAberto = false;
     this.mensagemSucesso = true;
-
     this.horarioSelecionado = null;
 
     setTimeout(() => {
