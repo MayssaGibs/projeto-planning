@@ -28,11 +28,18 @@ export class Reserva {
   datasDisponiveis: Date[] = [];
   dataSelecionada: Date = new Date();
 
+<<<<<<< HEAD
   // NAVEGAÇÃO ENTRE AS DATAS
   inicioDatas = 0;
   quantidadeDatasVisiveis = 5;
 
   // MOSTRAR 5 DATAS POR VEZ
+=======
+  // CONTROLE DAS DATAS
+  inicioDatas = 0;
+  quantidadeDatasVisiveis = 5;
+
+>>>>>>> 663e806 (Adiciona páginas de perfil, histórico e reservas de sala)
   get datasVisiveis(): Date[] {
     return this.datasDisponiveis.slice(
       this.inicioDatas,
@@ -40,15 +47,23 @@ export class Reserva {
     );
   }
 
+<<<<<<< HEAD
   // VOLTAR DATAS
   voltarDatas(): void {
+=======
+  voltarDatas() {
+>>>>>>> 663e806 (Adiciona páginas de perfil, histórico e reservas de sala)
     if (this.inicioDatas > 0) {
       this.inicioDatas--;
     }
   }
 
+<<<<<<< HEAD
   // AVANÇAR DATAS
   avancarDatas(): void {
+=======
+  avancarDatas() {
+>>>>>>> 663e806 (Adiciona páginas de perfil, histórico e reservas de sala)
     if (
       this.inicioDatas + this.quantidadeDatasVisiveis <
       this.datasDisponiveis.length
@@ -57,6 +72,10 @@ export class Reserva {
     }
   }
 
+<<<<<<< HEAD
+=======
+  // MODAL
+>>>>>>> 663e806 (Adiciona páginas de perfil, histórico e reservas de sala)
   modalConfirmacaoAberto = false;
   mensagemSucesso = false;
 
@@ -80,7 +99,11 @@ export class Reserva {
     this.horarioSelecionado = horario;
   }
 
+<<<<<<< HEAD
   gerarDatas(): void {
+=======
+  gerarDatas() {
+>>>>>>> 663e806 (Adiciona páginas de perfil, histórico e reservas de sala)
     const hoje = new Date();
     this.datasDisponiveis = [];
 
@@ -93,7 +116,11 @@ export class Reserva {
     this.inicioDatas = 0;
   }
 
+<<<<<<< HEAD
   selecionarData(data: Date): void {
+=======
+  selecionarData(data: Date) {
+>>>>>>> 663e806 (Adiciona páginas de perfil, histórico e reservas de sala)
     this.dataSelecionada = data;
   }
 

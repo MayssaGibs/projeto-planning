@@ -1,0 +1,79 @@
+.perfil-container {
+  padding: 40px;
+  background: #f5f6fa;
+  min-height: 100vh;
+}
+
+.perfil-container h1 {
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.perfil-card {
+  max-width: 700px;
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.campo label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+.campo input,
+.campo select {
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+}
+
+.campo input:focus,
+.campo select:focus {
+  border-color: #4863ee;
+}
+
+.dados-funcionario,
+.dados-administrador,
+.dados-senha {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.dados-funcionario h2,
+.dados-administrador h2,
+.dados-senha h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 20px;
+}
+
+.dados-senha button {
+  border: none;
+  background: #4863ee;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.dados-senha button:hover {
+  background: #354ed0;
+}
+
+.dados-senha p {
+  margin-top: 15px;
+  font-weight: 600;
+}

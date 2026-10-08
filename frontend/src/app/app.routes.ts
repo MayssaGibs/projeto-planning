@@ -9,6 +9,7 @@ export const routes: Routes = [
         .then((m) => m.Login),
   },
 
+<<<<<<< HEAD
   {
     path: 'recuperar-senha',
     loadComponent: () =>
@@ -24,6 +25,8 @@ export const routes: Routes = [
         .then((m) => m.Home),
   },
 
+=======
+>>>>>>> 663e806 (Adiciona páginas de perfil, histórico e reservas de sala)
   {
     path: 'reserva',
     canActivate: [authGuard],
@@ -32,6 +35,17 @@ export const routes: Routes = [
         .then((m) => m.Reserva),
   },
 
+<<<<<<< HEAD
+=======
+  {
+    path: 'reservas-de-sala',
+    loadComponent: () =>
+      import('./pages/reservas-de-sala/reservas-de-sala').then(
+        (m) => m.ReservasDeSala
+      ),
+  },
+
+>>>>>>> 663e806 (Adiciona páginas de perfil, histórico e reservas de sala)
   {
     path: 'agenda',
     canActivate: [authGuard],
@@ -44,5 +58,32 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
+  },
+
+  {
+    path: 'historico',
+    loadComponent: () =>
+      import('./pages/historico/historico').then(
+        (m) => m.Historico
+      ),
+  },
+
+  {
+    path: 'editar-perfil',
+    loadComponent: () =>
+      import('./pages/editar-perfil/editar-perfil').then(
+        (m) => m.EditarPerfil
+      ),
+  },
+
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+
+  {
+    path: '**',
+    redirectTo: 'home',
   },
 ];

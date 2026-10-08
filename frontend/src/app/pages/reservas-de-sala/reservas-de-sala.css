@@ -1,0 +1,393 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #f7f4f7;
+}
+
+
+/* =========================
+   PÁGINA
+========================= */
+
+.pagina {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+
+  background: #f8f5f7;
+}
+
+
+/* =========================
+   BARRA LATERAL
+========================= */
+
+.barra-lateral {
+  width: 70px;
+  min-height: 100vh;
+
+  background: #595bb0;
+
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 18px 0;
+}
+
+.logo {
+  font-size: 26px;
+  margin-bottom: 24px;
+}
+
+.perfil {
+  font-size: 23px;
+  margin-bottom: 20px;
+}
+
+.linha {
+  width: 38px;
+  height: 1px;
+
+  background: rgba(255, 255, 255, 0.55);
+
+  margin: 12px 0;
+}
+
+.barra-lateral nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 22px;
+}
+
+.barra-lateral button {
+  border: none;
+  background: transparent;
+
+  color: white;
+
+  font-size: 22px;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.conteudo {
+  flex: 1;
+  min-width: 0;
+}
+
+
+/* =========================
+   BARRA SUPERIOR
+========================= */
+
+.topo {
+  height: 72px;
+  width: 100%;
+
+  background: #7677c8;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 28px;
+}
+
+.busca {
+  width: 265px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 0 15px;
+
+  border-radius: 20px;
+
+  background: #898ad1;
+
+  color: white;
+
+  font-size: 16px;
+
+  font-weight: bold;
+}
+
+.usuario {
+  display: flex;
+  align-items: center;
+
+  gap: 25px;
+
+  color: white;
+
+  font-size: 22px;
+}
+
+
+/* =========================
+   ÁREA DA RESERVA
+========================= */
+
+.reserva {
+  position: relative;
+
+  min-height: calc(100vh - 72px);
+
+  padding-top: 25px;
+
+  overflow: hidden;
+}
+
+
+/* DECORAÇÃO SUPERIOR ESQUERDA */
+
+.reserva::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 145px;
+  height: 145px;
+
+  background: #e2c8cc;
+
+  border-radius: 0 0 100% 0;
+
+  z-index: 0;
+}
+
+
+/* DECORAÇÃO INFERIOR DIREITA */
+
+.reserva::after {
+  content: "";
+
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+
+  width: 185px;
+  height: 185px;
+
+  background: #ddd7ce;
+
+  border-radius: 100% 0 0 0;
+
+  z-index: 0;
+}
+
+
+/* =========================
+   TÍTULO
+========================= */
+
+.reserva h1 {
+  position: relative;
+
+  z-index: 1;
+
+  width: fit-content;
+
+  margin: 0 auto;
+
+  padding: 8px 24px;
+
+  border-radius: 8px;
+
+  background: #d8d0e9;
+
+  color: #7779c3;
+
+  font-size: 27px;
+
+  font-weight: 500;
+}
+
+
+/* =========================
+   DECORAÇÃO
+========================= */
+
+.decoracao {
+  position: relative;
+
+  z-index: 1;
+
+  width: 215px;
+
+  margin: 7px auto 20px;
+
+  text-align: center;
+
+  color: #6266b7;
+
+  font-size: 18px;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+  position: relative;
+
+  z-index: 1;
+
+  width: 520px;
+  min-height: 455px;
+
+  margin: 0 auto;
+
+  padding: 45px 70px;
+
+  background: white;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.08),
+    0 5px 12px rgba(0, 0, 0, 0.06);
+}
+
+
+/* =========================
+   INFORMAÇÕES
+========================= */
+
+.informacao {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 25px;
+
+  color: #5559a7;
+
+  font-size: 16px;
+}
+
+.icone {
+  width: 25px;
+
+  display: inline-flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  color: #6267bd;
+
+  font-size: 23px;
+}
+
+.informacao strong {
+  font-weight: 600;
+}
+
+
+/* =========================
+   BOTÕES
+========================= */
+
+.botoes {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 40px;
+
+  margin-top: 65px;
+}
+
+.botoes button {
+  width: 160px;
+  height: 38px;
+
+  border: none;
+
+  border-radius: 22px;
+
+  color: white;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.confirmar {
+  background: #70c494;
+}
+
+.editar {
+  background: #c4493d;
+}
+
+.botoes button:hover {
+  opacity: 0.88;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 700px) {
+
+  .barra-lateral {
+    width: 58px;
+  }
+
+  .card {
+    width: calc(100% - 30px);
+
+    padding: 35px 30px;
+  }
+
+  .botoes {
+    gap: 15px;
+  }
+
+  .botoes button {
+    width: 140px;
+  }
+
+  .busca {
+    width: 200px;
+  }
+}

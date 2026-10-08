@@ -1,0 +1,148 @@
+<div class="perfil-container">
+
+  <h1>Editar perfil</h1>
+
+  <div class="perfil-card">
+
+    <div class="campo">
+      <label for="nome">Nome</label>
+      <input
+        id="nome"
+        type="text"
+        placeholder="Digite seu nome"
+      />
+    </div>
+
+    <div class="campo">
+      <label for="email">E-mail</label>
+      <input
+        id="email"
+        type="email"
+        placeholder="Digite seu e-mail"
+      />
+    </div>
+
+    <div class="campo">
+      <label for="tipo">Tipo de usuário</label>
+
+      <select
+        id="tipo"
+        [(ngModel)]="tipoUsuario">
+
+        <option value="funcionario">Funcionário</option>
+        <option value="administrador">Administrador</option>
+
+      </select>
+    </div>
+
+    @if (isFuncionario()) {
+
+      <div class="dados-funcionario">
+
+        <h2>Dados do funcionário</h2>
+
+        <div class="campo">
+          <label for="matricula">Matrícula</label>
+
+          <input
+            id="matricula"
+            type="text"
+            placeholder="Digite sua matrícula"
+          />
+        </div>
+
+        <div class="campo">
+          <label for="setor">Setor</label>
+
+          <input
+            id="setor"
+            type="text"
+            placeholder="Digite seu setor"
+          />
+        </div>
+
+      </div>
+
+    }
+
+    @if (isAdministrador()) {
+
+      <div class="dados-administrador">
+
+        <h2>Dados do administrador</h2>
+
+        <div class="campo">
+          <label for="cargo">Cargo</label>
+
+          <input
+            id="cargo"
+            type="text"
+            placeholder="Digite seu cargo"
+          />
+        </div>
+
+        <div class="campo">
+          <label for="permissao">Permissão</label>
+
+          <select id="permissao">
+            <option value="total">Acesso total</option>
+            <option value="reservas">Gerenciar reservas</option>
+          </select>
+        </div>
+
+      </div>
+
+    }
+
+    <div class="dados-senha">
+
+      <h2>Alterar senha</h2>
+
+      <div class="campo">
+        <label for="senhaAtual">Senha atual</label>
+
+        <input
+          id="senhaAtual"
+          type="password"
+          [(ngModel)]="senhaAtual"
+          placeholder="Digite sua senha atual"
+        />
+      </div>
+
+      <div class="campo">
+        <label for="novaSenha">Nova senha</label>
+
+        <input
+          id="novaSenha"
+          type="password"
+          [(ngModel)]="novaSenha"
+          placeholder="Digite a nova senha"
+        />
+      </div>
+
+      <div class="campo">
+        <label for="confirmarSenha">Confirmar nova senha</label>
+
+        <input
+          id="confirmarSenha"
+          type="password"
+          [(ngModel)]="confirmarSenha"
+          placeholder="Confirme a nova senha"
+        />
+      </div>
+
+      <button
+        type="button"
+        (click)="validarSenha()">
+        Alterar senha
+      </button>
+
+      @if (mensagemSenha) {
+        <p>{{ mensagemSenha }}</p>
+      }
+
+    </div>
+
+  </div>
+
+</div>

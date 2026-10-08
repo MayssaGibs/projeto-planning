@@ -1,0 +1,73 @@
+<div class="historico-container">
+
+  <h1>Histórico de reservas</h1>
+
+  <div class="reserva-card">
+
+    <div class="reserva-info">
+      <h2>Sala 01</h2>
+
+      <p><strong>Data:</strong> 07/10/2026</p>
+      <p><strong>Horário:</strong> 08:00 - 10:00</p>
+      <p><strong>Turma:</strong> Programador Full Stack</p>
+    </div>
+
+    <div class="reserva-acoes">
+      <div class="status confirmado">
+        Confirmada
+      </div>
+
+      <button
+        type="button"
+        class="btn-cancelar"
+        (click)="cancelarReserva()">
+        Cancelar
+      </button>
+    </div>
+
+  </div>
+
+  <div class="reserva-card">
+
+    <div class="reserva-info">
+      <h2>Laboratório de Informática</h2>
+
+      <p><strong>Data:</strong> 08/10/2026</p>
+      <p><strong>Horário:</strong> 14:00 - 16:00</p>
+      <p><strong>Turma:</strong> Programador Full Stack</p>
+    </div>
+
+    <div class="reserva-acoes">
+      <div class="status pendente">
+        Pendente
+      </div>
+
+      <button
+  type="button"
+  class="btn-cancelar"
+  (click)="cancelarReserva()">
+  Cancelar
+</button>
+    </div>
+
+  </div>
+
+  <div class="reserva-card">
+
+    <div class="reserva-info">
+      <h2>Sala 02</h2>
+
+      <p><strong>Data:</strong> 05/10/2026</p>
+      <p><strong>Horário:</strong> 10:00 - 12:00</p>
+      <p><strong>Turma:</strong> Arquitetura</p>
+    </div>
+
+    <div class="reserva-acoes">
+      <div class="status cancelada">
+        Cancelada
+      </div>
+    </div>
+
+  </div>
+
+</div>
