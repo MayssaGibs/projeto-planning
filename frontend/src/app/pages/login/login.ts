@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthService } from '../../services/auth';
 import {
   ReactiveFormsModule,
   FormGroup,
@@ -28,7 +29,10 @@ export class Login {
     ])
   });
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   entrar() {
     if (this.formulario.invalid) {
@@ -36,7 +40,13 @@ export class Login {
       return;
     }
 
+    const email = this.formulario.value.email ?? '';
+    const senha = this.formulario.value.senha ?? '';
+    const sucesso = this.authService.login(email, senha);
+
+    if(sucesso){
     this.router.navigate(['/home']);
+    }
   }
 
   recuperarSenha() {
