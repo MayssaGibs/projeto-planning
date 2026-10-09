@@ -49,3 +49,178 @@ p {
   font-size: 14px;
   color: #4a4e69;
 }
+
+/* Reorganização de style.css */
+
+/* MODAL DA PÁGINA DE RESERVA */
+
+app-reserva .modal-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(20, 24, 50, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+app-reserva .confirmation-modal {
+  width: 100%;
+  max-width: 460px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+app-reserva .confirmation-modal h2 {
+  margin: 0;
+  color: #5262ad;
+  font-size: 24px;
+}
+
+app-reserva .confirmation-decoration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 15px 0 25px;
+  color: #5262ad;
+}
+
+app-reserva .confirmation-decoration span {
+  width: 70px;
+  height: 1px;
+  background: #a795dc;
+}
+
+app-reserva .confirmation-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+app-reserva .confirmation-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 15px;
+  background: #f8f3f7;
+  border-radius: 9px;
+}
+
+app-reserva .confirmation-item span {
+  color: #6672c2;
+  font-size: 14px;
+}
+
+app-reserva .confirmation-item strong {
+  color: #253456;
+  font-size: 14px;
+  text-align: right;
+}
+
+app-reserva .confirmation-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+app-reserva .cancel-button,
+app-reserva .modal-confirm-button {
+  flex: 1;
+  min-height: 42px;
+  border: none;
+  border-radius: 22px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+app-reserva .cancel-button {
+  background: #d48b9e;
+}
+
+app-reserva .modal-confirm-button {
+  background: #6fc795;
+}
+
+app-reserva .cancel-button:hover,
+app-reserva .modal-confirm-button:hover {
+  filter: brightness(0.95);
+}
+
+app-reserva .success-message {
+  position: fixed;
+  top: 85px;
+  right: 25px;
+  z-index: 2100;
+  background: #6fc795;
+  color: white;
+  padding: 15px 22px;
+  border-radius: 10px;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* SETAS DAS DATAS DA RESERVA */
+
+app-reserva .date-area .date-navigation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 8px;
+  width: 100%;
+}
+
+app-reserva .date-area .date-options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 5px;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+app-reserva .date-area .date-arrow {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 30px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 7px;
+  background: #e6def1;
+  color: #5262ad;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+app-reserva .date-area .date-arrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+app-reserva .date-area .date-button {
+  flex-shrink: 0;
+  white-space: nowrap;
+}

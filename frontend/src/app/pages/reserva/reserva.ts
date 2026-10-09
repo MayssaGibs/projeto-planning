@@ -28,18 +28,11 @@ export class Reserva {
   datasDisponiveis: Date[] = [];
   dataSelecionada: Date = new Date();
 
-<<<<<<< HEAD
-  // NAVEGAÇÃO ENTRE AS DATAS
+  // Navegação entre datas
   inicioDatas = 0;
   quantidadeDatasVisiveis = 5;
 
   // MOSTRAR 5 DATAS POR VEZ
-=======
-  // CONTROLE DAS DATAS
-  inicioDatas = 0;
-  quantidadeDatasVisiveis = 5;
-
->>>>>>> 663e806 (Adiciona páginas de perfil, histórico e reservas de sala)
   get datasVisiveis(): Date[] {
     return this.datasDisponiveis.slice(
       this.inicioDatas,
@@ -47,23 +40,15 @@ export class Reserva {
     );
   }
 
-<<<<<<< HEAD
-  // VOLTAR DATAS
+  // Voltar datas
   voltarDatas(): void {
-=======
-  voltarDatas() {
->>>>>>> 663e806 (Adiciona páginas de perfil, histórico e reservas de sala)
     if (this.inicioDatas > 0) {
       this.inicioDatas--;
     }
   }
 
-<<<<<<< HEAD
-  // AVANÇAR DATAS
+  // Avançar datas
   avancarDatas(): void {
-=======
-  avancarDatas() {
->>>>>>> 663e806 (Adiciona páginas de perfil, histórico e reservas de sala)
     if (
       this.inicioDatas + this.quantidadeDatasVisiveis <
       this.datasDisponiveis.length
@@ -71,20 +56,14 @@ export class Reserva {
       this.inicioDatas++;
     }
   }
-
-<<<<<<< HEAD
-=======
-  // MODAL
->>>>>>> 663e806 (Adiciona páginas de perfil, histórico e reservas de sala)
+  // Tela de confirmção
   modalConfirmacaoAberto = false;
   mensagemSucesso = false;
-
   constructor(private reservaService: ReservaService) {
     this.salas = this.reservaService.getSalas();
     this.laboratorios = this.reservaService.getLaboratorios();
     this.turmas = this.reservaService.getTurmas();
     this.horarios = this.reservaService.getHorarios();
-
     this.gerarDatas();
   }
 
@@ -95,18 +74,18 @@ export class Reserva {
 
   selecionarHorario(horario: Horario): void {
     if (horario.ocupado) return;
-
     this.horarioSelecionado = horario;
+
+
+
   }
 
-<<<<<<< HEAD
+
+
+  // GERAR AS DATAS DISPONÍVEIS
   gerarDatas(): void {
-=======
-  gerarDatas() {
->>>>>>> 663e806 (Adiciona páginas de perfil, histórico e reservas de sala)
     const hoje = new Date();
     this.datasDisponiveis = [];
-
     for (let i = 0; i < 14; i++) {
       const data = new Date(hoje);
       data.setDate(hoje.getDate() + i);
@@ -116,29 +95,29 @@ export class Reserva {
     this.inicioDatas = 0;
   }
 
-<<<<<<< HEAD
   selecionarData(data: Date): void {
-=======
-  selecionarData(data: Date) {
->>>>>>> 663e806 (Adiciona páginas de perfil, histórico e reservas de sala)
     this.dataSelecionada = data;
   }
 
   isDataSelecionada(data: Date): boolean {
     return (
+
       data.getDate() === this.dataSelecionada.getDate() &&
+      
       data.getMonth() === this.dataSelecionada.getMonth() &&
       data.getFullYear() === this.dataSelecionada.getFullYear()
     );
   }
 
   formatarDataBotao(data: Date, index: number): string {
+
     if (index === 0) return 'Hoje';
+   
     if (index === 1) return 'Amanhã';
 
     return data.toLocaleDateString('pt-BR', {
       day: '2-digit',
-      month: 'short'
+      month: 'short',
     });
   }
 
@@ -146,6 +125,7 @@ export class Reserva {
     return data.toLocaleDateString('pt-BR');
   }
 
+  // ABRIR MODAL DE CONFIRMAÇÃO
   abrirConfirmacao(): void {
     if (
       !this.localSelecionado ||
@@ -159,10 +139,12 @@ export class Reserva {
     this.modalConfirmacaoAberto = true;
   }
 
+  // CANCELAR CONFIRMAÇÃO
   cancelarConfirmacao(): void {
     this.modalConfirmacaoAberto = false;
   }
 
+  // CONFIRMAR RESERVA
   confirmarReserva(): void {
     if (!this.horarioSelecionado) return;
 
