@@ -1,12 +1,16 @@
 <div class="pagina">
+
   <!-- DECORAÇÃO SUPERIOR -->
   <div class="decoracao decoracao-topo"></div>
+
   <!-- LOGO -->
   <div class="logo">
     <div class="ampulheta">
       ⌛
     </div>
+
     <div class="linha"></div>
+
     <div class="titulo">
       <h1>PLANNING</h1>
       <p>SUA AGENDA MAIS ORGANIZADA</p>
@@ -14,36 +18,99 @@
   </div>
 
   <!-- FORMULÁRIO -->
-  <form class="login" [formGroup]="formulario"  (ngSubmit)="entrar()">
+  <form
+    class="login"
+    [formGroup]="formulario"
+    (ngSubmit)="entrar()"
+    novalidate
+  >
 
     <!-- E-MAIL -->
     <div class="campo">
-
       <span class="icone">✉</span>
 
-      <input type="email" formControlName="email"  placeholder="E-mail institucional">
-
+      <input
+        type="email"
+        formControlName="email"
+        placeholder="E-mail institucional"
+        autocomplete="username"
+      >
     </div>
+
+    @if (formulario.get('email')?.touched &&
+         formulario.get('email')?.hasError('required')) {
+      <small class="mensagem-erro">
+        O e-mail é obrigatório.
+      </small>
+    }
+
+    @if (formulario.get('email')?.touched &&
+         formulario.get('email')?.hasError('email')) {
+      <small class="mensagem-erro">
+        Digite um e-mail válido.
+      </small>
+    }
 
     <!-- SENHA -->
     <div class="campo">
-
       <span class="icone">♙</span>
 
-      <input [type]="mostrarSenha ? 'text' : 'password'" formControlName="senha"  placeholder="Senha">
+      <input
+        [type]="mostrarSenha ? 'text' : 'password'"
+        formControlName="senha"
+        placeholder="Senha"
+        autocomplete="current-password"
+      >
 
-      <button type="button" class="olho" (click)="mostrarSenha = !mostrarSenha">
+      <button
+        type="button"
+        class="olho"
+        (click)="mostrarSenha = !mostrarSenha"
+        [attr.aria-label]="mostrarSenha ? 'Ocultar senha' : 'Mostrar senha'"
+      >
         {{ mostrarSenha ? '◉' : '◌' }}
       </button>
     </div>
+
+    @if (formulario.get('senha')?.touched &&
+         formulario.get('senha')?.hasError('required')) {
+      <small class="mensagem-erro">
+        A senha é obrigatória.
+      </small>
+    }
+
     <!-- RECUPERAR SENHA -->
-    <button type="button"  class="esqueci" (click)="recuperarSenha()"> Esqueci minha senha</button>
+    <button
+      type="button"
+      class="esqueci"
+      (click)="recuperarSenha()"
+    >
+      Esqueci minha senha
+    </button>
+
     <!-- ENTRAR -->
-    <button type="submit" class="btn-primary" [disabled]="formulario.invalid">
+    <button
+      type="submit"
+      class="btn-primary"
+    >
       <span class="seta">→</span>
       <span>ENTRAR</span>
     </button>
+
   </form>
+
+  <!-- MENSAGEM DE SUCESSO OU ERRO -->
+  @if (mensagem) {
+    <p
+      class="mensagem"
+      [class.erro]="tipoMensagem === 'erro'"
+      [class.sucesso]="tipoMensagem === 'sucesso'"
+      role="alert"
+    >
+      {{ mensagem }}
+    </p>
+  }
+
   <!-- RODAPÉ -->
   <div class="rodape">
     <span>────</span>
@@ -52,6 +119,7 @@
     <span>2026</span>
     <span>────</span>
   </div>
+
   <!-- DECORAÇÃO INFERIOR -->
   <div class="decoracao decoracao-baixo"></div>
 
