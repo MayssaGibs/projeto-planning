@@ -20,7 +20,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #56549a;
+  background: #faeef7;
   padding-top: 40px;
 }
 
@@ -37,7 +37,7 @@ body {
   height: 170px;
   top: -80px;
   left: -70px;
-  background: #d8b9d5;
+  background: #c59ac1;
   border-radius: 40% 0 70% 0;
   transform: rotate(-10deg);
   box-shadow:
@@ -50,7 +50,7 @@ body {
   height: 180px;
   right: -80px;
   bottom: -90px;
-  background: #ddbec0;
+  background: #c59ac1;
   border-radius: 70% 0 0 0;
   transform: rotate(-8deg);
   box-shadow:
@@ -83,7 +83,7 @@ body {
 .linha {
   width: 1px;
   height: 125px;
-  background: #e7cddc;
+  background: #ac8b9f;
 }
 
 .titulo {
@@ -92,7 +92,7 @@ body {
 
 .titulo h1 {
   margin: 0;
-  color: #e8c4c6;
+  color: #5b5ca1;
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 55px;
   font-weight: bold;
@@ -101,7 +101,7 @@ body {
 
 .titulo p {
   margin: 8px 0 0;
-  color: #c7a7c3;
+  color: #5b5ca1;
   font-size: 12px;
   letter-spacing: 4px;
 }
@@ -195,7 +195,7 @@ body {
   padding: 0;
   border: none;
   background: transparent;
-  color: #c7a7c3;
+  color: #d6b6d2;
   font-size: 14px;
   text-decoration: underline;
   cursor: pointer;
@@ -248,7 +248,7 @@ body {
   align-items: center;
   gap: 14px;
   margin-top: 38px;
-  color: #c7a7c3;
+  color: #aa7fa4;
   font-size: 10px;
   letter-spacing: 2px;
 }
@@ -300,4 +300,28 @@ body {
     width: 180px;
     height: 130px;
   }
+
+/* MENSAGENS DE VALIDAÇÃO */
+.mensagem-erro {
+  display: block;
+  color: #fab4be;
+  font-size: 12px;
+  margin: -8px 0 10px 8px;
+}
+
+/* MENSAGEM GERAL */
+.mensagem {
+  text-align: center;
+  font-size: 13px;
+  margin: 12px 0;
+}
+
+.mensagem.erro {
+  color: #ffbac4;
+}
+
+.mensagem.sucesso {
+  color: #a8e6b0;
+}
+
 }
