@@ -1,5 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { AuthService } from '../../services/auth';
+import { Component } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormGroup,
@@ -17,6 +16,8 @@ import { Router } from '@angular/router';
 export class Login {
 
   mostrarSenha = false;
+  mensagem = '';
+  tipoMensagem = '';
 
   formulario = new FormGroup({
     email: new FormControl('', [
@@ -29,24 +30,29 @@ export class Login {
     ])
   });
 
-  constructor(
-    private router: Router,
-    private authService: AuthService
-  ) {}
+  constructor(private router: Router) {}
 
   entrar() {
+    this.mensagem = '';
+    this.tipoMensagem = '';
+
+    this.formulario.markAllAsTouched();
+
+    // Verifica se os campos são válidos
     if (this.formulario.invalid) {
-      this.formulario.markAllAsTouched();
+      this.mensagem = 'Verifique o e-mail e a senha.';
+      this.tipoMensagem = 'erro';
       return;
     }
 
-    const email = this.formulario.value.email ?? '';
-    const senha = this.formulario.value.senha ?? '';
-    const sucesso = this.authService.login(email, senha);
+    // Formulário preenchido corretamente
+    this.mensagem = 'Dados preenchidos! Entrando...';
+    this.tipoMensagem = 'sucesso';
 
-    if(sucesso){
-    this.router.navigate(['/home']);
-    }
+    // Navega para a página inicial
+    setTimeout(() => {
+      this.router.navigate(['/home']);
+    }, 1000);
   }
 
   recuperarSenha() {
