@@ -1,73 +1,250 @@
+
+<!-- BARRA LATERAL DO ADMINISTRADOR -->
+<aside
+  class="admin-sidebar"
+  [class.open]="sidebarOpen"
+  (mouseenter)="sidebarOpen = true"
+  (mouseleave)="sidebarOpen = false"
+>
+  <div class="admin-profile">
+    <div class="admin-avatar">D</div>
+
+    <div class="admin-user-info">
+      <strong>David</strong>
+      <small>202420@admin.etecrei.br</small>
+    </div>
+  </div>
+
+  <div class="admin-divider"></div>
+
+  <nav class="admin-menu">
+    <button type="button" routerLink="/home" title="Início">
+      <span class="admin-icon">⌂</span>
+      <span class="admin-label">Início</span>
+    </button>
+
+    <button
+      type="button"
+      routerLink="/reserva"
+      title="Registrar uma sala/lab"
+    >
+      <span class="admin-icon">▱</span>
+      <span class="admin-label">Registrar uma sala/lab</span>
+    </button>
+
+    <button type="button" title="Registrar funcionário">
+      <span class="admin-icon">♙</span>
+      <span class="admin-label">Registrar funcionário</span>
+    </button>
+
+    <button
+      type="button"
+      routerLink="/historico"
+      class="active"
+      title="Registros"
+    >
+      <span class="admin-icon">▱</span>
+      <span class="admin-label">Registros</span>
+    </button>
+
+    <button type="button" title="Em manutenção">
+      <span class="admin-icon">⚒</span>
+      <span class="admin-label">Em manutenção</span>
+    </button>
+  </nav>
+
+  <div class="admin-divider"></div>
+
+  <nav class="admin-menu">
+    <button type="button" title="Suporte">
+      <span class="admin-icon">♧</span>
+      <span class="admin-label">Suporte</span>
+    </button>
+
+    <button type="button" (click)="sair()" title="Sair">
+      <span class="admin-icon">↪</span>
+      <span class="admin-label">Sair</span>
+    </button>
+  </nav>
+
+  <div class="admin-divider"></div>
+
+  <div class="admin-logo">
+    <span class="admin-icon">⌛</span>
+    <span class="admin-label">PLANNING</span>
+  </div>
+</aside>
+
+<!-- CONTEÚDO DA PÁGINA -->
 <div class="historico-container">
 
-  <h1>Histórico de reservas</h1>
+  <header class="registros-header">
+    <h1>Registros</h1>
+    <p>Acompanhe as reservas de salas e laboratórios.</p>
+  </header>
 
-  <div class="reserva-card">
+  <!-- LISTA DE REGISTROS -->
+  <section class="registros-grid">
 
-    <div class="reserva-info">
-      <h2>Sala 01</h2>
+    @for (registro of registros; track registro.id) {
 
-      <p><strong>Data:</strong> 07/10/2026</p>
-      <p><strong>Horário:</strong> 08:00 - 10:00</p>
-      <p><strong>Turma:</strong> Programador Full Stack</p>
-    </div>
+      <article class="registro-card">
 
-    <div class="reserva-acoes">
-      <div class="status confirmado">
-        Confirmada
-      </div>
+        <div class="card-topo">
+          <div>
+            <span class="card-subtitulo">
+              Reserva #{{ registro.id }}
+            </span>
 
-      <button
-        type="button"
-        class="btn-cancelar"
-        (click)="cancelarReserva()">
-        Cancelar
-      </button>
-    </div>
+            <h2>{{ registro.sala }}</h2>
+          </div>
 
-  </div>
+          <span
+            class="status"
+            [class.confirmada]="registro.status === 'confirmada'"
+            [class.pendente]="registro.status === 'pendente'"
+            [class.cancelada]="registro.status === 'cancelada'"
+          >
+            {{ registro.status }}
+          </span>
+        </div>
 
-  <div class="reserva-card">
+        <div class="registro-informacoes">
 
-    <div class="reserva-info">
-      <h2>Laboratório de Informática</h2>
+          <p>
+            <strong>Data:</strong>
+            {{ registro.data }}
+          </p>
 
-      <p><strong>Data:</strong> 08/10/2026</p>
-      <p><strong>Horário:</strong> 14:00 - 16:00</p>
-      <p><strong>Turma:</strong> Programador Full Stack</p>
-    </div>
+          <p>
+            <strong>Responsável:</strong>
+            {{ registro.responsavel }}
+          </p>
 
-    <div class="reserva-acoes">
-      <div class="status pendente">
-        Pendente
-      </div>
+          <p>
+            <strong>Identificação:</strong>
+            {{ registro.identificacao }}
+          </p>
 
-      <button
-  type="button"
-  class="btn-cancelar"
-  (click)="cancelarReserva()">
-  Cancelar
-</button>
-    </div>
+          <p>
+            <strong>Horário:</strong>
+            {{ registro.horario }}
+          </p>
 
-  </div>
+          <p>
+            <strong>Turma:</strong>
+            {{ registro.turma }}
+          </p>
 
-  <div class="reserva-card">
+          <p>
+            <strong>Prioridade:</strong>
 
-    <div class="reserva-info">
-      <h2>Sala 02</h2>
+            <span
+              class="prioridade"
+              [class.alta]="registro.prioridade === 'alta'"
+              [class.media]="registro.prioridade === 'media'"
+              [class.baixa]="registro.prioridade === 'baixa'"
+            >
+              @switch (registro.prioridade) {
+                @case ('alta') { Alta }
+                @case ('media') { Média }
+                @case ('baixa') { Baixa }
+              }
+            </span>
+          </p>
 
-      <p><strong>Data:</strong> 05/10/2026</p>
-      <p><strong>Horário:</strong> 10:00 - 12:00</p>
-      <p><strong>Turma:</strong> Arquitetura</p>
-    </div>
+        </div>
 
-    <div class="reserva-acoes">
-      <div class="status cancelada">
-        Cancelada
-      </div>
-    </div>
+        <div class="card-acoes">
+          <button
+            type="button"
+            class="btn-ver-mais"
+            (click)="verMais(registro)"
+          >
+            Ver mais
+          </button>
+        </div>
 
-  </div>
+      </article>
+
+    }
+
+  </section>
 
 </div>
+
+<!-- MODAL DE DETALHES -->
+@if (registroSelecionado; as registro) {
+
+  <div class="modal-overlay" (click)="fecharDetalhes()">
+
+    <div
+      class="modal-conteudo"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="titulo-detalhes"
+      (click)="$event.stopPropagation()"
+    >
+
+      <div class="modal-topo">
+        <h2 id="titulo-detalhes">Detalhes da reserva</h2>
+
+        <button
+          type="button"
+          class="btn-fechar"
+          aria-label="Fechar detalhes"
+          (click)="fecharDetalhes()"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div class="modal-informacoes">
+        <p><strong>Reserva:</strong> #{{ registro.id }}</p>
+        <p><strong>Data:</strong> {{ registro.data }}</p>
+        <p><strong>Responsável:</strong> {{ registro.responsavel }}</p>
+        <p><strong>Identificação:</strong> {{ registro.identificacao }}</p>
+        <p><strong>Horário:</strong> {{ registro.horario }}</p>
+        <p><strong>Sala:</strong> {{ registro.sala }}</p>
+        <p><strong>Turma:</strong> {{ registro.turma }}</p>
+
+        <p>
+          <strong>Prioridade:</strong>
+          @switch (registro.prioridade) {
+            @case ('alta') { Alta }
+            @case ('media') { Média }
+            @case ('baixa') { Baixa }
+          }
+        </p>
+
+        <p>
+          <strong>Status:</strong>
+          {{ registro.status }}
+        </p>
+      </div>
+
+      <div class="modal-acoes">
+        <button
+          type="button"
+          class="btn-voltar"
+          (click)="fecharDetalhes()"
+        >
+          Voltar
+        </button>
+
+        @if (registro.status !== 'cancelada') {
+          <button
+            type="button"
+            class="btn-cancelar"
+            (click)="cancelarReserva(registro)"
+          >
+            Cancelar reserva
+          </button>
+        }
+      </div>
+
+    </div>
+
+  </div>
+
+}
