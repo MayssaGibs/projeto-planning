@@ -1,3 +1,4 @@
+
 <div class="home-page">
 
   <!-- TOPO -->
@@ -17,7 +18,6 @@
       </div>
     </div>
   </header>
-
 
   <!-- SIDEBAR -->
   <aside
@@ -44,13 +44,14 @@
         <span class="label">Início</span>
       </button>
 
+      <!-- BOTÃO CONECTADO À TELA DE RESERVA -->
       <button
-  type="button"
-  routerLink="/reservas-de-sala"
->
-  <span class="icon">▱</span>
-  <span class="label">Reserve uma sala/lab</span>
-</button>
+        type="button"
+        routerLink="/reserva"
+      >
+        <span class="icon">▱</span>
+        <span class="label">Reserve uma sala/lab</span>
+      </button>
 
       <button type="button">
         <span class="icon">▤</span>
@@ -85,7 +86,6 @@
 
   </aside>
 
-
   <!-- CONTEÚDO -->
   <main class="content">
 
@@ -97,7 +97,6 @@
     <span class="star star-two">✦</span>
     <span class="star star-three">✦</span>
 
-
     <!-- TÍTULO -->
     <section class="welcome">
       <h1>Bem vinda, Jaqueliny!</h1>
@@ -108,7 +107,6 @@
         <span></span>
       </div>
     </section>
-
 
     <!-- DASHBOARD -->
     <div class="dashboard">
@@ -139,11 +137,9 @@
 
         </div>
 
-
         <h2 class="schedule-title">
           Horários de aulas
         </h2>
-
 
         <!-- GRADE DE HORÁRIOS -->
         <div class="schedule">
@@ -192,7 +188,6 @@
 
           </div>
 
-
           <!-- CORPO -->
           <div class="schedule-body">
 
@@ -209,7 +204,6 @@
               <span>15:00</span>
             </div>
 
-
             <!-- LINHAS -->
             <div class="schedule-grid">
 
@@ -223,7 +217,6 @@
               <div class="grid-line"></div>
               <div class="grid-line"></div>
 
-
               <!-- AULA 1 -->
               <article class="lesson lesson-one">
                 <strong>Informática 01</strong>
@@ -232,7 +225,6 @@
                   ◷ 07:30 - 11:30
                 </span>
               </article>
-
 
               <!-- AULA 2 -->
               <article class="lesson lesson-two">
@@ -251,7 +243,6 @@
 
       </section>
 
-
       <!-- PAINEL DIREITO -->
       <aside class="right-panel">
 
@@ -259,7 +250,6 @@
         <div class="calendar-container">
           <app-calendario></app-calendario>
         </div>
-
 
         <!-- SALAS RESERVADAS -->
         <section class="status-section">
@@ -295,7 +285,6 @@
 
         </section>
 
-
         <!-- MANUTENÇÃO -->
         <section class="status-section maintenance-section">
 
@@ -330,7 +319,6 @@
           </article>
 
         </section>
-
 
         <button
           class="more-reservations"
