@@ -9,7 +9,7 @@ interface RoomMaintenance {
 }
 
 @Component({
-  selector: 'app-salas-em-manutencao',
+  selector: 'salas-manutencao',
 
   imports: [],
 
@@ -17,7 +17,7 @@ interface RoomMaintenance {
 
   styleUrl: './salas-manutencao.css',
 })
-export class SalasEmManutencao {
+export class SalasManutencao {
   sidebarOpen = false;
 
 

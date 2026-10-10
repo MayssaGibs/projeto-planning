@@ -1,3 +1,41 @@
+
+<header class="topbar">
+  <div class="topbar-brand">
+    <span class="brand-icon">⌛</span>
+  </div>
+
+  <div class="topbar-search">
+    <span class="search-icon">⌕</span>
+    <input
+      type="search"
+      placeholder="Buscar..."
+      aria-label="Buscar agendamentos"
+      [(ngModel)]="searchTerm"
+    />
+  </div>
+
+  <div class="topbar-actions">
+    <button
+      type="button"
+      class="topbar-icon"
+      aria-label="Notificações"
+      (click)="showNotifications()"
+    >
+      ♧
+    </button>
+
+    <button
+      type="button"
+      class="profile-button"
+      aria-label="Perfil do utilizador"
+      (click)="showProfile()"
+    >
+      J
+    </button>
+  </div>
+</header>
+
+
 <div class="agenda-container">
 
   <!-- TÍTULO -->
@@ -58,11 +96,9 @@
     <div class="schedule">
 
       <span class="clock-icon">◷</span>
-
-      <span>
-        {{ startTime }} - {{ endTime }}
-      </span>
-
+<span>
+  {{ schedules.length > 0 ? schedules[0].time : 'Sem agendamentos' }}
+</span>
     </div>
 
   </section>
@@ -84,7 +120,7 @@
     </div>
 
 
-    @for (schedule of schedules; track schedule.id) {
+    @for (schedule of filteredSchedules; track schedule.id) {
 
       <div class="schedule-card">
 

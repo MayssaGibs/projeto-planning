@@ -1,75 +1,61 @@
-import { Component } from '@angular/core';
 
-interface Schedule {
-  id: number;
-  time: string;
-  className: string;
-  room: string;
-  lab?: string;
-  status: 'confirmado' | 'pendente';
-}
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { AgendaService, Schedule } from '../../services/agendaservice';
 
 @Component({
   selector: 'app-agenda',
-
-  imports: [],
-
+  standalone: true,
+  imports: [FormsModule],
   templateUrl: './agenda.html',
-
   styleUrl: './agenda.css',
 })
-export class Agenda {
-
+export class Agenda implements OnInit {
   sidebarOpen = false;
-  startTime = '07:30';
+  searchTerm = '';
+  schedules: Schedule[] = [];
 
-  endTime = '11:30';
+  constructor(private AgendaService: AgendaService) {}
 
-
-  // ============================================
-  // AGENDAMENTOS
-  // ============================================
-
-  schedules: Schedule[] = [
-
-    {
-      id: 1,
-      time: '07:30',
-      className: 'INFORMÁTICA 01',
-      room: '111',
-      lab: 'LAB - A - 01',
-      status: 'confirmado'
-    },
-
-    {
-      id: 2,
-      time: '13:00',
-      className: 'INFORMÁTICA 02',
-      room: '112',
-      lab: 'LAB - B - 02',
-      status: 'confirmado'
-    },
-
-    {
-      id: 3,
-      time: '19:00',
-      className: 'DESENVOLVIMENTO WEB',
-      room: '205',
-      lab: 'LAB - A - 02',
-      status: 'pendente'
-    }
-
-  ];
-
-
-  // ============================================
-  // NOVO AGENDAMENTO
-  // ============================================
-
-  newSchedule(): void {
-
-    console.log('Novo agendamento');
-
+  ngOnInit(): void {
+    this.loadSchedules();
   }
 
+  loadSchedules(): void {
+    this.schedules = this.AgendaService.getSchedules();
+  }
+
+  get filteredSchedules(): Schedule[] {
+    const term = this.searchTerm.trim().toLowerCase();
+
+    return this.schedules.filter((schedule) =>
+      [
+        schedule.className,
+        schedule.room,
+        schedule.lab ?? '',
+        schedule.time,
+      ].some((value) => value.toLowerCase().includes(term))
+    );
+  }
+
+  showNotifications(): void {
+    alert('Não existem notificações novas.');
+  }
+
+  showProfile(): void {
+    alert('Perfil do utilizador');
+  }
+
+  newSchedule(): void {
+    alert('O formulário de novo agendamento será implementado aqui.');
+  }
+
+  deleteSchedule(id: number): void {
+    if (!confirm('Deseja excluir este agendamento?')) {
+      return;
+    }
+
+    this.AgendaService.deleteSchedule(id);
+    this.loadSchedules();
+  }
 }

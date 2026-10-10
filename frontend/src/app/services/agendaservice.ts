@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+
 export interface Schedule {
   id: number;
   date: string;
@@ -73,7 +74,28 @@ export class AgendaService {
 
   ];
 
+searchTerm = '';
 
+get filteredSchedules(): Schedule[] {
+  const term = this.searchTerm.trim().toLowerCase();
+
+  return this.schedules.filter((schedule) =>
+    [
+      schedule.className,
+      schedule.room,
+      schedule.lab ?? '',
+      schedule.time,
+    ].some((value) => value.toLowerCase().includes(term))
+  );
+}
+
+showNotifications(): void {
+  alert('Você não tem notificações novas.');
+}
+
+showProfile(): void {
+  alert('Perfil do utilizador');
+}
   // ============================================
   // BUSCAR TODOS OS AGENDAMENTOS
   // ============================================
@@ -234,5 +256,6 @@ export class AgendaService {
     return `${year}-${month}-${day}`;
 
   }
+
 
 }
