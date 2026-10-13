@@ -19,7 +19,7 @@
   flex-direction: column;
   align-items: center;
 
-  background: #56549a;
+  background: #faeef7;
 
   padding-top: 40px;
 }
@@ -41,7 +41,7 @@
   top: -80px;
   left: -70px;
 
-  background: #d8b9d5;
+  background: #c59ac1;
 
   border-radius: 40% 0 70% 0;
 
@@ -104,7 +104,7 @@
   width: 1px;
   height: 125px;
 
-  background: #e7cddc;
+  background: #aa879c;
 }
 
 .titulo {
@@ -114,7 +114,7 @@
 .titulo h1 {
   margin: 0;
 
-  color: #e8c4c6;
+  color: #5b5ca1;
 
   font-family: Georgia, 'Times New Roman', serif;
 
@@ -127,7 +127,7 @@
 .titulo p {
   margin: 8px 0 0;
 
-  color: #c7a7c3;
+  color: #5b5ca1;
 
   font-size: 12px;
 
