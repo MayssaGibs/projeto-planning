@@ -1,0 +1,75 @@
+<section class="pagina">
+  <h1 class="titulo">Cadastrar funcionário</h1>
+
+  <form class="formulario formulario-grande" [formGroup]="form" (ngSubmit)="adicionar()">
+    <div class="grade">
+      <div class="campo">
+        <label for="nome">Nome completo</label>
+        <input id="nome" type="text" formControlName="nome" />
+        <small class="erro" *ngIf="invalido('nome')">Informe o nome completo.</small>
+      </div>
+
+      <div class="campo">
+        <label for="designacao">Designação</label>
+        <input id="designacao" type="text" formControlName="designacao" />
+        <small class="erro" *ngIf="invalido('designacao')">Informe a designação.</small>
+      </div>
+
+      <div class="campo">
+        <label for="email">E-mail da instituição</label>
+        <input id="email" type="email" formControlName="email" />
+        <small class="erro" *ngIf="invalido('email')">Informe um e-mail válido.</small>
+      </div>
+
+      <div class="campo">
+        <label for="numero">Número</label>
+        <input id="numero" type="text" formControlName="numero" />
+        <small class="erro" *ngIf="invalido('numero')">Informe o número.</small>
+      </div>
+
+      <div class="campo">
+        <label for="turnos">Turnos</label>
+        <select id="turnos" formControlName="turnos">
+          <option value="">Selecione</option>
+          <option value="manha">Manhã</option>
+          <option value="tarde">Tarde</option>
+          <option value="noite">Noite</option>
+        </select>
+        <small class="erro" *ngIf="invalido('turnos')">Selecione o turno.</small>
+      </div>
+
+      <div class="campo">
+        <label for="genero">Gênero</label>
+        <select id="genero" formControlName="genero">
+          <option value="">Selecione</option>
+          <option value="feminino">Feminino</option>
+          <option value="masculino">Masculino</option>
+          <option value="outro">Outro</option>
+        </select>
+        <small class="erro" *ngIf="invalido('genero')">Selecione o gênero.</small>
+      </div>
+
+      <div class="campo">
+        <label for="cursos">Cursos</label>
+        <input id="cursos" type="text" formControlName="cursos" />
+        <small class="erro" *ngIf="invalido('cursos')">Informe o curso.</small>
+      </div>
+
+      <div class="campo">
+        <label for="senha">Senha institucional</label>
+        <input id="senha" type="password" formControlName="senha" />
+        <small class="erro" *ngIf="invalido('senha')">Mínimo de 6 caracteres.</small>
+      </div>
+
+      <div class="campo foto">
+        <label for="foto">Foto do funcionário</label>
+        <input id="foto" type="file" accept="image/*" (change)="selecionarFoto($event)" />
+      </div>
+    </div>
+
+    <div class="acoes">
+      <button type="submit" class="btn btn-adicionar">Adicionar</button>
+      <button type="button" class="btn btn-cancelar" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
+</section>
