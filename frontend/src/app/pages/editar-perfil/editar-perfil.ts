@@ -25,6 +25,13 @@ export class EditarPerfil {
 
   mensagemSenha = '';
 
+  nome = '';
+  email = '';
+  matricula = '';
+  setor = '';
+  cargo = '';
+  permissao = 'total';
+
   validarSenha(): boolean {
     if (!this.senhaAtual) {
       this.mensagemSenha = 'Digite sua senha atual.';
@@ -49,5 +56,19 @@ export class EditarPerfil {
 
     this.mensagemSenha = 'Senha alterada com sucesso!';
     return true;
+  }
+
+  salvarPerfil(): void {
+    if (!this.nome.trim()) {
+      this.mensagemSenha = 'Digite seu nome.';
+      return;
+    }
+
+    if (!this.email.trim()) {
+      this.mensagemSenha = 'Digite seu e-mail.';
+      return;
+    }
+
+    this.mensagemSenha = 'Perfil validado com sucesso!';
   }
 }
