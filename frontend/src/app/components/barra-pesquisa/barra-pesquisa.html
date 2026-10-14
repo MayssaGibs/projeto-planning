@@ -1,0 +1,50 @@
+
+<button
+  type="button"
+  class="barra-pesquisa"
+  (click)="abrir()"
+  aria-label="Pesquisar"
+>
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="11" cy="11" r="7"></circle>
+    <path d="m20 20-4-4"></path>
+  </svg>
+
+  <span>Buscar...</span>
+</button>
+
+@if (modalAberto) {
+  <div class="pesquisa-overlay" (click)="fechar()">
+    <section
+      class="pesquisa-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="titulo-pesquisa"
+      (click)="$event.stopPropagation()"
+    >
+      <div class="pesquisa-icone">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-4-4"></path>
+        </svg>
+      </div>
+
+      <h2 id="titulo-pesquisa">
+        Pesquisa do Planning
+      </h2>
+
+      <p>
+        Nossa ferramenta de pesquisa estará
+        disponível em breve!
+      </p>
+
+      <button
+        type="button"
+        class="pesquisa-entendi"
+        (click)="fechar()"
+      >
+        Entendi
+      </button>
+    </section>
+  </div>
+}
