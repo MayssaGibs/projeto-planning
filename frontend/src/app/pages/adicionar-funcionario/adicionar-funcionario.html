@@ -1,0 +1,104 @@
+<div class="container-pagina">
+  <button type="button" class="btn-voltar" (click)="voltar()">← Voltar</button>
+
+  <h1 class="titulo-pagina">Cadastrar funcionário</h1>
+
+  <div class="card-cadastro">
+    <form [formGroup]="form" (ngSubmit)="adicionar()">
+      <div class="form-grid">
+        <!-- Linha 1 -->
+        <div class="campo campo-nome">
+          <label for="nome">Nome completo</label>
+          <input id="nome" type="text" formControlName="nome" />
+          @if (invalido('nome')) {
+            <small class="erro">Informe o nome completo.</small>
+          }
+        </div>
+
+        <div class="campo campo-designacao">
+          <label for="designacao">Designação</label>
+          <input id="designacao" type="text" formControlName="designacao" />
+          @if (invalido('designacao')) {
+            <small class="erro">Informe a designação.</small>
+          }
+        </div>
+
+        <!-- Linha 2 -->
+        <div class="campo campo-email">
+          <label for="email">E-mail da instituição</label>
+          <input id="email" type="email" formControlName="email" />
+          @if (invalido('email')) {
+            <small class="erro">Informe um e-mail válido.</small>
+          }
+        </div>
+
+        <div class="campo campo-numero">
+          <label for="numero">Número</label>
+          <input id="numero" type="text" formControlName="numero" />
+          @if (invalido('numero')) {
+            <small class="erro">Informe o número.</small>
+          }
+        </div>
+
+        <!-- Linha 3 (3 Colunas) -->
+        <div class="campo campo-turnos">
+          <label for="turnos">Turnos</label>
+          <select id="turnos" formControlName="turnos">
+            <option value="" disabled selected></option>
+            <option value="manha">Manhã</option>
+            <option value="tarde">Tarde</option>
+            <option value="noite">Noite</option>
+          </select>
+          @if (invalido('turnos')) {
+            <small class="erro">Selecione o turno.</small>
+          }
+        </div>
+
+        <div class="campo campo-genero">
+          <label for="genero">Gênero</label>
+          <select id="genero" formControlName="genero">
+            <option value="" disabled selected></option>
+            <option value="feminino">Feminino</option>
+            <option value="masculino">Masculino</option>
+            <option value="outro">Outro</option>
+          </select>
+          @if (invalido('genero')) {
+            <small class="erro">Selecione o gênero.</small>
+          }
+        </div>
+
+        <div class="campo campo-cursos">
+          <label for="cursos">Cursos</label>
+          <input id="cursos" type="text" formControlName="cursos" />
+          @if (invalido('cursos')) {
+            <small class="erro">Informe o curso.</small>
+          }
+        </div>
+
+        <!-- Linha 4 -->
+        <div class="campo campo-senha">
+          <label for="senha">Senha institucional</label>
+          <input id="senha" type="password" formControlName="senha" />
+          @if (invalido('senha')) {
+            <small class="erro">Mínimo de 6 caracteres.</small>
+          }
+        </div>
+
+        <!-- Caixinha da Foto no canto inferior direito -->
+        <div class="campo-foto-box">
+          <span class="label-foto">Foto do funcionário</span>
+          <div class="area-foto">
+            <label for="foto" class="btn-escolher-foto">Escolher arquivo</label>
+            <input id="foto" type="file" accept="image/*" (change)="selecionarFoto($event)" hidden />
+          </div>
+        </div>
+      </div>
+
+      <!-- Botões de Ação -->
+      <div class="acoes">
+        <button type="submit" class="btn btn-adicionar">Adicionar</button>
+        <button type="button" class="btn btn-cancelar" (click)="cancelar()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

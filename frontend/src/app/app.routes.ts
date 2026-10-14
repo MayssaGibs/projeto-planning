@@ -65,9 +65,35 @@ export const routes: Routes = [
     import('./pages/historico/historico')
       .then((m) => m.Historico),
 },
+ {
+path: 'registrar-sala',
+  canActivate: [],
+  loadComponent: () =>
+    import('./pages/registrar-sala/registrar-sala')
+      .then((m) => m.RegistrarSala),
+  },
+  {
+
+  path: 'adicionar-funcionario',
+  canActivate: [],
+  loadComponent: () =>
+    import('./pages/adicionar-funcionario/adicionar-funcionario')
+      .then((m) => m. AdicionarFuncionario),
+  },
+    {
+
+  path: 'admin-manutencao',
+  canActivate: [],
+  loadComponent: () =>
+    import('./pages/admin-manutencao/admin-manutencao')
+      .then((m) => m. AdminManutencao),
+  },
 
   {
     path: '**',
     redirectTo: 'home',
-  },
+  }, 
+   
+
+   
 ];
