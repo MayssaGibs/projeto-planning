@@ -1,166 +1,387 @@
 
-<div class="perfil-container">
+<div class="pagina-perfil" [class.perfil-funcionario]="isFuncionario()">
 
-  <h1>Editar perfil</h1>
+  <!-- MENU DO DAVID OU DA JAQUELINY -->
+  @if (isAdministrador()) {
+    <app-admin-sidebar></app-admin-sidebar>
+  } @else {
+    <app-funcionario-sidebar></app-funcionario-sidebar>
+  }
 
-  <div class="perfil-card">
+  <!-- BARRA SUPERIOR ORIGINAL DO ADMINISTRADOR -->
+  @if (isAdministrador()) {
+    <header class="barra-superior">
 
-    <div class="campo">
-      <label for="nome">Nome</label>
-      <input
-        id="nome"
-        name="nome"
-        type="text"
-        [(ngModel)]="nome"
-        placeholder="Digite seu nome"
-      />
-    </div>
-
-    <div class="campo">
-      <label for="email">E-mail</label>
-      <input
-        id="email"
-        name="email"
-        type="email"
-        [(ngModel)]="email"
-        placeholder="Digite seu e-mail"
-      />
-    </div>
-
-    <div class="campo">
-      <label for="tipo">Tipo de usuário</label>
-
-      <select
-        id="tipo"
-        name="tipo"
-        [(ngModel)]="tipoUsuario">
-
-        <option value="funcionario">Funcionário</option>
-        <option value="administrador">Administrador</option>
-
-      </select>
-    </div>
-
-    @if (isFuncionario()) {
-
-      <div class="dados-funcionario">
-
-        <h2>Dados do funcionário</h2>
-
-        <div class="campo">
-          <label for="matricula">Matrícula</label>
-
-          <input
-            id="matricula"
-            name="matricula"
-            type="text"
-            [(ngModel)]="matricula"
-            placeholder="Digite sua matrícula"
-          />
-        </div>
-
-        <div class="campo">
-          <label for="setor">Setor</label>
-
-          <input
-            id="setor"
-            name="setor"
-            type="text"
-            [(ngModel)]="setor"
-            placeholder="Digite seu setor"
-          />
-        </div>
-
+      <div class="busca-topo">
+        <span>⌕</span>
+        <input
+          type="text"
+          placeholder="Buscar..."
+          aria-label="Buscar"
+        >
       </div>
 
-    }
+      <div class="topo-direita">
+        <span class="notificacao" title="Notificações">
+          ♧
+        </span>
 
-    @if (isAdministrador()) {
-
-      <div class="dados-administrador">
-
-        <h2>Dados do administrador</h2>
-
-        <div class="campo">
-          <label for="cargo">Cargo</label>
-
-          <input
-            id="cargo"
-            name="cargo"
-            type="text"
-            [(ngModel)]="cargo"
-            placeholder="Digite seu cargo"
-          />
+        <div
+          class="avatar-topo"
+          title="Meu perfil"
+          aria-label="Meu perfil"
+        >
+          @if (foto) {
+            <img [src]="foto" alt="Foto do perfil">
+          } @else {
+            {{ iniciais }}
+          }
         </div>
-
-        <div class="campo">
-          <label for="permissao">Permissão</label>
-
-          <select
-            id="permissao"
-            name="permissao"
-            [(ngModel)]="permissao">
-
-            <option value="total">Acesso total</option>
-            <option value="reservas">Gerenciar reservas</option>
-
-          </select>
-        </div>
-
       </div>
 
-    }
+    </header>
+  }
 
-    <div class="dados-senha">
+  <!-- CONTEÚDO DO PERFIL -->
+  <main class="perfil-container">
 
+    <div class="decoracao decoracao-esquerda"></div>
+    <div class="decoracao decoracao-direita"></div>
 
-      <div class="campo">
-        <label for="novaSenha">Nova senha</label>
+    <span class="estrela">✦</span>
+
+    <h1>Meu perfil</h1>
+
+    <section class="perfil-card">
+
+      <!-- FOTO DO PERFIL -->
+      <div class="coluna-foto">
+
+        <div class="foto-grande">
+          @if (foto) {
+            <img [src]="foto" alt="Foto de perfil">
+          } @else {
+            <span>{{ iniciais }}</span>
+          }
+        </div>
+
+        <label
+          class="btn-foto"
+          for="arquivoFoto"
+        >
+          Alterar foto
+        </label>
 
         <input
-          id="novaSenha"
-          name="novaSenha"
-          type="password"
-          [(ngModel)]="novaSenha"
-          autocomplete="new-password"
-          placeholder="Digite a nova senha"
-        />
+          id="arquivoFoto"
+          type="file"
+          accept="image/*"
+          (change)="alterarFoto($event)"
+          hidden
+        >
+
+        <div class="etiqueta-perfil">
+          {{ tipoUsuario }}
+        </div>
+
       </div>
 
-      <div class="campo">
-        <label for="confirmarSenha">Confirmar nova senha</label>
+      <!-- DADOS PESSOAIS -->
+      <div class="coluna-dados">
 
-        <input
-          id="confirmarSenha"
-          name="confirmarSenha"
-          type="password"
-          [(ngModel)]="confirmarSenha"
-          autocomplete="new-password"
-          placeholder="Confirme a nova senha"
-        />
+        <h2>Dados pessoais</h2>
+
+        <!-- NOME -->
+        <div class="campo">
+          <label for="nome">
+            Nome completo
+          </label>
+
+          <input
+            id="nome"
+            name="nome"
+            type="text"
+            [(ngModel)]="nome"
+            placeholder="Digite seu nome completo"
+          >
+        </div>
+
+        <div class="linha-campos">
+
+          <!-- E-MAIL -->
+          <div class="campo">
+            <label for="email">
+              E-mail institucional
+            </label>
+
+            <input
+              id="email"
+              type="email"
+              [value]="email"
+              readonly
+              title="O e-mail de login não pode ser alterado aqui"
+            >
+          </div>
+
+          <!-- MATRÍCULA -->
+          <div class="campo">
+            <label for="matricula">
+              Número / Matrícula
+            </label>
+
+            <input
+              id="matricula"
+              name="matricula"
+              type="text"
+              [(ngModel)]="matricula"
+              placeholder="Sua matrícula"
+            >
+          </div>
+
+        </div>
+
+        <div class="linha-campos">
+
+          <!-- TELEFONE -->
+          <div class="campo">
+            <label for="telefone">
+              Telefone
+            </label>
+
+            <input
+              id="telefone"
+              name="telefone"
+              type="tel"
+              [(ngModel)]="telefone"
+              placeholder="Seu telefone"
+            >
+          </div>
+
+          <!-- GÊNERO -->
+          <div class="campo">
+            <label for="genero">
+              Gênero
+            </label>
+
+            <select
+              id="genero"
+              name="genero"
+              [(ngModel)]="genero"
+            >
+              <option value="">Selecione</option>
+              <option value="Feminino">Feminino</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Outro">Outro</option>
+              <option value="Prefiro não informar">
+                Prefiro não informar
+              </option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- DESIGNAÇÃO -->
+        <div class="campo">
+          <label for="designacao">
+            Designação
+          </label>
+
+          <input
+            id="designacao"
+            name="designacao"
+            type="text"
+            [(ngModel)]="designacao"
+            placeholder="Sua designação"
+          >
+        </div>
+
+        <!-- CAMPO EXCLUSIVO DA JAQUELINY -->
+        @if (isFuncionario()) {
+
+          <div class="campo">
+            <label for="setor">
+              Setor
+            </label>
+
+            <input
+              id="setor"
+              name="setor"
+              type="text"
+              [(ngModel)]="setor"
+              placeholder="Seu setor"
+            >
+          </div>
+
+        }
+
+        <!-- CAMPOS EXCLUSIVOS DO DAVID -->
+        @if (isAdministrador()) {
+
+          <div class="campo">
+            <label for="cargo">
+              Cargo
+            </label>
+
+            <input
+              id="cargo"
+              name="cargo"
+              type="text"
+              [(ngModel)]="cargo"
+              placeholder="Cargo administrativo"
+            >
+          </div>
+
+          <div class="campo">
+            <label for="permissao">
+              Permissão
+            </label>
+
+            <input
+              id="permissao"
+              type="text"
+              value="Administrador — acesso total"
+              readonly
+            >
+          </div>
+
+        }
+
+        <!-- SEGURANÇA -->
+        <div class="seguranca">
+
+          <h2>Segurança</h2>
+
+          <div class="linha-senhas">
+
+            <!-- SENHA ATUAL -->
+            <div class="campo">
+
+              <label for="senhaAtual">
+                Senha atual
+              </label>
+
+              <div class="campo-senha">
+                <input
+                  id="senhaAtual"
+                  name="senhaAtual"
+                  [type]="mostrarSenhaAtual ? 'text' : 'password'"
+                  [(ngModel)]="senhaAtual"
+                  autocomplete="current-password"
+                >
+
+                <button
+                  type="button"
+                  (click)="mostrarSenhaAtual = !mostrarSenhaAtual"
+                  [attr.aria-label]="mostrarSenhaAtual ? 'Ocultar senha' : 'Mostrar senha'"
+                >
+                  {{ mostrarSenhaAtual ? '◉' : '◌' }}
+                </button>
+              </div>
+
+            </div>
+
+            <!-- NOVA SENHA -->
+            <div class="campo">
+
+              <label for="novaSenha">
+                Nova senha
+              </label>
+
+              <div class="campo-senha">
+                <input
+                  id="novaSenha"
+                  name="novaSenha"
+                  [type]="mostrarNovaSenha ? 'text' : 'password'"
+                  [(ngModel)]="novaSenha"
+                  autocomplete="new-password"
+                >
+
+                <button
+                  type="button"
+                  (click)="mostrarNovaSenha = !mostrarNovaSenha"
+                  [attr.aria-label]="mostrarNovaSenha ? 'Ocultar senha' : 'Mostrar senha'"
+                >
+                  {{ mostrarNovaSenha ? '◉' : '◌' }}
+                </button>
+              </div>
+
+            </div>
+
+            <!-- CONFIRMAR SENHA -->
+            <div class="campo">
+
+              <label for="confirmarSenha">
+                Confirmar senha
+              </label>
+
+              <div class="campo-senha">
+                <input
+                  id="confirmarSenha"
+                  name="confirmarSenha"
+                  [type]="mostrarConfirmarSenha ? 'text' : 'password'"
+                  [(ngModel)]="confirmarSenha"
+                  autocomplete="new-password"
+                >
+
+                <button
+                  type="button"
+                  (click)="mostrarConfirmarSenha = !mostrarConfirmarSenha"
+                  [attr.aria-label]="mostrarConfirmarSenha ? 'Ocultar senha' : 'Mostrar senha'"
+                >
+                  {{ mostrarConfirmarSenha ? '◉' : '◌' }}
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+          <button
+            type="button"
+            class="btn-senha"
+            (click)="alterarSenha()"
+          >
+            Alterar senha
+          </button>
+
+        </div>
+
+        <!-- MENSAGEM -->
+        @if (mensagem) {
+          <p
+            class="mensagem"
+            [class.erro]="tipoMensagem === 'erro'"
+            role="status"
+          >
+            {{ mensagem }}
+          </p>
+        }
+
+        <!-- BOTÕES -->
+        <div class="acoes">
+
+          <button
+            type="button"
+            class="btn-salvar"
+            (click)="salvarPerfil()"
+          >
+            Salvar
+          </button>
+
+          <button
+            type="button"
+            class="btn-cancelar"
+            (click)="cancelarAlteracoes()"
+          >
+            Cancelar
+          </button>
+
+        </div>
+
       </div>
 
-      <button
-        type="button"
-        (click)="validarSenha()">
-        Alterar senha
-      </button>
+    </section>
 
-      @if (mensagemSenha) {
-        <p>{{ mensagemSenha }}</p>
-      }
-
-    </div>
-
-    <!-- ADICIONADO: botão para salvar o perfil -->
-    <button
-      type="button"
-      class="btn-principal"
-      (click)="salvarPerfil()">
-      Salvar alterações
-    </button>
-
-  </div>
+  </main>
 
 </div>
-

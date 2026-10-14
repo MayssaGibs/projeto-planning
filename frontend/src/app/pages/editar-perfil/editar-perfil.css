@@ -1,150 +1,511 @@
-.perfil-container {
-  padding: 40px;
-  background: #f5f6fa;
-  min-height: 100vh;
-}
-
-.perfil-container h1 {
-  margin-bottom: 30px;
-  color: #333;
-}
-
-.perfil-card {
-  max-width: 700px;
-  background: white;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-}
-
-.campo {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-}
-
-.campo label {
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #333;
-}
-
-.campo input,
-.campo select {
-  padding: 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  font-size: 15px;
-  outline: none;
-}
-
-.campo input:focus,
-.campo select:focus {
-  border-color: #4863ee;
-}
-
-.dados-funcionario,
-.dados-administrador,
-.dados-senha {
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 1px solid #e5e7eb;
-}
-
-.dados-funcionario h2,
-.dados-administrador h2,
-.dados-senha h2 {
-  margin-bottom: 20px;
-  color: #333;
-  font-size: 20px;
-}
-
-.dados-senha button {
-  border: none;
-  background: #4863ee;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.dados-senha button:hover {
-  background: #354ed0;
-}
-
-.dados-senha p {
-  margin-top: 15px;
-  font-weight: 600;
-}
-
-
-/* Centralizar o formulário na página */
-.perfil-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Centralizar o título e usar o roxo do sistema */
-.perfil-container h1 {
-  width: 100%;
-  max-width: 900px;
-  text-align: center;
-  color: #5b62b5;
-}
-
-/* Centralizar o cartão */
-.perfil-card {
-  width: 100%;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-
-/* Aproximar os títulos das cores do sistema */
-.dados-funcionario h2,
-.dados-administrador h2,
-.dados-senha h2 {
-  color: #5b62b5;
-}
-
-/* Estilizar o botão Salvar alterações */
-.btn-principal {
-  width: 100%;
-  margin-top: 20px;
-  border: none;
-  background: #80c99b;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.btn-principal:hover {
-  background: #68b886;
-}
-
-/* Ajuste para telas menores */
-@media (max-width: 600px) {
-  .perfil-container {
-    padding: 24px 14px;
-  }
-
-  .perfil-card {
-    padding: 22px 18px;
-  }
-}
 
 :host {
   display: block;
   min-height: 100vh;
-  background-color: #f7f3f8;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.perfil-container {
-  background-color: #f7f3f8;
-  min-height: 100vh;
+* {
   box-sizing: border-box;
 }
 
+.pagina-perfil {
+  min-height: 100vh;
+  background: #faf3f7;
+}
+
+/* ============================================
+   BARRA SUPERIOR ORIGINAL DO DAVID
+============================================ */
+
+.barra-superior {
+  position: relative;
+  z-index: 5;
+
+  margin-left: 64px;
+  height: 65px;
+
+  padding: 0 22px;
+
+  background: #4e5da4;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.busca-topo {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  width: 260px;
+  height: 34px;
+
+  padding: 0 12px;
+  border-radius: 8px;
+
+  background: #818ac3;
+  color: #fff;
+}
+
+.busca-topo input {
+  width: 100%;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+  color: #fff;
+
+  font-size: 13px;
+}
+
+.busca-topo input::placeholder {
+  color: #fff;
+}
+
+.topo-direita {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.notificacao {
+  color: #fff;
+  font-size: 22px;
+}
+
+.avatar-topo {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+
+  border-radius: 50%;
+
+  background: #e5c4d4;
+  color: #4e5da4;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 13px;
+  font-weight: bold;
+
+  overflow: hidden;
+}
+
+.avatar-topo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============================================
+   CONTEÚDO
+============================================ */
+
+.perfil-container {
+  position: relative;
+
+  margin-left: 64px;
+  min-height: calc(100vh - 65px);
+
+  padding: 18px 32px 60px;
+
+  overflow: hidden;
+  background: #faf3f7;
+}
+
+/* Espaço para a topbar fixa da Jaqueliny */
+.perfil-funcionario .perfil-container {
+  min-height: 100vh;
+  padding-top: 90px;
+}
+
+.perfil-container h1 {
+  position: relative;
+  z-index: 1;
+
+  text-align: center;
+
+  color: #4e5da4;
+  font-size: 27px;
+
+  margin: 0 0 20px;
+}
+
+/* ============================================
+   DECORAÇÕES
+============================================ */
+
+.decoracao {
+  position: absolute;
+  pointer-events: none;
+}
+
+.decoracao-esquerda {
+  top: -70px;
+  left: -60px;
+
+  width: 200px;
+  height: 160px;
+
+  background: #e9c4cf;
+  border-radius: 0 0 80% 0;
+}
+
+.decoracao-direita {
+  top: -75px;
+  right: -60px;
+
+  width: 220px;
+  height: 160px;
+
+  background: #e9c4cf;
+  border-radius: 0 0 0 80%;
+}
+
+.estrela {
+  position: absolute;
+  top: 65px;
+  left: 11%;
+
+  font-size: 26px;
+  color: #4e5da4;
+}
+
+/* ============================================
+   CARD DO PERFIL
+============================================ */
+
+.perfil-card {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  grid-template-columns: 185px minmax(0, 1fr);
+  gap: 30px;
+
+  width: min(100%, 850px);
+
+  margin: 0 auto;
+  padding: 28px;
+
+  border-radius: 26px;
+
+  background: #4e5da4;
+  color: #fff;
+
+  box-shadow: 0 4px 7px #00000028;
+}
+
+/* ============================================
+   FOTO
+============================================ */
+
+.coluna-foto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  padding-top: 5px;
+}
+
+.foto-grande {
+  width: 120px;
+  height: 120px;
+
+  border-radius: 50%;
+  overflow: hidden;
+
+  background: #d8b8ce;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #4e5da4;
+  font-size: 36px;
+  font-weight: bold;
+
+  border: 3px solid #ffffff33;
+}
+
+.foto-grande img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.btn-foto,
+.etiqueta-perfil {
+  width: 160px;
+  min-height: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid #d7dbf5;
+  border-radius: 20px;
+
+  color: white;
+  font-size: 13px;
+  text-align: center;
+}
+
+.btn-foto {
+  cursor: pointer;
+  background: transparent;
+}
+
+.btn-foto:hover {
+  background: #ffffff22;
+}
+
+.etiqueta-perfil {
+  background: #8491ca;
+}
+
+/* ============================================
+   FORMULÁRIO
+============================================ */
+
+.coluna-dados {
+  min-width: 0;
+}
+
+.coluna-dados h2 {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+
+  margin: 0 0 15px;
+  padding-bottom: 10px;
+
+  border-bottom: 1px solid #ffffff8c;
+}
+
+.campo {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  margin-bottom: 16px;
+}
+
+.campo label {
+  color: #f2edff;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  min-width: 0;
+  height: 36px;
+
+  padding: 0 12px;
+
+  border: 1px solid #ffffff22;
+  border-radius: 14px;
+
+  outline: none;
+
+  background: #7983bd;
+  color: #fff;
+
+  font-size: 13px;
+}
+
+.campo input::placeholder {
+  color: #d5d8ee;
+}
+
+.campo input:focus,
+.campo select:focus {
+  border-color: #fff;
+}
+
+.campo input[readonly] {
+  opacity: 0.85;
+  cursor: not-allowed;
+}
+
+.campo select option {
+  color: #333;
+  background: #fff;
+}
+
+.linha-campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+/* ============================================
+   SEGURANÇA
+============================================ */
+
+.seguranca {
+  margin-top: 18px;
+}
+
+.linha-senhas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.campo-senha {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.campo-senha input {
+  padding-right: 34px;
+}
+
+.campo-senha button {
+  position: absolute;
+  right: 5px;
+
+  width: 28px;
+  height: 28px;
+
+  border: 0;
+  background: transparent;
+  color: white;
+
+  cursor: pointer;
+}
+
+.btn-senha {
+  padding: 9px 14px;
+
+  border: none;
+  border-radius: 15px;
+
+  background: #8995d2;
+  color: #fff;
+
+  cursor: pointer;
+}
+
+/* ============================================
+   BOTÕES
+============================================ */
+
+.acoes {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+
+  padding-top: 12px;
+  margin-top: 16px;
+
+  border-top: 1px solid #ffffff8c;
+}
+
+.btn-salvar,
+.btn-cancelar {
+  min-width: 100px;
+
+  padding: 9px 16px;
+
+  border: none;
+  border-radius: 20px;
+
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn-salvar {
+  background: #57c58d;
+}
+
+.btn-cancelar {
+  background: #d7444b;
+}
+
+.btn-salvar:hover {
+  background: #42b97a;
+}
+
+.btn-cancelar:hover {
+  background: #c3353d;
+}
+
+/* ============================================
+   MENSAGENS
+============================================ */
+
+.mensagem {
+  padding: 10px;
+  border-radius: 8px;
+
+  background: #d9f4e3;
+  color: #175f37;
+
+  font-size: 13px;
+}
+
+.mensagem.erro {
+  background: #ffe0e0;
+  color: #a42020;
+}
+
+/* ============================================
+   RESPONSIVIDADE
+============================================ */
+
+@media (max-width: 850px) {
+
+  .perfil-card {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    max-width: 600px;
+  }
+
+  .coluna-foto {
+    padding-top: 0;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .perfil-container {
+    padding: 20px 14px 45px;
+  }
+
+  .perfil-funcionario .perfil-container {
+    padding-top: 90px;
+  }
+
+  .perfil-card {
+    padding: 22px 16px;
+  }
+
+  .linha-campos,
+  .linha-senhas {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .busca-topo {
+    width: 180px;
+  }
+
+  .estrela {
+    display: none;
+  }
+
+}
