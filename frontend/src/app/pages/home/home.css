@@ -1,3 +1,4 @@
+
 :host {
   display: block;
 }
@@ -5,6 +6,10 @@
 * {
   box-sizing: border-box;
 }
+
+/* =========================
+   PÁGINA
+========================= */
 
 .home-page {
   min-height: 100vh;
@@ -14,266 +19,11 @@
 }
 
 /* =========================
-   TOPO
-========================= */
-
-.topbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 64px;
-
-  display: flex;
-  align-items: center;
-
-  background: #5262ad;
-  z-index: 1000;
-
-  padding: 0 24px 0 78px;
-}
-
-.brand-small {
-  position: absolute;
-  left: 17px;
-
-  color: white;
-  font-size: 20px;
-}
-
-.search-box {
-  width: 310px;
-  height: 36px;
-
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  padding: 0 12px;
-
-  background: #7d87c7;
-  border-radius: 9px;
-
-  color: white;
-}
-
-.search-box input {
-  width: 100%;
-  border: 0;
-  outline: 0;
-
-  background: transparent;
-  color: white;
-
-  font-size: 14px;
-}
-
-.search-box input::placeholder {
-  color: white;
-}
-
-.top-actions {
-  margin-left: auto;
-
-  display: flex;
-  align-items: center;
-  gap: 18px;
-
-  color: white;
-}
-
-.notification {
-  font-size: 20px;
-}
-
-.top-avatar {
-  width: 34px;
-  height: 34px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-
-  background: #e7b9c9;
-  color: #5361ac;
-
-  font-weight: bold;
-}
-
-/* =========================
-   SIDEBAR
-========================= */
-
-.sidebar {
-  position: fixed;
-
-  top: 64px;
-  left: 0;
-  bottom: 0;
-
-  width: 64px;
-
-  padding: 16px 8px;
-
-  overflow: hidden;
-
-  background: #5262ad;
-
-  z-index: 950;
-
-  transition: width 0.8s ease;
-
-  border-radius: 0 0 10px 0;
-}
-
-.sidebar.open {
-  width: 205px;
-}
-
-.sidebar-profile {
-  min-height: 55px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 12px;
-
-  padding: 0 7px;
-}
-
-.avatar {
-  min-width: 35px;
-  width: 35px;
-  height: 35px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-
-  background: #e8baca;
-  color: #5262ad;
-
-  font-weight: bold;
-}
-
-.user-info {
-  display: flex;
-  flex-direction: column;
-
-  white-space: nowrap;
-
-  color: white;
-
-  opacity: 0;
-  transform: translateX(-10px);
-
-  transition:
-    opacity 0.35s ease,
-    transform 0.35s ease;
-}
-
-.sidebar.open .user-info {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.user-info strong {
-  font-size: 12px;
-}
-
-.user-info small {
-  margin-top: 3px;
-  font-size: 9px;
-}
-
-.sidebar-line {
-  height: 1px;
-
-  margin: 10px 2px;
-
-  background: rgba(255, 255, 255, 0.55);
-}
-
-.sidebar nav {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.sidebar nav button {
-  width: 100%;
-  height: 43px;
-
-  display: flex;
-  align-items: center;
-
-  padding: 0 7px;
-
-  border: 0;
-  border-radius: 7px;
-
-  background: transparent;
-  color: white;
-
-  cursor: pointer;
-}
-
-.sidebar nav button:hover {
-  background: rgba(255, 255, 255, 0.13);
-}
-
-.sidebar .icon {
-  min-width: 35px;
-
-  display: flex;
-  justify-content: center;
-
-  font-size: 17px;
-}
-
-.sidebar .label {
-  margin-left: 10px;
-
-  white-space: nowrap;
-
-  font-size: 11px;
-
-  opacity: 0;
-  transform: translateX(-10px);
-
-  transition:
-    opacity 0.35s ease,
-    transform 0.35s ease;
-}
-
-.sidebar.open .label {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.planning-logo {
-  display: flex;
-  align-items: center;
-
-  padding: 7px;
-
-  color: white;
-
-  font-size: 14px;
-  font-weight: bold;
-}
-
-/* =========================
    CONTEÚDO
 ========================= */
 
 .content {
   position: relative;
-
   min-height: 100vh;
 
   margin-left: 64px;
@@ -295,9 +45,7 @@
   border-radius: 50%;
 
   background: #e4b7c2;
-
   opacity: 0.8;
-
   z-index: 0;
 }
 
@@ -313,35 +61,30 @@
 
 .star {
   position: absolute;
-
   color: #5262ad;
-
   z-index: 1;
 }
 
 .star-one {
   top: 120px;
   left: 105px;
-
   font-size: 31px;
 }
 
 .star-two {
   top: 165px;
   left: 30px;
-
   font-size: 25px;
 }
 
 .star-three {
   top: 410px;
   left: 30px;
-
   font-size: 29px;
 }
 
 /* =========================
-   BEM-VINDA
+   BOAS-VINDAS
 ========================= */
 
 .welcome {
@@ -349,7 +92,6 @@
   z-index: 2;
 
   text-align: center;
-
   margin: 20px 0 27px;
 }
 
@@ -357,7 +99,6 @@
   margin: 0;
 
   color: #5262ad;
-
   font-size: 27px;
   font-weight: 700;
 }
@@ -368,20 +109,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   gap: 18px;
 }
 
 .welcome-decoration span {
   width: 85px;
   height: 1px;
-
   background: #9fa6d8;
 }
 
 .welcome-decoration b {
   color: #5262ad;
-
   font-size: 24px;
 }
 
@@ -394,12 +132,10 @@
   z-index: 2;
 
   width: min(1180px, calc(100% - 35px));
-
   margin: 0 auto;
 
   display: grid;
   grid-template-columns: minmax(0, 1fr) 310px;
-
   gap: 12px;
 
   align-items: stretch;
@@ -416,7 +152,6 @@
   padding: 65px 25px 25px;
 
   background: rgba(255, 255, 255, 0.94);
-
   border-radius: 28px;
 
   box-shadow:
@@ -431,7 +166,6 @@
 .summary-cards {
   display: flex;
   justify-content: center;
-
   gap: 18px;
 
   margin-bottom: 28px;
@@ -444,11 +178,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   gap: 22px;
 
   border-radius: 7px;
-
   color: white;
 }
 
@@ -476,7 +208,6 @@
 
 .summary-info span {
   margin-top: 3px;
-
   font-size: 9px;
 }
 
@@ -488,7 +219,6 @@
   margin: 0 0 70px;
 
   text-align: center;
-
   font-size: 17px;
   color: #253456;
 }
@@ -499,15 +229,11 @@
 
 .schedule-header {
   display: grid;
-
-  grid-template-columns:
-    70px
-    repeat(7, 1fr);
+  grid-template-columns: 70px repeat(7, 1fr);
 
   align-items: end;
 
   color: #c6c6c6;
-
   font-size: 11px;
 }
 
@@ -539,7 +265,6 @@
 
 .schedule-body {
   display: grid;
-
   grid-template-columns: 70px 1fr;
 }
 
@@ -550,7 +275,6 @@
   padding-top: 5px;
 
   color: #5262ad;
-
   font-size: 9px;
 }
 
@@ -576,14 +300,12 @@
 
   display: flex;
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
 
   border-radius: 5px;
 
   font-size: 9px;
-
   z-index: 2;
 }
 
@@ -594,7 +316,6 @@
 
 .lesson span {
   margin-top: 6px;
-
   font-size: 8px;
 }
 
@@ -652,7 +373,6 @@
   overflow: hidden;
 
   border-radius: 9px;
-
   background: #fbf7fa;
 }
 
@@ -667,11 +387,9 @@ app-calendario {
 
 .status-section {
   margin-top: 8px;
-
   padding: 14px;
 
   border-radius: 8px;
-
   background: #fbf9fa;
 }
 
@@ -680,17 +398,14 @@ app-calendario {
 
   font-size: 13px;
   font-weight: 500;
-
   color: #253456;
 }
 
 .status-section > small {
   display: block;
-
   margin-top: 2px;
 
   font-size: 8px;
-
   color: #aaa;
 }
 
@@ -698,14 +413,12 @@ app-calendario {
   margin: 16px 0 7px;
 
   color: #4583a7;
-
   font-size: 10px;
   font-weight: bold;
 }
 
 .status-card {
   position: relative;
-
   min-height: 52px;
 
   display: flex;
@@ -714,7 +427,6 @@ app-calendario {
   padding: 7px 9px 7px 17px;
 
   border-radius: 6px;
-
   background: white;
 
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);
@@ -722,13 +434,11 @@ app-calendario {
 
 .status-bar {
   position: absolute;
-
   top: 0;
   bottom: 0;
   left: 0;
 
   width: 8px;
-
   border-radius: 6px 0 0 6px;
 }
 
@@ -767,7 +477,6 @@ app-calendario {
 .status-content {
   display: flex;
   flex-direction: column;
-
   color: #4a83a8;
 }
 
@@ -778,7 +487,6 @@ app-calendario {
 
 .status-content span {
   margin-top: 2px;
-
   font-size: 7px;
 }
 
@@ -790,26 +498,33 @@ app-calendario {
   margin-top: 8px;
 }
 
+/* =========================
+   BOTÃO VER MAIS
+========================= */
+
 .more-reservations {
   width: 165px;
   height: 34px;
 
   align-self: flex-end;
-
   margin: auto 9px 8px;
 
   border: 0;
   border-radius: 20px;
 
   background: #a795dc;
-
   color: white;
 
+  font-family: inherit;
   cursor: pointer;
 }
 
+.more-reservations:hover {
+  background: #8d79c7;
+}
+
 /* =========================
-   DESKTOP
+   RESPONSIVIDADE
 ========================= */
 
 @media (min-width: 1366px) {
@@ -826,5 +541,51 @@ app-calendario {
 
   .main-card {
     min-height: 550px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .dashboard {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .right-panel {
+    width: 100%;
+  }
+
+  .main-card {
+    min-height: 480px;
+  }
+}
+
+@media (max-width: 600px) {
+  .content {
+    padding: 64px 12px 25px;
+  }
+
+  .welcome h1 {
+    font-size: 22px;
+  }
+
+  .main-card {
+    padding: 35px 12px 20px;
+  }
+
+  .summary-cards {
+    gap: 10px;
+  }
+
+  .summary-card {
+    width: 145px;
+    gap: 12px;
+  }
+
+  .schedule-header {
+    grid-template-columns: 55px repeat(7, 1fr);
+  }
+
+  .schedule-body {
+    grid-template-columns: 55px 1fr;
   }
 }

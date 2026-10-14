@@ -1,90 +1,8 @@
 
 <div class="home-page">
 
-  <!-- TOPO -->
-  <header class="topbar">
-    <div class="brand-small">⌛</div>
-
-    <div class="search-box">
-      <span>⌕</span>
-      <input type="text" placeholder="Buscar..." />
-    </div>
-
-    <div class="top-actions">
-      <span class="notification">♧</span>
-
-      <div class="top-avatar">
-        J
-      </div>
-    </div>
-  </header>
-
-  <!-- SIDEBAR -->
-  <aside
-    class="sidebar"
-    [class.open]="sidebarOpen"
-    (mouseenter)="sidebarOpen = true"
-    (mouseleave)="sidebarOpen = false"
-  >
-
-    <div class="sidebar-profile">
-      <div class="avatar">J</div>
-
-      <div class="user-info">
-        <strong>jaqueliny</strong>
-        <small>jaqu@gmail.com</small>
-      </div>
-    </div>
-
-    <div class="sidebar-line"></div>
-
-    <nav>
-      <button type="button">
-        <span class="icon">⌂</span>
-        <span class="label">Início</span>
-      </button>
-
-      <!-- BOTÃO CONECTADO À TELA DE RESERVA -->
-      <button
-        type="button"
-        routerLink="/reserva"
-      >
-        <span class="icon">▱</span>
-        <span class="label">Reserve uma sala/lab</span>
-      </button>
-
-      <button type="button">
-        <span class="icon">▤</span>
-        <span class="label">Agenda</span>
-      </button>
-
-      <button type="button">
-        <span class="icon">⚒</span>
-        <span class="label">Em manutenção</span>
-      </button>
-    </nav>
-
-    <div class="sidebar-line"></div>
-
-    <nav>
-      <button type="button">
-        <span class="icon">♧</span>
-        <span class="label">Suporte</span>
-      </button>
-
-      <button type="button">
-        <span class="icon">↪</span>
-        <span class="label">Sair</span>
-      </button>
-    </nav>
-
-    <div class="sidebar-line"></div>
-
-    <div class="planning-logo">
-      ⌛ <span class="label">PLANNING</span>
-    </div>
-
-  </aside>
+  <!-- BARRA SUPERIOR E MENU LATERAL DA JAQUELINY -->
+  <app-funcionario-sidebar></app-funcionario-sidebar>
 
   <!-- CONTEÚDO -->
   <main class="content">
@@ -97,9 +15,9 @@
     <span class="star star-two">✦</span>
     <span class="star star-three">✦</span>
 
-    <!-- TÍTULO -->
+    <!-- BOAS-VINDAS -->
     <section class="welcome">
-      <h1>Bem vinda, Jaqueliny!</h1>
+      <h1>Bem-vinda, Jaqueliny!</h1>
 
       <div class="welcome-decoration">
         <span></span>
@@ -178,7 +96,7 @@
 
             <div>
               <strong>17</strong>
-              <span>Sab</span>
+              <span>Sáb</span>
             </div>
 
             <div>
@@ -188,7 +106,7 @@
 
           </div>
 
-          <!-- CORPO -->
+          <!-- CORPO DA GRADE -->
           <div class="schedule-body">
 
             <!-- HORÁRIOS -->
@@ -204,7 +122,7 @@
               <span>15:00</span>
             </div>
 
-            <!-- LINHAS -->
+            <!-- LINHAS E AULAS -->
             <div class="schedule-grid">
 
               <div class="grid-line"></div>
@@ -246,7 +164,7 @@
       <!-- PAINEL DIREITO -->
       <aside class="right-panel">
 
-        <!-- CALENDÁRIO REUTILIZÁVEL -->
+        <!-- CALENDÁRIO -->
         <div class="calendar-container">
           <app-calendario></app-calendario>
         </div>
@@ -304,7 +222,7 @@
 
             <div class="status-content">
               <strong>
-                Motivo: Troca de lampadas
+                Motivo: Troca de lâmpadas
               </strong>
 
               <span>
@@ -320,9 +238,11 @@
 
         </section>
 
+        <!-- VER MAIS -->
         <button
           class="more-reservations"
           type="button"
+          routerLink="/reserva"
         >
           Ver mais
         </button>

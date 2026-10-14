@@ -1,53 +1,40 @@
 
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { AgendaService, Schedule } from '../../services/agendaservice';
+import { FuncionarioSidebar } from '../../components/funcionario-sidebar/funcionario-sidebar';
 
 @Component({
   selector: 'app-agenda',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FuncionarioSidebar],
   templateUrl: './agenda.html',
-  styleUrl: './agenda.css',
+  styleUrl: './agenda.css'
 })
 export class Agenda implements OnInit {
-  sidebarOpen = false;
-  searchTerm = '';
+
   schedules: Schedule[] = [];
 
-  constructor(private AgendaService: AgendaService) {}
+  constructor(
+    private agendaService: AgendaService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadSchedules();
   }
 
   loadSchedules(): void {
-    this.schedules = this.AgendaService.getSchedules();
+    this.schedules = this.agendaService.getSchedules();
   }
 
   get filteredSchedules(): Schedule[] {
-    const term = this.searchTerm.trim().toLowerCase();
-
-    return this.schedules.filter((schedule) =>
-      [
-        schedule.className,
-        schedule.room,
-        schedule.lab ?? '',
-        schedule.time,
-      ].some((value) => value.toLowerCase().includes(term))
-    );
-  }
-
-  showNotifications(): void {
-    alert('Não existem notificações novas.');
-  }
-
-  showProfile(): void {
-    alert('Perfil do utilizador');
+    return this.schedules;
   }
 
   newSchedule(): void {
-    alert('O formulário de novo agendamento será implementado aqui.');
+    this.router.navigateByUrl('/reserva');
   }
 
   deleteSchedule(id: number): void {
@@ -55,7 +42,7 @@ export class Agenda implements OnInit {
       return;
     }
 
-    this.AgendaService.deleteSchedule(id);
+    this.agendaService.deleteSchedule(id);
     this.loadSchedules();
   }
 }

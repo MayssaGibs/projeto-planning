@@ -1,75 +1,84 @@
-<div class="maintenance-container">
 
-  <!-- CABEÇALHO -->
-  <div class="maintenance-header">
+<div class="maintenance-page">
 
-    <div>
-      <h2>SALAS EM MANUTENÇÃO</h2>
+  <!-- BARRA SUPERIOR E MENU LATERAL DA JAQUELINY -->
+  <app-funcionario-sidebar></app-funcionario-sidebar>
 
-      <span>
-        Salas indisponíveis no momento
-      </span>
-    </div>
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="maintenance-content">
 
-    <div class="maintenance-icon">
-      ⚒
-    </div>
+    <div class="maintenance-container">
 
-  </div>
+      <!-- CABEÇALHO -->
+      <div class="maintenance-header">
 
-
-  <!-- LISTA -->
-  <div class="rooms-list">
-
-    @for (room of rooms; track room.id) {
-
-      <div class="room-card">
-
-        <div class="room-number">
-          {{ room.number }}
-        </div>
-
-
-        <div class="room-info">
-
-          <strong>
-            {{ room.name }}
-          </strong>
+        <div>
+          <h2>SALAS EM MANUTENÇÃO</h2>
 
           <span>
-            {{ room.location }}
+            Salas indisponíveis no momento
           </span>
-
-          <small>
-            {{ room.reason }}
-          </small>
-
         </div>
 
-
-        <div class="room-status">
-          MANUTENÇÃO
+        <div class="maintenance-icon">
+          ⚒
         </div>
 
       </div>
 
-    }
+      <!-- LISTA -->
+      <div class="rooms-list">
 
+        @for (room of rooms; track room.id) {
 
-    @if (rooms.length === 0) {
+          <div class="room-card">
 
-      <div class="empty-maintenance">
+            <div class="room-number">
+              {{ room.number }}
+            </div>
 
-        <span>✓</span>
+            <div class="room-info">
 
-        <p>
-          Nenhuma sala em manutenção
-        </p>
+              <strong>
+                {{ room.name }}
+              </strong>
+
+              <span>
+                {{ room.location }}
+              </span>
+
+              <small>
+                {{ room.reason }}
+              </small>
+
+            </div>
+
+            <div class="room-status">
+              MANUTENÇÃO
+            </div>
+
+          </div>
+
+        }
+
+        @if (rooms.length === 0) {
+
+          <div class="empty-maintenance">
+
+            <span>✓</span>
+
+            <p>
+              Nenhuma sala em manutenção
+            </p>
+
+          </div>
+
+        }
 
       </div>
 
-    }
+    </div>
 
-  </div>
+  </main>
 
 </div>

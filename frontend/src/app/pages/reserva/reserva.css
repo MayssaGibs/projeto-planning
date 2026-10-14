@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+/* =========================
+   PÁGINA
+========================= */
+
 .reserva-page {
   min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
@@ -14,222 +18,32 @@
   color: #253456;
 }
 
-/* TOPO */
-
-.topbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  padding: 0 24px 0 78px;
-  background: #5262ad;
-  z-index: 1000;
-}
-
-.brand-small {
-  position: absolute;
-  left: 17px;
-  color: white;
-  font-size: 20px;
-}
-
-.search-box {
-  width: 310px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0 12px;
-  background: #7d87c7;
-  border-radius: 9px;
-  color: white;
-}
-
-.search-box input {
-  width: 100%;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  color: white;
-  font-size: 14px;
-}
-
-.search-box input::placeholder {
-  color: white;
-}
-
-.top-actions {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  color: white;
-}
-
-.notification {
-  font-size: 20px;
-}
-
-.top-avatar {
-  width: 34px;
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: #e7b9c9;
-  color: #5262ad;
-  font-weight: bold;
-}
-
-/* SIDEBAR */
-
-.sidebar {
-  position: fixed;
-  top: 64px;
-  left: 0;
-  bottom: 0;
-  width: 64px;
-  padding: 16px 8px;
-  overflow: hidden;
-  background: #5262ad;
-  z-index: 950;
-  transition: width 0.8s ease;
-  border-radius: 0 0 10px 0;
-}
-
-.sidebar.open {
-  width: 205px;
-}
-
-.sidebar-profile {
-  min-height: 55px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0 7px;
-}
-
-.avatar {
-  min-width: 35px;
-  width: 35px;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: #e8baca;
-  color: #5262ad;
-  font-weight: bold;
-}
-
-.user-info {
-  display: flex;
-  flex-direction: column;
-  white-space: nowrap;
-  color: white;
-  opacity: 0;
-  transform: translateX(-10px);
-  transition:
-    opacity 0.35s ease,
-    transform 0.35s ease;
-}
-
-.sidebar.open .user-info {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.user-info strong {
-  font-size: 12px;
-}
-
-.user-info small {
-  margin-top: 3px;
-  font-size: 9px;
-}
-
-.sidebar-line {
-  height: 1px;
-  margin: 10px 2px;
-  background: rgba(255, 255, 255, 0.55);
-}
-
-.sidebar nav {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.sidebar nav button {
-  width: 100%;
-  height: 43px;
-  display: flex;
-  align-items: center;
-  padding: 0 7px;
-  border: 0;
-  border-radius: 7px;
-  background: transparent;
-  color: white;
-  cursor: pointer;
-}
-
-.sidebar nav button:hover {
-  background: rgba(255, 255, 255, 0.13);
-}
-
-.sidebar .icon {
-  min-width: 35px;
-  display: flex;
-  justify-content: center;
-  font-size: 17px;
-}
-
-.sidebar .label {
-  margin-left: 10px;
-  white-space: nowrap;
-  font-size: 11px;
-  opacity: 0;
-  transform: translateX(-10px);
-  transition:
-    opacity 0.35s ease,
-    transform 0.35s ease;
-}
-
-.sidebar.open .label {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.planning-logo {
-  display: flex;
-  align-items: center;
-  padding: 7px;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-/* CONTEÚDO */
+/* =========================
+   CONTEÚDO
+========================= */
 
 .content {
   position: relative;
   min-height: 100vh;
+
   margin-left: 64px;
   padding: 85px 25px 25px;
+
   overflow: hidden;
 }
 
-/* DECORAÇÃO */
+/* =========================
+   DECORAÇÕES
+========================= */
 
 .decoration {
   position: absolute;
+
   width: 190px;
   height: 190px;
+
   border-radius: 50%;
+
   background: #e1b9c1;
   opacity: 0.85;
   z-index: 0;
@@ -245,22 +59,29 @@
   right: -85px;
 }
 
-/* TÍTULO */
+/* =========================
+   TÍTULO
+========================= */
 
 .page-title {
   position: relative;
   z-index: 2;
+
   text-align: center;
   margin-bottom: 20px;
 }
 
 .page-title h1 {
   display: inline-block;
+
   margin: 0;
   padding: 9px 28px;
+
   border-radius: 8px;
+
   background: #d9d2ed;
   color: #5262ad;
+
   font-size: 28px;
 }
 
@@ -269,6 +90,7 @@
   align-items: center;
   justify-content: center;
   gap: 18px;
+
   margin-top: 9px;
 }
 
@@ -283,35 +105,49 @@
   font-size: 25px;
 }
 
-/* LAYOUT */
+/* =========================
+   LAYOUT
+========================= */
 
 .reservation-layout {
   position: relative;
   z-index: 2;
+
   width: min(1200px, calc(100% - 35px));
   margin: 0 auto;
+
   display: grid;
   grid-template-columns: minmax(0, 1fr) 340px;
   gap: 18px;
 }
 
-/* CARD PRINCIPAL */
+/* =========================
+   CARD PRINCIPAL
+========================= */
 
 .reservation-card {
   position: relative;
+
+  min-width: 0;
   min-height: 535px;
+
   padding: 80px 28px 25px;
+
   background: rgba(255, 255, 255, 0.94);
   border-radius: 9px;
+
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* SALAS / LABS */
+/* =========================
+   SELEÇÃO SALAS / LABS
+========================= */
 
 .type-selector {
   position: absolute;
   top: 22px;
   left: 50%;
+
   transform: translateX(-50%);
   display: flex;
 }
@@ -319,14 +155,18 @@
 .type-selector button {
   width: 63px;
   height: 42px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2px;
+
   border: 0;
+
   background: #e6def1;
   color: white;
+
   cursor: pointer;
 }
 
@@ -350,14 +190,19 @@
   font-size: 18px;
 }
 
-/* FORMULÁRIO */
+/* =========================
+   FORMULÁRIO
+========================= */
 
 .form-grid {
   min-height: 415px;
+
   display: grid;
   grid-template-columns: 1fr 1fr;
+
   column-gap: 65px;
   row-gap: 150px;
+
   align-content: start;
 }
 
@@ -376,12 +221,16 @@
 .field select {
   width: 100%;
   height: 48px;
+
   padding: 0 14px;
+
   border: 0;
   outline: 0;
   border-radius: 7px;
+
   background: white;
   color: #727dc8;
+
   box-shadow: 0 4px 11px rgba(0, 0, 0, 0.13);
   cursor: pointer;
 }
@@ -390,7 +239,9 @@
   align-self: start;
 }
 
-/* DATA */
+/* =========================
+   DATAS
+========================= */
 
 .date-area {
   min-width: 0;
@@ -404,26 +255,27 @@
 
 .date-options {
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: 5px;
+
   overflow: hidden;
 }
 
 .date-button {
-  min-width: 55px;
+  min-width: 43px;
   height: 30px;
-  padding: 0 9px;
+
+  padding: 0 5px;
+
   border: 0;
   border-radius: 8px;
+
   background: #c9a7cb;
   color: #5c506d;
+
   font-size: 9px;
   cursor: pointer;
-}
-
-.date-button:first-child {
-  background: #6874c7;
-  color: white;
 }
 
 .date-button.selected-date {
@@ -431,11 +283,38 @@
   color: white;
 }
 
+.date-arrow {
+  flex-shrink: 0;
+
+  width: 25px;
+  height: 30px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: #6874c7;
+  color: white;
+
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.date-arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* =========================
+   DISPONIBILIDADE
+========================= */
+
 .availability {
   margin-top: 16px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+
   color: #5965ad;
   font-size: 9px;
 }
@@ -451,6 +330,7 @@
 
 .availability p {
   margin: 17px 0 3px;
+
   color: #444;
   font-size: 10px;
 }
@@ -460,10 +340,13 @@
   font-size: 8px;
 }
 
-/* HORÁRIOS */
+/* =========================
+   HORÁRIOS
+========================= */
 
 .time-options {
   margin-top: 14px;
+
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -473,12 +356,17 @@
 .time-options button {
   min-width: 57px;
   height: 29px;
+
   padding: 0 6px;
+
   border: 0;
   border-radius: 8px;
+
   background: #cba9cb;
   color: #51485b;
+
   font-size: 8px;
+
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.22);
   cursor: pointer;
 }
@@ -491,18 +379,23 @@
 .time-options button.occupied {
   background: #e5e5e5;
   color: #a5a5a5;
+
   cursor: not-allowed;
   box-shadow: none;
   opacity: 0.65;
 }
 
-/* PAINEL DIREITO */
+/* =========================
+   PAINEL DIREITO
+========================= */
 
 .right-panel {
   min-width: 0;
   padding: 8px;
+
   background: rgba(255, 255, 255, 0.92);
   border-radius: 10px;
+
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -517,17 +410,21 @@ app-calendario {
   width: 100%;
 }
 
-/* STATUS */
+/* =========================
+   STATUS
+========================= */
 
 .status-section {
   margin-top: 8px;
   padding: 12px;
+
   border-radius: 8px;
   background: #fbf9fa;
 }
 
 .status-section h3 {
   margin: 0;
+
   color: #253456;
   font-size: 13px;
   font-weight: 500;
@@ -536,12 +433,14 @@ app-calendario {
 .status-section > small {
   display: block;
   margin-top: 2px;
+
   color: #aaa;
   font-size: 8px;
 }
 
 .room-title {
   margin: 15px 0 7px;
+
   color: #4583a7;
   font-size: 10px;
   font-weight: bold;
@@ -550,11 +449,15 @@ app-calendario {
 .status-card {
   position: relative;
   min-height: 58px;
+
   display: flex;
   align-items: center;
+
   padding: 8px 9px 8px 19px;
+
   border-radius: 6px;
   background: white;
+
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);
 }
 
@@ -563,6 +466,7 @@ app-calendario {
   top: 0;
   bottom: 0;
   left: 0;
+
   width: 8px;
   border-radius: 6px 0 0 6px;
 }
@@ -578,12 +482,16 @@ app-calendario {
 .status-icon {
   width: 19px;
   height: 19px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   margin-right: 11px;
+
   border: 1px solid currentColor;
   border-radius: 50%;
+
   font-size: 9px;
 }
 
@@ -611,19 +519,27 @@ app-calendario {
   font-size: 7px;
 }
 
-/* CONFIRMAR */
+/* =========================
+   BOTÃO CONFIRMAR
+========================= */
 
 .confirm-button {
   position: relative;
   z-index: 2;
+
   display: block;
+
   width: 185px;
   height: 36px;
+
   margin: 14px auto 0;
+
   border: 0;
   border-radius: 20px;
+
   background: #6fc795;
   color: white;
+
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
@@ -633,7 +549,139 @@ app-calendario {
   filter: brightness(0.96);
 }
 
-/* DESKTOP */
+/* =========================
+   MODAL DE CONFIRMAÇÃO
+========================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2500;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  background: rgba(26, 30, 62, 0.6);
+}
+
+.confirmation-modal {
+  width: 100%;
+  max-width: 430px;
+
+  padding: 30px;
+
+  border-radius: 20px;
+  background: white;
+
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+}
+
+.confirmation-modal h2 {
+  margin: 0;
+  color: #5262ad;
+  font-size: 23px;
+}
+
+.confirmation-decoration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+  margin: 12px 0 24px;
+  color: #5262ad;
+}
+
+.confirmation-decoration span {
+  width: 75px;
+  height: 1px;
+  background: #9fa6d8;
+}
+
+.confirmation-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.confirmation-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.confirmation-item span {
+  color: #73738c;
+  font-size: 13px;
+}
+
+.confirmation-item strong {
+  color: #253456;
+  font-size: 13px;
+  text-align: right;
+}
+
+.confirmation-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.cancel-button,
+.modal-confirm-button {
+  padding: 11px 22px;
+
+  border: none;
+  border-radius: 20px;
+
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cancel-button {
+  background: #a795dc;
+}
+
+.modal-confirm-button {
+  background: #6fc795;
+}
+
+/* =========================
+   MENSAGEM DE SUCESSO
+========================= */
+
+.success-message {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  z-index: 3000;
+
+  padding: 15px 22px;
+
+  border-radius: 12px;
+  background: #6fc795;
+  color: white;
+
+  font-size: 14px;
+  font-weight: bold;
+
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
 
 @media (min-width: 1366px) {
   .reservation-layout {
@@ -649,5 +697,49 @@ app-calendario {
 
   .reservation-card {
     min-height: 550px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .reservation-layout {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid {
+    column-gap: 25px;
+    row-gap: 35px;
+  }
+}
+
+@media (max-width: 600px) {
+  .content {
+    padding: 85px 12px 25px;
+  }
+
+  .page-title h1 {
+    font-size: 22px;
+  }
+
+  .reservation-card {
+    padding: 80px 18px 25px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    row-gap: 25px;
+  }
+
+  .date-options {
+    gap: 3px;
+  }
+
+  .date-button {
+    min-width: 40px;
+    padding: 0 3px;
+  }
+
+  .confirmation-modal {
+    padding: 25px 18px;
   }
 }
