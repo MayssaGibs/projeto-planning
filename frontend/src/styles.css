@@ -1,226 +1,218 @@
-/* CORES ESCOLHIDAS (SUNRISE)
-  --azul-escuro: #41589c;  Fundo do Header e Cards do Login
-  --azul-medio: #7983c1;  Botoes ativos, abas e links
-  --lavanda: #a99cd2;     Destaques secundarios e badges
-  --rosa: #d1a3c6;        Status pendente e alertas leves
-  --pessego: #febdb8;     Botao entrar do Login e avisos
-CORES NEUTRAS
-  --fundo-tela: #f3f4f8;      Fundo claro da Dashboard
-  --fundo-card: #ffffff;      Cards brancos do painel
-  --texto-principal: #2c304e; Texto escuro para titulos e leitura
-  --texto-mutado: #7c82a1;    Textos secundarios e datas
-}*/
+/* ===== Cores do Figma ===== */
+:root {
+  --fundo-pagina: #f7f1f6;
+  --roxo-form: #5b5ba8;
+  --roxo-campo: #8c8cd2;
+  --roxo-titulo: #3f3f9c;
+  --verde: #6fc08f;
+  --vermelho: #d9453d;
+  --rosa-arquivo: #e8b4c4;
+  --branco: #ffffff;
+  --raio-form: 32px;
+  --raio-campo: 10px;
+}
 
-/* serve para remover margens padrao e padronizar o tamanho dos elementos*/
-  *{
-  margin: 0;
-  padding: 0;
+* {
   box-sizing: border-box;
 }
 
 body {
-  background-color: #f3f4f8;
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  color: #2c304e;
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  background: var(--fundo-pagina);
 }
 
-/* Titulo principal */
-h1 {
-  font-size: 28px;
-  color: #2c304e;
-}
-
-/* Titulos de secoes: tamanho, margem no topo e cor azul escuro */
-h2 {
-  font-size: 22px;
-  margin-top: 16px;
-  color: #41589c;
-}
-
-/* Subtitulos de cards e blocos */
-h3 {
-  font-size: 18px;
-  color: #2c304e;
-}
-
-/* Textos e paragrafos */
-p {
-  font-size: 14px;
-  color: #4a4e69;
-}
-
-/* Reorganização de style.css */
-
-/* MODAL DA PÁGINA DE RESERVA */
-
-app-reserva .modal-overlay {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(20, 24, 50, 0.55);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-  padding: 20px;
-}
-
-app-reserva .confirmation-modal {
-  width: 100%;
-  max-width: 460px;
-  max-height: 90vh;
-  overflow-y: auto;
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 30px;
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+/* ===== Página e título ===== */
+.pagina {
+  padding: 32px 16px;
   text-align: center;
 }
 
-app-reserva .confirmation-modal h2 {
-  margin: 0;
-  color: #5262ad;
-  font-size: 24px;
+.titulo {
+  margin: 0 0 28px;
+  color: var(--roxo-titulo);
+  font-size: 28px;
+  font-weight: 700;
 }
 
-app-reserva .confirmation-decoration {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin: 15px 0 25px;
-  color: #5262ad;
+.titulo::after {
+  content: '─────  ✦  ─────';
+  display: block;
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 2px;
 }
 
-app-reserva .confirmation-decoration span {
-  width: 70px;
-  height: 1px;
-  background: #a795dc;
+/* ===== Cartão do formulário (igual nos dois) ===== */
+.formulario {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 36px 40px;
+  background: var(--roxo-form);
+  border-radius: var(--raio-form);
+  text-align: left;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
 
-app-reserva .confirmation-info {
+.formulario-grande {
+  max-width: 920px;
+}
+
+/* ===== Grade de campos (igual nos dois) ===== */
+.grade {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 28px;
+}
+
+.campo {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  text-align: left;
-}
-
-app-reserva .confirmation-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  padding: 12px 15px;
-  background: #f8f3f7;
-  border-radius: 9px;
-}
-
-app-reserva .confirmation-item span {
-  color: #6672c2;
-  font-size: 14px;
-}
-
-app-reserva .confirmation-item strong {
-  color: #253456;
-  font-size: 14px;
-  text-align: right;
-}
-
-app-reserva .confirmation-actions {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 25px;
-}
-
-app-reserva .cancel-button,
-app-reserva .modal-confirm-button {
-  flex: 1;
-  min-height: 42px;
-  border: none;
-  border-radius: 22px;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-app-reserva .cancel-button {
-  background: #d48b9e;
-}
-
-app-reserva .modal-confirm-button {
-  background: #6fc795;
-}
-
-app-reserva .cancel-button:hover,
-app-reserva .modal-confirm-button:hover {
-  filter: brightness(0.95);
-}
-
-app-reserva .success-message {
-  position: fixed;
-  top: 85px;
-  right: 25px;
-  z-index: 2100;
-  background: #6fc795;
-  color: white;
-  padding: 15px 22px;
-  border-radius: 10px;
-  font-weight: bold;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-}
-
-/* SETAS DAS DATAS DA RESERVA */
-
-app-reserva .date-area .date-navigation {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: nowrap;
-  gap: 8px;
-  width: 100%;
-}
-
-app-reserva .date-area .date-options {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: nowrap;
-  gap: 5px;
-  flex: 0 1 auto;
+  gap: 6px;
   min-width: 0;
 }
 
-app-reserva .date-area .date-arrow {
-  position: static;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 28px;
-  width: 28px;
-  height: 30px;
-  padding: 0;
-  margin: 0;
+.campo.vazio {
+  visibility: hidden;
+}
+
+.campo label {
+  color: var(--branco);
+  font-size: 14px;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  height: 40px;
+  padding: 0 14px;
   border: none;
-  border-radius: 7px;
-  background: #e6def1;
-  color: #5262ad;
-  font-size: 22px;
-  line-height: 1;
+  border-radius: var(--raio-campo);
+  background: var(--roxo-campo);
+  color: var(--branco);
+  font-size: 14px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.campo input:focus,
+.campo select:focus {
+  outline: 2px solid var(--branco);
+}
+
+.campo select option {
+  color: #222;
+}
+
+/* ===== Erros: só aparecem depois que o campo é tocado ===== */
+.campo input.ng-invalid.ng-touched,
+.campo select.ng-invalid.ng-touched {
+  outline: 2px solid #ffb3b3;
+}
+
+.erro {
+  color: #ffd6d6;
+  font-size: 12px;
+}
+
+/* ===== Foto do funcionário ===== */
+.campo.foto {
+  grid-column: 1 / -1;
+}
+
+.campo.foto input[type='file'] {
+  height: auto;
+  padding: 8px;
   cursor: pointer;
 }
 
-app-reserva .date-area .date-arrow:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
+.campo.foto input[type='file']::file-selector-button {
+  margin-right: 12px;
+  padding: 6px 16px;
+  border: none;
+  border-radius: 16px;
+  background: var(--rosa-arquivo);
+  color: var(--roxo-titulo);
+  font-size: 12px;
+  cursor: pointer;
 }
 
-app-reserva .date-area .date-button {
-  flex-shrink: 0;
-  white-space: nowrap;
+/* ===== Botões ===== */
+.acoes {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.btn {
+  min-width: 110px;
+  padding: 9px 24px;
+  border: none;
+  border-radius: 20px;
+  color: var(--branco);
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.15s, filter 0.15s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.btn-adicionar {
+  background: var(--verde);
+}
+
+.btn-cancelar {
+  background: var(--vermelho);
+}
+
+/* ===== Celular / telas pequenas ===== */
+@media (max-width: 700px) {
+  .grade {
+    grid-template-columns: 1fr;
+  }
+
+  .campo.vazio {
+    display: none;
+  }
+
+  .formulario {
+    padding: 24px 20px;
+  }
+}
+
+/* ===== Botão voltar ===== */
+.pagina {
+  position: relative;
+}
+
+.btn-voltar {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 20px;
+  background: var(--roxo-form);
+  color: var(--branco);
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.15s, filter 0.15s;
+}
+
+.btn-voltar:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.15);
+}
+
+@media (max-width: 700px) {
+  .btn-voltar {
+    top: 12px;
+    left: 12px;
+  }
 }
