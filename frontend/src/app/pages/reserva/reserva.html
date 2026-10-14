@@ -15,7 +15,6 @@
     </div>
   </header>
 
-
   <!-- SIDEBAR -->
   <aside
     class="sidebar"
@@ -80,7 +79,6 @@
 
   </aside>
 
-
   <!-- CONTEÚDO -->
   <main class="content">
 
@@ -88,9 +86,9 @@
     <div class="decoration decoration-left"></div>
     <div class="decoration decoration-right"></div>
 
-
     <!-- TÍTULO -->
     <section class="page-title">
+
       <h1>
         {{ titulo }}
       </h1>
@@ -100,8 +98,8 @@
         <b>✦</b>
         <span></span>
       </div>
-    </section>
 
+    </section>
 
     <div class="reservation-layout">
 
@@ -131,7 +129,6 @@
 
         </div>
 
-
         <!-- FORMULÁRIO -->
         <div class="form-grid">
 
@@ -155,17 +152,21 @@
               @if (tipoReserva === 'sala') {
 
                 @for (sala of salas; track sala) {
+
                   <option [value]="sala">
                     {{ sala }}
                   </option>
+
                 }
 
               } @else {
 
                 @for (laboratorio of laboratorios; track laboratorio) {
+
                   <option [value]="laboratorio">
                     {{ laboratorio }}
                   </option>
+
                 }
 
               }
@@ -173,7 +174,6 @@
             </select>
 
           </div>
-
 
           <!-- TURMAS -->
           <div class="field">
@@ -189,15 +189,16 @@
               </option>
 
               @for (turma of turmas; track turma) {
+
                 <option [value]="turma">
                   {{ turma }}
                 </option>
+
               }
 
             </select>
 
           </div>
-
 
           <!-- PRIORIDADE -->
           <div class="field priority-field">
@@ -228,7 +229,6 @@
 
           </div>
 
-
           <!-- DATA -->
           <div class="date-area">
 
@@ -236,58 +236,22 @@
               Escolha uma data
             </label>
 
-            <!-- NAVEGAÇÃO DAS DATAS -->
-            <div class="date-navigation">
+           <div class="date-options">
 
-              <!-- SETA PARA VOLTAR -->
-              <button
-                type="button"
-                class="date-arrow"
-                (click)="voltarDatas()"
-                [disabled]="inicioDatas === 0"
-              >
-                ‹
-              </button>
+  @for (data of datasDisponiveis; track data.getTime(); let i = $index) {
 
+    <button
+      type="button"
+      class="date-button"
+      [class.selected-date]="isDataSelecionada(data)"
+      (click)="selecionarData(data)"
+    >
+      {{ formatarDataBotao(data, i) }}
+    </button>
 
-              <!-- DATAS -->
-              <div class="date-options">
+  }
 
-                @for (
-                  data of datasVisiveis;
-                  track data.getTime();
-                  let i = $index
-                ) {
-
-                  <button
-                    type="button"
-                    class="date-button"
-                    [class.selected-date]="isDataSelecionada(data)"
-                    (click)="selecionarData(data)"
-                  >
-                    {{ formatarDataBotao(data, inicioDatas + i) }}
-                  </button>
-
-                }
-
-              </div>
-
-
-              <!-- SETA PARA AVANÇAR -->
-              <button
-                type="button"
-                class="date-arrow"
-                (click)="avancarDatas()"
-                [disabled]="
-                  inicioDatas + quantidadeDatasVisiveis >=
-                  datasDisponiveis.length
-                "
-              >
-                ›
-              </button>
-
-            </div>
-
+</div>
 
             <!-- DISPONIBILIDADE -->
             <div class="availability">
@@ -304,7 +268,7 @@
               </strong>
 
               <span>
-                {{ formatarDataCompleta(dataSelecionada) }}
+                 {{ formatarDataCompleta(dataSelecionada) }}
               </span>
 
               <p>
@@ -317,7 +281,6 @@
 
             </div>
 
-
             <!-- HORÁRIOS -->
             <div class="time-options">
 
@@ -327,9 +290,7 @@
                   type="button"
                   [disabled]="horario.ocupado"
                   [class.occupied]="horario.ocupado"
-                  [class.selected-time]="
-                    horarioSelecionado === horario
-                  "
+                  [class.selected-time]="horarioSelecionado === horario"
                   (click)="selecionarHorario(horario)"
                 >
                   {{ horario.inicio }} - {{ horario.fim }}
@@ -345,7 +306,6 @@
 
       </section>
 
-
       <!-- PAINEL DIREITO -->
       <aside class="right-panel">
 
@@ -353,7 +313,6 @@
         <div class="calendar-container">
           <app-calendario></app-calendario>
         </div>
-
 
         <!-- SALAS RESERVADAS -->
         <section class="status-section">
@@ -398,7 +357,6 @@
 
         </section>
 
-
         <!-- MANUTENÇÃO -->
         <section class="status-section">
 
@@ -442,7 +400,6 @@
 
     </div>
 
-
     <!-- BOTÃO PRINCIPAL -->
     <button
       type="button"
@@ -453,7 +410,10 @@
     </button>
 
 
-    <!-- MODAL DE CONFIRMAÇÃO -->
+    <!-- =========================
+         MODAL DE CONFIRMAÇÃO
+    ========================== -->
+
     @if (modalConfirmacaoAberto) {
 
       <div class="modal-overlay">
@@ -469,7 +429,6 @@
             <b>✦</b>
             <span></span>
           </div>
-
 
           <div class="confirmation-info">
 
@@ -490,7 +449,6 @@
 
             </div>
 
-
             <!-- TURMA -->
             <div class="confirmation-item">
 
@@ -504,21 +462,19 @@
 
             </div>
 
-
             <!-- DATA -->
-            <div class="confirmation-item">
 
-              <span>
-                Data
-              </span>
+<div class="confirmation-item">
 
-              <strong>
-                {{ formatarDataCompleta(dataSelecionada) }}
-              </strong>
+  <span>
+    Data
+  </span>
 
-            </div>
+  <strong>
+    {{ formatarDataCompleta(dataSelecionada) }}
+  </strong>
 
-
+</div>
             <!-- HORÁRIO -->
             <div class="confirmation-item">
 
@@ -534,7 +490,6 @@
 
             </div>
 
-
             <!-- RESPONSÁVEL -->
             <div class="confirmation-item">
 
@@ -549,7 +504,6 @@
             </div>
 
           </div>
-
 
           <!-- BOTÕES DO MODAL -->
           <div class="confirmation-actions">
