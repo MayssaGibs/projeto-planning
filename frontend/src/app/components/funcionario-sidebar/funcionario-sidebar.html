@@ -1,0 +1,286 @@
+
+<!-- BARRA SUPERIOR -->
+<header class="topbar">
+
+  <div class="brand-icon" aria-label="Planning">
+    ⌛
+  </div>
+
+  <app-barra-pesquisa></app-barra-pesquisa>
+
+  <div class="top-actions">
+
+    <!-- NOTIFICAÇÕES -->
+    <button
+      type="button"
+      class="notification-button"
+      aria-label="Notificações"
+      title="Notificações"
+      (click)="mostrarNotificacoes()"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+        <path d="M10 21h4"/>
+      </svg>
+    </button>
+
+    <!-- PERFIL -->
+    <a
+      routerLink="/editar-perfil"
+      class="top-avatar"
+      aria-label="Editar perfil"
+      title="Editar perfil"
+    >
+      J
+    </a>
+
+  </div>
+
+</header>
+
+<!-- MENU LATERAL -->
+<aside
+  class="sidebar"
+  [class.open]="sidebarOpen"
+  (mouseenter)="sidebarOpen = true"
+  (mouseleave)="sidebarOpen = false"
+>
+
+  <!-- PERFIL DA JAQUELINY -->
+  <a
+    routerLink="/editar-perfil"
+    class="sidebar-profile"
+    title="Editar perfil"
+  >
+    <div class="avatar">J</div>
+
+    <div class="user-info">
+      <strong>Jaqueliny</strong>
+      <small>jaqu@gmail.com</small>
+    </div>
+  </a>
+
+  <div class="sidebar-line"></div>
+
+  <!-- NAVEGAÇÃO PRINCIPAL -->
+  <nav aria-label="Navegação principal">
+
+    <!-- INÍCIO -->
+    <a
+      routerLink="/home"
+      routerLinkActive="active"
+      title="Início"
+    >
+      <span class="icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m3 10 9-7 9 7"/>
+          <path d="M5 9v12h14V9"/>
+          <path d="M9 21v-8h6v8"/>
+        </svg>
+      </span>
+      <span class="label">Início</span>
+    </a>
+
+    <!-- RESERVAS -->
+    <a
+      routerLink="/reserva"
+      routerLinkActive="active"
+      title="Reservar sala/lab"
+    >
+      <span class="icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="16" rx="2"/>
+          <path d="M7 3v4M17 3v4M3 10h18"/>
+          <path d="M12 13v5M9.5 15.5h5"/>
+        </svg>
+      </span>
+      <span class="label">Reservar sala/lab</span>
+    </a>
+
+    <!-- AGENDA -->
+    <a
+      routerLink="/agenda"
+      routerLinkActive="active"
+      title="Agenda"
+    >
+      <span class="icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="16" rx="2"/>
+          <path d="M7 3v4M17 3v4M3 10h18"/>
+          <path d="m8 15 2.5 2.5L16 12"/>
+        </svg>
+      </span>
+      <span class="label">Agenda</span>
+    </a>
+
+    <!-- MANUTENÇÃO -->
+    <a
+      routerLink="/salas-manutencao"
+      routerLinkActive="active"
+      title="Em manutenção"
+    >
+      <span class="icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 17.7 6.3 21l5.3-5.3a5 5 0 0 0 6.4-6.4L15 12l-3-3z"/>
+        </svg>
+      </span>
+      <span class="label">Em manutenção</span>
+    </a>
+
+  </nav>
+
+  <div class="sidebar-line"></div>
+
+  <!-- AJUDA E CONTA -->
+  <nav aria-label="Ajuda e conta">
+
+    <!-- SUPORTE -->
+    <button
+      type="button"
+      title="Suporte"
+      (click)="abrirSuporte()"
+    >
+      <span class="icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 14v-3a8 8 0 0 1 16 0v3"/>
+          <rect x="2" y="12" width="4" height="7" rx="2"/>
+          <rect x="18" y="12" width="4" height="7" rx="2"/>
+          <path d="M20 19a5 5 0 0 1-5 3h-3"/>
+        </svg>
+      </span>
+      <span class="label">Suporte</span>
+    </button>
+
+    <!-- SAIR -->
+    <button
+      type="button"
+      title="Sair"
+      (click)="sair()"
+    >
+      <span class="icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 17l5-5-5-5"/>
+          <path d="M15 12H3"/>
+          <path d="M12 3h6a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3h-6"/>
+        </svg>
+      </span>
+      <span class="label">Sair</span>
+    </button>
+
+  </nav>
+
+  <div class="sidebar-line"></div>
+
+  <!-- LOGO -->
+  <div class="planning-logo">
+    <span class="logo-icon">⌛</span>
+    <span class="label">PLANNING</span>
+  </div>
+
+</aside>
+
+<!-- MODAL DE SUPORTE -->
+@if (modalSuporteAberto) {
+
+  <div
+    class="modal-overlay"
+    (click)="fecharSuporte()"
+  >
+
+    <section
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="titulo-suporte"
+      (click)="$event.stopPropagation()"
+    >
+
+      <button
+        type="button"
+        class="modal-close"
+        aria-label="Fechar"
+        (click)="fecharSuporte()"
+      >
+        ×
+      </button>
+
+      <div class="modal-icon">?</div>
+
+      <h2 id="titulo-suporte">
+        Central de Suporte
+      </h2>
+
+      <p>
+        Nossa central de suporte estará disponível em breve!
+      </p>
+
+      <button
+        type="button"
+        class="modal-confirm"
+        (click)="fecharSuporte()"
+      >
+        Entendi
+      </button>
+
+    </section>
+
+  </div>
+
+}
+
+<!-- MODAL DE NOTIFICAÇÕES -->
+@if (notificacoesAbertas) {
+
+  <div
+    class="modal-overlay"
+    (click)="fecharNotificacoes()"
+  >
+
+    <section
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="titulo-notificacoes"
+      (click)="$event.stopPropagation()"
+    >
+
+      <button
+        type="button"
+        class="modal-close"
+        aria-label="Fechar"
+        (click)="fecharNotificacoes()"
+      >
+        ×
+      </button>
+
+      <div class="modal-icon">♧</div>
+
+      <h2 id="titulo-notificacoes">
+        Notificações
+      </h2>
+
+      <p>
+        Você não possui novas notificações.
+      </p>
+
+      <button
+        type="button"
+        class="modal-confirm"
+        (click)="fecharNotificacoes()"
+      >
+        Entendi
+      </button>
+
+    </section>
+
+  </div>
+
+}

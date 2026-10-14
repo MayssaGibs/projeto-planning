@@ -1,0 +1,317 @@
+
+<!-- SIDEBAR ADMINISTRATIVA -->
+<aside
+  class="admin-sidebar"
+  [class.open]="sidebarOpen"
+  (mouseenter)="sidebarOpen = true"
+  (mouseleave)="sidebarOpen = false"
+>
+
+  <!-- PERFIL DO DAVID -->
+  <div class="admin-profile">
+
+    <a
+      class="admin-avatar"
+      routerLink="/editar-perfil"
+      title="Editar meu perfil"
+      aria-label="Editar perfil do David"
+    >
+      D
+    </a>
+
+    <div class="admin-user-info">
+      <strong>David</strong>
+      <small>Administrador</small>
+    </div>
+
+  </div>
+
+  <div class="admin-divider"></div>
+
+  <!-- MENU PRINCIPAL -->
+  <nav
+    class="admin-menu"
+    aria-label="Menu do administrador"
+  >
+
+    <!-- INÍCIO -->
+    <a
+      routerLink="/resolucao-conflitos"
+      routerLinkActive="active"
+      title="Início"
+    >
+      <span class="admin-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m3 10 9-7 9 7"></path>
+          <path d="M5 9v12h14V9"></path>
+          <path d="M9 21v-7h6v7"></path>
+        </svg>
+      </span>
+
+      <span class="admin-label">
+        Início
+      </span>
+    </a>
+
+    <!-- REGISTRAR SALA -->
+    <a
+      routerLink="/registrar-sala"
+      routerLinkActive="active"
+      title="Registrar sala/lab"
+    >
+      <span class="admin-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 21h16"></path>
+          <path d="M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17"></path>
+          <path d="M10 7h4"></path>
+          <path d="M10 11h4"></path>
+          <path d="M10 15h4"></path>
+          <circle
+            cx="15"
+            cy="18"
+            r=".5"
+            fill="currentColor"
+            stroke="none"
+          ></circle>
+        </svg>
+      </span>
+
+      <span class="admin-label">
+        Registrar sala/lab
+      </span>
+    </a>
+
+    <!-- REGISTRAR FUNCIONÁRIO -->
+    <a
+      routerLink="/adicionar-funcionario"
+      routerLinkActive="active"
+      title="Registrar funcionário"
+    >
+      <span class="admin-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="10" cy="7" r="4"></circle>
+          <path d="M3 21v-2a6 6 0 0 1 6-6h2a6 6 0 0 1 4.5 2"></path>
+          <path d="M19 15v6"></path>
+          <path d="M16 18h6"></path>
+        </svg>
+      </span>
+
+      <span class="admin-label">
+        Registrar funcionário
+      </span>
+    </a>
+
+    <!-- REGISTROS -->
+    <a
+      routerLink="/historico"
+      routerLinkActive="active"
+      title="Registros"
+    >
+      <span class="admin-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect
+            x="5"
+            y="4"
+            width="14"
+            height="17"
+            rx="2"
+          ></rect>
+          <path d="M9 4.5V3h6v1.5"></path>
+          <path d="M9 10h6"></path>
+          <path d="M9 14h6"></path>
+          <path d="M9 18h4"></path>
+        </svg>
+      </span>
+
+      <span class="admin-label">
+        Registros
+      </span>
+    </a>
+
+    <!-- REGISTRAR MANUTENÇÃO -->
+    <a
+      routerLink="/admin-manutencao"
+      routerLinkActive="active"
+      title="Registrar manutenção"
+    >
+      <span class="admin-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18l3 3 5.3-5.3a5 5 0 0 0 6.4-6.4L14 13l-3-3z"></path>
+          <path d="m3 18 3 3"></path>
+        </svg>
+      </span>
+
+      <span class="admin-label">
+        Registrar manutenção
+      </span>
+    </a>
+
+  </nav>
+
+  <div class="admin-divider"></div>
+
+  <!-- MENU INFERIOR -->
+  <nav
+    class="admin-menu"
+    aria-label="Outras opções"
+  >
+
+    <!-- SUPORTE -->
+    <button
+      type="button"
+      class="admin-menu-button"
+      title="Suporte"
+      (click)="abrirSuporte()"
+    >
+      <span class="admin-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 14v-3a8 8 0 0 1 16 0v3"></path>
+          <rect
+            x="2"
+            y="12"
+            width="4"
+            height="7"
+            rx="2"
+          ></rect>
+          <rect
+            x="18"
+            y="12"
+            width="4"
+            height="7"
+            rx="2"
+          ></rect>
+          <path d="M20 19a4 4 0 0 1-4 4h-3"></path>
+          <path d="M10 23h3"></path>
+        </svg>
+      </span>
+
+      <span class="admin-label">
+        Suporte
+      </span>
+    </button>
+
+    <!-- SAIR -->
+    <button
+      type="button"
+      class="admin-menu-button"
+      title="Sair"
+      (click)="sair()"
+    >
+      <span class="admin-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 17l5-5-5-5"></path>
+          <path d="M15 12H3"></path>
+          <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7"></path>
+        </svg>
+      </span>
+
+      <span class="admin-label">
+        Sair
+      </span>
+    </button>
+
+  </nav>
+
+  <!-- LOGO PLANNING -->
+  <div class="admin-logo">
+
+    <span class="admin-logo-icon">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M12 7v5l3 2"></path>
+      </svg>
+    </span>
+
+    <span class="admin-label">
+      PLANNING
+    </span>
+
+  </div>
+
+</aside>
+
+<!-- ========================================
+     MODAL DA CENTRAL DE SUPORTE
+======================================== -->
+
+@if (modalSuporteAberto) {
+
+  <div
+    class="suporte-overlay"
+    (click)="fecharSuporte()"
+  >
+
+    <section
+      class="suporte-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="titulo-suporte"
+      (click)="$event.stopPropagation()"
+    >
+
+      <!-- FECHAR -->
+      <button
+        type="button"
+        class="suporte-fechar"
+        aria-label="Fechar suporte"
+        (click)="fecharSuporte()"
+      >
+        ×
+      </button>
+
+      <!-- ÍCONE -->
+      <div class="suporte-icone">
+
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 14v-3a8 8 0 0 1 16 0v3"></path>
+          <rect
+            x="2"
+            y="12"
+            width="4"
+            height="7"
+            rx="2"
+          ></rect>
+          <rect
+            x="18"
+            y="12"
+            width="4"
+            height="7"
+            rx="2"
+          ></rect>
+          <path d="M20 19a4 4 0 0 1-4 4h-3"></path>
+          <path d="M10 23h3"></path>
+        </svg>
+
+      </div>
+
+      <!-- TÍTULO -->
+      <h2 id="titulo-suporte">
+        Central de Suporte
+      </h2>
+
+      <p class="suporte-subtitulo">
+        Precisa de ajuda?
+      </p>
+
+      <!-- MENSAGEM -->
+      <p class="suporte-mensagem">
+        Nossa central de suporte estará disponível
+        em breve. Estamos preparando um espaço
+        para ajudar você com dúvidas, problemas
+        e solicitações relacionadas ao Planning.
+      </p>
+
+      <!-- BOTÃO -->
+      <button
+        type="button"
+        class="suporte-entendi"
+        (click)="fecharSuporte()"
+      >
+        Entendi
+      </button>
+
+    </section>
+
+  </div>
+
+}
