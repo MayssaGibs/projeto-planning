@@ -1,0 +1,282 @@
+
+<!-- SIDEBAR COMPARTILHADA DO ADMINISTRADOR -->
+<app-admin-sidebar></app-admin-sidebar>
+
+<!-- BARRA SUPERIOR -->
+<header class="barra-superior">
+  <div class="busca">
+    <span>⌕</span>
+    <input
+      type="search"
+      placeholder="Buscar..."
+      aria-label="Buscar"
+    />
+  </div>
+
+  <div class="barra-usuario">
+    <span class="notificacao" aria-label="Notificações">
+      ♧
+    </span>
+
+    <!-- FOTO DO CANTO DIREITO -->
+    <a
+      class="avatar-topo"
+      routerLink="/editar-perfil"
+      title="Editar meu perfil"
+      aria-label="Editar perfil do David"
+    >
+      D
+    </a>
+  </div>
+</header>
+
+<!-- CONTEÚDO DA PÁGINA -->
+<div class="conflitos-container">
+
+  <header class="pagina-header">
+    <h1>Bem-vindo, David!</h1>
+
+    <div class="decoracao">
+      ✦ ───── ✦ ─────
+    </div>
+
+    <p>Resolução de Conflitos</p>
+  </header>
+
+  <div class="layout-principal">
+
+    <!-- PAINEL CENTRAL -->
+    <main class="painel-conflitos">
+
+      <div class="painel-titulo">
+        <h2>RESOLUÇÃO DE CONFLITOS</h2>
+        <span>
+          {{ quantidadePendentes }} pendente(s)
+        </span>
+      </div>
+
+      @for (conflito of conflitos; track conflito.id) {
+        <section class="conflito-card">
+
+          <div class="conflito-topo">
+            <div>
+              <strong>{{ conflito.sala }}</strong>
+
+              <p>
+                {{ conflito.data }} •
+                {{ conflito.horario }}
+              </p>
+            </div>
+
+            <span
+              class="status-conflito"
+              [class.resolvido]="conflito.status === 'Resolvido'"
+            >
+              {{ conflito.status }}
+            </span>
+          </div>
+
+          <!-- SOLICITAÇÕES -->
+          <div class="solicitacoes">
+
+            <!-- SOLICITAÇÃO A -->
+            <article class="solicitacao">
+              <h3>Solicitação A</h3>
+
+              <p>
+                Responsável:
+                {{ conflito.solicitacaoA.responsavel }}
+              </p>
+
+              <p>
+                Turma:
+                {{ conflito.solicitacaoA.turma }}
+              </p>
+
+              <p>
+                Prioridade:
+                <span class="prioridade alta">
+                  {{ conflito.solicitacaoA.prioridade }}
+                </span>
+              </p>
+
+              <p>
+                Status:
+                {{ conflito.solicitacaoA.status }}
+              </p>
+            </article>
+
+            <!-- SOLICITAÇÃO B -->
+            <article class="solicitacao">
+              <h3>Solicitação B</h3>
+
+              <p>
+                Responsável:
+                {{ conflito.solicitacaoB.responsavel }}
+              </p>
+
+              <p>
+                Turma:
+                {{ conflito.solicitacaoB.turma }}
+              </p>
+
+              <p>
+                Prioridade:
+                <span class="prioridade baixa">
+                  {{ conflito.solicitacaoB.prioridade }}
+                </span>
+              </p>
+
+              <p>
+                Status:
+                {{ conflito.solicitacaoB.status }}
+              </p>
+            </article>
+
+          </div>
+
+          <div class="acoes-conflito">
+            <button
+              type="button"
+              class="btn-aprovar"
+              [disabled]="conflito.status === 'Resolvido'"
+              (click)="abrirModal(conflito)"
+            >
+              {{
+                conflito.status === 'Resolvido'
+                  ? 'Conflito resolvido'
+                  : 'Aprovar solicitação A'
+              }}
+            </button>
+          </div>
+
+        </section>
+      }
+
+    </main>
+
+    <!-- PAINEL DIREITO -->
+    <aside class="painel-direito">
+
+      <!-- CALENDÁRIO -->
+      <section class="calendario">
+
+        <div class="calendario-cabecalho">
+          <button
+            type="button"
+            aria-label="Mês anterior"
+            (click)="mesAnterior()"
+          >
+            ‹
+          </button>
+
+          <strong>{{ mesAno }}</strong>
+
+          <button
+            type="button"
+            aria-label="Próximo mês"
+            (click)="proximoMes()"
+          >
+            ›
+          </button>
+        </div>
+
+        <div class="calendario-grade">
+
+          @for (semana of diasSemana; track $index) {
+            <span class="dia-semana">
+              {{ semana }}
+            </span>
+          }
+
+          @for (dia of diasCalendario; track $index) {
+            <span
+              class="dia-calendario"
+              [class.hoje]="ehHoje(dia)"
+              [class.vazio]="dia === null"
+            >
+              {{ dia }}
+            </span>
+          }
+
+        </div>
+      </section>
+
+      <!-- SALAS EM MANUTENÇÃO -->
+      <section class="manutencao">
+        <h2>Em manutenção</h2>
+
+        @for (sala of salasManutencao; track sala.nome) {
+          <article class="manutencao-item">
+
+            <div class="alerta-manutencao">
+              !
+            </div>
+
+            <div>
+              <strong>{{ sala.nome }}</strong>
+              <p>{{ sala.motivo }}</p>
+              <small>{{ sala.status }}</small>
+            </div>
+
+          </article>
+        }
+
+      </section>
+    </aside>
+
+  </div>
+</div>
+
+<!-- MODAL DE CONFIRMAÇÃO -->
+@if (modalAberto && conflitoSelecionado; as conflito) {
+  <div
+    class="modal-overlay"
+    (click)="fecharModal()"
+  >
+    <div
+      class="modal-conteudo"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="titulo-modal"
+      (click)="$event.stopPropagation()"
+    >
+      <h2 id="titulo-modal">
+        Confirmar aprovação
+      </h2>
+
+      <p>
+        Deseja aprovar a solicitação de
+        <strong>
+          {{ conflito.solicitacaoA.responsavel }}
+        </strong>
+        para a {{ conflito.sala }}?
+      </p>
+
+      <p class="modal-aviso">
+        A solicitação de
+        {{ conflito.solicitacaoB.responsavel }}
+        será rejeitada.
+      </p>
+
+      <div class="modal-acoes">
+        <button
+          type="button"
+          class="btn-cancelar"
+          (click)="fecharModal()"
+        >
+          Voltar
+        </button>
+
+        <button
+          type="button"
+          class="btn-aprovar"
+          (click)="confirmarAprovacao()"
+        >
+          Confirmar aprovação
+        </button>
+      </div>
+
+    </div>
+  </div>
+}

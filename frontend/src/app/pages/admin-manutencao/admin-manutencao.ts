@@ -1,23 +1,30 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router'; // Importação essencial para o routerLink funcionar
-import { Manutencao } from '../../services/manutencaoservice';
-import { ManutencaoService } from '../../services/manutencaoservice';
+import { RouterLink } from '@angular/router';
 
+import {
+  Manutencao,
+  ManutencaoService
+} from '../../services/manutencaoservice';
 
+import { AdminSidebar } from '../../components/admin-sidebar/admin-sidebar';
 
 @Component({
   selector: 'app-admin-manutencao',
   standalone: true,
-  imports: [FormsModule, RouterModule], // Adicionado RouterModule para habilitar a navegação nos botões
- templateUrl: './admin-manutencao.html',
-  styleUrl: './admin-manutencao.css',
+  imports: [
+    FormsModule,
+    RouterLink,
+    AdminSidebar
+  ],
+  templateUrl: './admin-manutencao.html',
+  styleUrl: './admin-manutencao.css'
 })
 export class AdminManutencao implements OnInit {
-  sidebarOpen = false;
+
   searchTerm = '';
-  
-  // Objeto estruturado baseado nos campos da sua imagem
+
   newManutencaoData: Omit<Manutencao, 'id'> = {
     nome: '',
     roomNumber: '',
@@ -25,23 +32,23 @@ export class AdminManutencao implements OnInit {
     maintenanceDays: ''
   };
 
-  constructor(private manutencaoService: ManutencaoService) {}
+  constructor(
+    private manutencaoService: ManutencaoService
+  ) {}
 
   ngOnInit(): void {
-    // Inicializações necessárias caso precise carregar dados prévios
+    // Mantido para futuras inicializações.
   }
 
   showNotifications(): void {
     alert('Não existem notificações novas.');
   }
 
-  showProfile(): void {
-    alert('Perfil do utilizador');
-  }
-
   saveMaintenance(): void {
-    // Validação básica se os campos estão preenchidos antes de salvar
-    if (!this.newManutencaoData.nome || !this.newManutencaoData.roomNumber) {
+    if (
+      !this.newManutencaoData.nome.trim() ||
+      !this.newManutencaoData.roomNumber.trim()
+    ) {
       alert('Por favor, preencha os campos obrigatórios.');
       return;
     }
@@ -54,9 +61,8 @@ export class AdminManutencao implements OnInit {
       maintenanceDays: this.newManutencaoData.maintenanceDays.trim()
     };
 
-    // Salvando os dados através do serviço simulado
     this.manutencaoService.addMaintenance(manutencao);
-    
+
     alert('Manutenção salva com sucesso!');
     this.resetForm();
   }
@@ -68,6 +74,7 @@ export class AdminManutencao implements OnInit {
       roomType: '',
       maintenanceDays: ''
     };
+
     this.searchTerm = '';
   }
 }

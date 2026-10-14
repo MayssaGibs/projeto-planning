@@ -1,8 +1,15 @@
+
+<!-- SIDEBAR COMPARTILHADA DO ADMINISTRADOR -->
+<app-admin-sidebar></app-admin-sidebar>
+
+<!-- BARRA SUPERIOR -->
 <header class="topbar">
+
   <div class="brand-small">⌛</div>
 
   <div class="search-box">
     <span>⌕</span>
+
     <input
       type="search"
       placeholder="Buscar..."
@@ -12,6 +19,8 @@
   </div>
 
   <div class="top-actions">
+
+    <!-- NOTIFICAÇÕES -->
     <button
       type="button"
       class="notification"
@@ -21,21 +30,25 @@
       ♧
     </button>
 
-    <button
-      type="button"
+    <!-- EDITAR PERFIL DO ADMIN -->
+    <a
       class="top-avatar"
-      aria-label="Perfil do utilizador"
-      (click)="showProfile()"
+      routerLink="/editar-perfil"
+      title="Editar meu perfil"
+      aria-label="Editar perfil do David"
     >
       D
-    </button>
+    </a>
+
   </div>
 </header>
 
+<!-- CONTEÚDO DA PÁGINA -->
 <div class="manutencao-container">
 
-  <!-- TÍTULO DA PÁGINA -->
+  <!-- TÍTULO -->
   <div class="manutencao-title">
+
     <h1>MANUTENÇÃO</h1>
 
     <div class="manutencao-decoration">
@@ -43,167 +56,90 @@
       <strong>✦</strong>
       <span></span>
     </div>
+
   </div>
 
-  <!-- PAINEL CENTRAL / FORMULÁRIO -->
+  <!-- FORMULÁRIO -->
   <section class="form-card">
+
     <form (ngSubmit)="saveMaintenance()">
-      
-      <!-- Campo: Nome -->
+
+      <!-- NOME -->
       <div class="form-group full-width">
         <label for="nome">Nome</label>
-        <input 
-          type="text" 
-          id="nome" 
-          name="nome" 
-          [(ngModel)]="newManutencaoData.nome" 
+
+        <input
+          type="text"
+          id="nome"
+          name="nome"
+          [(ngModel)]="newManutencaoData.nome"
           required
-        >
+        />
       </div>
 
-      <!-- Linha com Dois Campos: Número e Tipo -->
+      <!-- NÚMERO E TIPO DA SALA -->
       <div class="form-row">
+
         <div class="form-group">
           <label for="roomNumber">Número da sala</label>
-          <input 
-            type="text" 
-            id="roomNumber" 
-            name="roomNumber" 
-            [(ngModel)]="newManutencaoData.roomNumber" 
+
+          <input
+            type="text"
+            id="roomNumber"
+            name="roomNumber"
+            [(ngModel)]="newManutencaoData.roomNumber"
             required
-          >
+          />
         </div>
 
         <div class="form-group">
           <label for="roomType">Tipo de sala</label>
-          <input 
-            type="text" 
-            id="roomType" 
-            name="roomType" 
-            [(ngModel)]="newManutencaoData.roomType" 
+
+          <input
+            type="text"
+            id="roomType"
+            name="roomType"
+            [(ngModel)]="newManutencaoData.roomType"
             required
-          >
+          />
         </div>
+
       </div>
 
-      <!-- Campo: Dias em Manutenção -->
+      <!-- DIAS EM MANUTENÇÃO -->
       <div class="form-group full-width">
-        <label for="maintenanceDays">Dias em manutenção</label>
+
+        <label for="maintenanceDays">
+          Dias em manutenção
+        </label>
+
         <div class="input-with-icon">
-          <input 
-            type="text" 
-            id="maintenanceDays" 
-            name="maintenanceDays" 
-            [(ngModel)]="newManutencaoData.maintenanceDays" 
+
+          <input
+            type="text"
+            id="maintenanceDays"
+            name="maintenanceDays"
+            [(ngModel)]="newManutencaoData.maintenanceDays"
             required
-          >
+          />
+
           <span class="calendar-icon">📅</span>
+
         </div>
       </div>
 
-      <!-- Botão de Ação -->
+      <!-- SALVAR -->
       <div class="form-actions">
-        <button type="submit" class="btn-salvar">Salvar Registro</button>
+        <button
+          type="submit"
+          class="btn-salvar"
+        >
+          Salvar Registro
+        </button>
       </div>
 
     </form>
+
   </section>
 
 </div>
-
-<!-- SIDEBAR INTEGRADA COM ROTAS -->
-<aside
-  class="sidebar"
-  [class.open]="sidebarOpen"
-  (mouseenter)="sidebarOpen = true"
-  (mouseleave)="sidebarOpen = false"
->
-  <div class="sidebar-profile">
-    <div class="avatar">D</div>
-    <div class="user-info">
-      <strong>David</strong>
-      <small>202420@admin.etecrei.br</small>
-    </div>
-  </div>
-
-  <div class="sidebar-line"></div>
-
-  <nav>
-    <button type="button" [routerLink]="['/inicio']">
-      <span class="icon">⌂</span>
-      <span class="label">Início</span>
-    </button>
-
-    <button type="button" [routerLink]="['/registrar']">
-      <span class="icon">
-        <svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"/>
-  <path d="M3 16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2Z"/>
-  <path d="M5 18v2"/>
-  <path d="M19 18v2"/>
-</svg>
-
-      </span>
-      <span class="label">Registrar uma sala/lab</span>
-    </button>
-
-    <button type="button" [routerLink]="['/registrar']">
-      <span class="icon"><svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-  <circle cx="9" cy="7" r="4"/>
-  <line x1="19" x2="19" y1="8" y2="14"/>
-  <line x1="22" x2="16" y1="11" y2="11"/>
-</svg>
-</span>
-      <span class="label">Registrar funcionário</span>
-    </button>
-
-            <button type="button" [routerLink]="['/registrar']">
-      <span class="icon"><svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>
-</svg>
-</span>
-      <span class="label">Registros</span>
-      </button>
-
-    <!-- Menu Ativo Destacado -->
-    <button type="button" [routerLink]="['/admin-manutencao']" class="active-menu">
-      <span class="icon"><svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-</svg>
-</span>
-      <span class="label">Em manutenção</span>
-    </button>
-  </nav>
-
-  <div class="sidebar-line"></div>
-
-  <nav>
-    <button type="button">
-      <span class="icon"><svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M6 8.5a6.5 6.5 0 1 1 13 0c0 2.5-2 4.5-4.5 4.5H13a2 2 0 0 0-2 2v2a2 2 0 0 1-2 2v0a3 3 0 0 1-3-3V12"/>
-  <path d="M17.5 4.5a4.5 4.5 0 0 1 0 8"/>
-  <path d="M21 2a8 8 0 0 1 0 13"/>
-</svg>
-</span>
-      <span class="label">Suporte</span>
-    </button>
-
-    <button type="button">
-      <span class="icon"><svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-  <polyline points="16 17 21 12 16 7"/>
-  <line x1="21" x2="9" y1="12" y2="12"/>
-</svg>
-</span>
-      <span class="label">Sair</span>
-    </button>
-  </nav>
-
-  <div class="sidebar-line"></div>
-
-  <div class="planning-logo">
-    ⌛
-    <span class="label">PLANNING</span>
-  </div>
-</aside>

@@ -1,49 +1,228 @@
-<div class="container-pagina">
-  <button type="button" class="btn-voltar" (click)="voltar()">← Voltar</button>
 
-  <h1 class="titulo-pagina">Cadastrar sala</h1>
+<!-- SIDEBAR COMPARTILHADA DO ADMINISTRADOR -->
+<app-admin-sidebar></app-admin-sidebar>
 
-  <div class="card-cadastro">
-    <form [formGroup]="form" (ngSubmit)="adicionar()">
-      <div class="form-grid">
-        <!-- Nome (Topo Esquerda) -->
-        <div class="campo campo-nome">
-          <label for="nome">Nome</label>
-          <input id="nome" type="text" formControlName="nome" />
-          @if (invalido('nome')) {
-            <small class="erro">Informe o nome da sala.</small>
-          }
-        </div>
+<!-- BARRA SUPERIOR -->
+<header class="barra-superior">
 
-        <!-- Número da sala (Baixo Esquerda) -->
-        <div class="campo campo-numero">
-          <label for="numero">Número da sala</label>
-          <input id="numero" type="number" formControlName="numero" />
-          @if (invalido('numero')) {
-            <small class="erro">Informe um número válido.</small>
-          }
-        </div>
-
-        <!-- Tipo de sala (Baixo Direita) -->
-        <div class="campo campo-tipo">
-          <label for="tipo">Tipo de sala</label>
-          <select id="tipo" formControlName="tipo">
-            <option value="" disabled selected></option>
-            <option value="aula">Sala de aula</option>
-            <option value="laboratorio">Laboratório</option>
-            <option value="auditorio">Auditório</option>
-          </select>
-          @if (invalido('tipo')) {
-            <small class="erro">Selecione o tipo.</small>
-          }
-        </div>
-      </div>
-
-      <!-- Botões Centralizados -->
-      <div class="acoes">
-        <button type="submit" class="btn btn-adicionar">Adicionar</button>
-        <button type="button" class="btn btn-cancelar" (click)="cancelar()">Cancelar</button>
-      </div>
-    </form>
+  <div class="barra-marca">
+    <span>⌛</span>
   </div>
-</div>
+
+  <div class="barra-acoes">
+
+    <!-- EDITAR PERFIL DO DAVID -->
+    <a
+      routerLink="/editar-perfil"
+      class="avatar-admin"
+      title="Editar meu perfil"
+      aria-label="Editar perfil do administrador"
+    >
+      D
+    </a>
+
+  </div>
+
+</header>
+
+<!-- CONTEÚDO PRINCIPAL -->
+<main class="pagina-admin">
+
+  <div class="container-pagina">
+
+    <!-- BOTÃO VOLTAR -->
+    <button
+      type="button"
+      class="btn-voltar"
+      (click)="voltar()"
+    >
+      ← Voltar
+    </button>
+
+    <!-- TÍTULO -->
+    <h1 class="titulo-pagina">
+      Cadastrar sala
+    </h1>
+
+    <!-- CARD DE CADASTRO -->
+    <div class="card-cadastro">
+
+      <form
+        [formGroup]="form"
+        (ngSubmit)="adicionar()"
+      >
+
+        <div class="form-grid">
+
+          <!-- NOME DA SALA -->
+          <div class="campo campo-nome">
+
+            <label for="nome">
+              Nome
+            </label>
+
+            <input
+              id="nome"
+              type="text"
+              formControlName="nome"
+            />
+
+            @if (invalido('nome')) {
+              <small class="erro">
+                Informe o nome da sala com pelo menos 3 caracteres.
+              </small>
+            }
+
+          </div>
+
+          <!-- NÚMERO DA SALA -->
+          <div class="campo campo-numero">
+
+            <label for="numero">
+              Número da sala
+            </label>
+
+            <input
+              id="numero"
+              type="number"
+              formControlName="numero"
+              min="1"
+            />
+
+            @if (invalido('numero')) {
+              <small class="erro">
+                Informe um número válido.
+              </small>
+            }
+
+          </div>
+
+          <!-- TIPO DE SALA -->
+          <div class="campo campo-tipo">
+
+            <label for="tipo">
+              Tipo de sala
+            </label>
+
+            <select
+              id="tipo"
+              formControlName="tipo"
+            >
+
+              <option value="" disabled>
+                Selecione
+              </option>
+
+              <option value="aula">
+                Sala de aula
+              </option>
+
+              <option value="laboratorio">
+                Laboratório
+              </option>
+
+            </select>
+
+            @if (invalido('tipo')) {
+              <small class="erro">
+                Selecione o tipo de sala.
+              </small>
+            }
+
+          </div>
+
+        </div>
+
+        <!-- BOTÕES DO FORMULÁRIO -->
+        <div class="acoes">
+
+          <button
+            type="submit"
+            class="btn btn-adicionar"
+          >
+            Adicionar
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-cancelar"
+            (click)="cancelar()"
+          >
+            Cancelar
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</main>
+
+<!-- CARD DE CONFIRMAÇÃO -->
+@if (modalSucessoAberto && salaRegistrada; as sala) {
+
+  <div
+    class="modal-overlay"
+    (click)="fecharModal()"
+  >
+
+    <section
+      class="modal-sucesso"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="titulo-sucesso"
+      (click)="$event.stopPropagation()"
+    >
+
+      <!-- ÍCONE DE SUCESSO -->
+      <div class="icone-sucesso">
+        ✓
+      </div>
+
+      <!-- TÍTULO DO CARD -->
+      <h2 id="titulo-sucesso">
+        Sala adicionada!
+      </h2>
+
+      <p class="mensagem-sucesso">
+        A sala foi adicionada à lista temporária
+        de cadastros com sucesso.
+      </p>
+
+      <!-- RESUMO DA SALA -->
+      <div class="resumo-sala">
+
+        <div class="resumo-linha">
+          <span>Nome</span>
+          <strong>{{ sala.nome }}</strong>
+        </div>
+
+        <div class="resumo-linha">
+          <span>Número</span>
+          <strong>{{ sala.numero }}</strong>
+        </div>
+
+        <div class="resumo-linha">
+          <span>Tipo</span>
+          <strong>{{ nomeTipoSala(sala.tipo) }}</strong>
+        </div>
+
+      </div>
+
+      <!-- BOTÃO PARA FECHAR -->
+      <button
+        type="button"
+        class="btn-entendi"
+        (click)="fecharModal()"
+      >
+        Entendi
+      </button>
+
+    </section>
+
+  </div>
+
+}

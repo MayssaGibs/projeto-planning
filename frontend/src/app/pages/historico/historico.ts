@@ -1,7 +1,8 @@
 
-import { Component, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../services/auth';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+
+import { AdminSidebar } from '../../components/admin-sidebar/admin-sidebar';
 
 type StatusReserva = 'pendente' | 'confirmada' | 'cancelada';
 type PrioridadeReserva = 'alta' | 'media' | 'baixa';
@@ -20,18 +21,15 @@ interface RegistroReserva {
 
 @Component({
   selector: 'app-historico',
-  imports: [RouterLink],
+  standalone: true,
+  imports: [
+    RouterLink,
+    AdminSidebar
+  ],
   templateUrl: './historico.html',
-  styleUrl: './historico.css',
+  styleUrl: './historico.css'
 })
 export class Historico {
-
-  // CONTROLE DA BARRA LATERAL
-  sidebarOpen = false;
-
-  // SERVIÇOS DE NAVEGAÇÃO E AUTENTICAÇÃO
-  private router = inject(Router);
-  private authService = inject(AuthService);
 
   // DADOS DE EXEMPLO DOS REGISTROS
   registros: RegistroReserva[] = [
@@ -44,7 +42,7 @@ export class Historico {
       sala: 'LAB - A - 01',
       turma: 'Informática 01',
       prioridade: 'alta',
-      status: 'confirmada',
+      status: 'confirmada'
     },
     {
       id: 2,
@@ -55,7 +53,7 @@ export class Historico {
       sala: 'Sala 02',
       turma: 'Informática 02',
       prioridade: 'media',
-      status: 'pendente',
+      status: 'pendente'
     },
     {
       id: 3,
@@ -66,7 +64,7 @@ export class Historico {
       sala: 'LAB - B - 02',
       turma: 'Administração 01',
       prioridade: 'baixa',
-      status: 'cancelada',
+      status: 'cancelada'
     },
     {
       id: 4,
@@ -77,25 +75,26 @@ export class Historico {
       sala: 'Sala 04',
       turma: 'Informática 03',
       prioridade: 'alta',
-      status: 'pendente',
-    },
+      status: 'pendente'
+    }
   ];
 
   // CONTROLE DO MODAL
   registroSelecionado: RegistroReserva | null = null;
 
-  // ABRIR DETALHES DA RESERVA
+  // ABRIR DETALHES
   verMais(registro: RegistroReserva): void {
     this.registroSelecionado = registro;
   }
 
-  // FECHAR DETALHES DA RESERVA
+  // FECHAR DETALHES
   fecharDetalhes(): void {
     this.registroSelecionado = null;
   }
 
   // CANCELAR RESERVA
   cancelarReserva(registro: RegistroReserva): void {
+
     if (registro.status === 'cancelada') {
       return;
     }
@@ -108,11 +107,5 @@ export class Historico {
       registro.status = 'cancelada';
       window.alert('Reserva cancelada com sucesso!');
     }
-  }
-
-  // SAIR DA CONTA
-  sair(): void {
-    this.authService.logout();
-    this.router.navigate(['/login']);
   }
 }

@@ -1,0 +1,641 @@
+
+/* =====================================
+   CONFIGURAÇÕES GERAIS
+===================================== */
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f8f3f7;
+  color: #253456;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* =====================================
+   SIDEBAR DO ADMINISTRADOR
+===================================== */
+
+.admin-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 64px;
+  padding: 20px 8px;
+  overflow: hidden;
+  background: #5262ad;
+  color: #ffffff;
+  z-index: 950;
+  transition: width 0.3s ease;
+}
+
+.admin-sidebar.open {
+  width: 235px;
+}
+
+.admin-profile,
+.admin-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 7px;
+}
+
+.admin-profile {
+  min-height: 58px;
+}
+
+.admin-avatar,
+.avatar-topo {
+  flex-shrink: 0;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #e8baca;
+  color: #5262ad;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.admin-avatar:hover,
+.avatar-topo:hover {
+  filter: brightness(1.12);
+  transform: scale(1.04);
+}
+
+.admin-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.admin-sidebar.open .admin-user-info,
+.admin-sidebar.open .admin-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.admin-user-info strong {
+  font-size: 13px;
+}
+
+.admin-user-info small {
+  font-size: 10px;
+}
+
+.admin-divider {
+  height: 1px;
+  margin: 14px 6px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.admin-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.admin-menu button {
+  width: 100%;
+  min-height: 45px;
+  display: flex;
+  align-items: center;
+  padding: 0 7px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+
+.admin-menu button:hover,
+.admin-menu button.active {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.admin-icon {
+  flex-shrink: 0;
+  width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+}
+
+.admin-label {
+  margin-left: 10px;
+  white-space: nowrap;
+  font-size: 11px;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.admin-logo {
+  padding-top: 12px;
+  color: #e8baca;
+  font-weight: bold;
+  font-family: Georgia, serif;
+}
+
+.admin-logo .admin-label {
+  font-size: 17px;
+  letter-spacing: 1px;
+}
+
+/* =====================================
+   BARRA SUPERIOR
+===================================== */
+
+.barra-superior {
+  position: relative;
+  z-index: 10;
+  height: 58px;
+  margin-left: 64px;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #5262ad;
+  color: #ffffff;
+}
+
+.busca {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #7988c3;
+}
+
+.busca input {
+  width: 190px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #ffffff;
+}
+
+.busca input::placeholder {
+  color: #f1effa;
+}
+
+.barra-usuario {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.notificacao {
+  font-size: 20px;
+}
+
+/* =====================================
+   CONTEÚDO DA PÁGINA
+===================================== */
+
+.conflitos-container {
+  position: relative;
+  z-index: 1;
+  width: calc(100% - 64px);
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 32px 50px 96px;
+}
+
+.pagina-header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.pagina-header h1 {
+  margin: 0;
+  color: #5262ad;
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.decoracao {
+  margin: 12px 0;
+  color: #5262ad;
+}
+
+.pagina-header p {
+  margin: 0;
+  color: #817995;
+  font-size: 14px;
+}
+
+.layout-principal {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  align-items: start;
+  gap: 16px;
+}
+
+/* =====================================
+   PAINEL PRINCIPAL DE CONFLITOS
+===================================== */
+
+.painel-conflitos {
+  min-width: 0;
+  min-height: 500px;
+  padding: 25px 18px;
+  border-radius: 9px;
+  background: #2d3b6d;
+  color: #ffffff;
+}
+
+.painel-titulo {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.painel-titulo h2 {
+  margin: 0 0 8px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.painel-titulo span {
+  color: #dce2ff;
+  font-size: 12px;
+}
+
+/* =====================================
+   CARDS DE CONFLITOS
+===================================== */
+
+.conflito-card {
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 9px;
+  background: #4d5da2;
+  color: #ffffff;
+}
+
+.conflito-topo {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.conflito-topo strong {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.conflito-topo p {
+  margin: 8px 0 15px;
+  color: #e6eaff;
+  font-size: 12px;
+}
+
+.status-conflito {
+  align-self: flex-start;
+  padding: 6px 10px;
+  border-radius: 15px;
+  background: #e8baca;
+  color: #703c5d;
+  font-size: 11px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.status-conflito.resolvido {
+  background: #78cda0;
+  color: #18482d;
+}
+
+/* =====================================
+   SOLICITAÇÕES A E B
+===================================== */
+
+.solicitacoes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.solicitacao {
+  min-width: 0;
+  padding: 16px;
+  border-radius: 8px;
+  background: #40518c;
+  color: #ffffff;
+}
+
+.solicitacao h3 {
+  margin: 0 0 14px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.solicitacao p {
+  margin: 8px 0;
+  color: #f1f3ff;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.prioridade {
+  font-weight: bold;
+}
+
+.solicitacao .prioridade.alta {
+  color: #ffb0b0;
+}
+
+.solicitacao .prioridade.baixa {
+  color: #8ff0b5;
+}
+
+/* =====================================
+   BOTÕES
+===================================== */
+
+.acoes-conflito {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.btn-aprovar,
+.btn-cancelar {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-aprovar {
+  background: #59c98d;
+  color: #16452c;
+}
+
+.btn-aprovar:hover:not(:disabled) {
+  background: #48b77a;
+}
+
+.btn-aprovar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-cancelar {
+  background: #e9b9ca;
+  color: #60354b;
+}
+
+.btn-cancelar:hover {
+  background: #dca4ba;
+}
+
+/* =====================================
+   PAINEL DIREITO
+===================================== */
+
+.painel-direito {
+  overflow: hidden;
+  border-radius: 9px;
+  background: #3f4f83;
+  color: #ffffff;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.15);
+}
+
+/* =====================================
+   CALENDÁRIO
+===================================== */
+
+.calendario {
+  padding: 20px 12px;
+}
+
+.calendario-cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.calendario-cabecalho strong {
+  color: #ffffff;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.calendario-cabecalho button {
+  border: none;
+  background: transparent;
+  color: #d5dcfa;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.calendario-grade {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 3px;
+  text-align: center;
+}
+
+.dia-semana {
+  color: #f0f1fa;
+  font-size: 9px;
+}
+
+.dia-calendario {
+  padding: 9px 0;
+  border-radius: 4px;
+  color: #d3daf6;
+  font-size: 10px;
+}
+
+.dia-calendario.hoje {
+  background: #5869ae;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.dia-calendario.vazio {
+  visibility: hidden;
+}
+
+/* =====================================
+   SALAS EM MANUTENÇÃO
+===================================== */
+
+.manutencao {
+  min-height: 220px;
+  padding: 16px 12px;
+  border-top: 4px solid #2d3b6d;
+}
+
+.manutencao h2 {
+  margin: 0 0 14px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.manutencao-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #f8f6f8;
+  color: #4564a2;
+}
+
+.alerta-manutencao {
+  padding: 10px;
+  border-left: 5px solid #ff4141;
+  color: #ff4141;
+  font-weight: bold;
+}
+
+.manutencao-item strong {
+  color: #4564a2;
+  font-size: 12px;
+}
+
+.manutencao-item p,
+.manutencao-item small {
+  display: block;
+  margin: 5px 0;
+  color: #5262ad;
+  font-size: 10px;
+}
+
+/* =====================================
+   MODAL DE CONFIRMAÇÃO
+===================================== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: rgba(30, 18, 49, 0.55);
+}
+
+.modal-conteudo {
+  width: 100%;
+  max-width: 460px;
+  padding: 28px;
+  border-radius: 18px;
+  background: #ffffff;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(30, 18, 49, 0.22);
+}
+
+.modal-conteudo h2 {
+  margin-top: 0;
+  color: #5262ad;
+  font-size: 23px;
+}
+
+.modal-conteudo p {
+  color: #625a70;
+  line-height: 1.6;
+}
+
+.modal-aviso {
+  font-size: 13px;
+}
+
+.modal-acoes {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* =====================================
+   RESPONSIVIDADE
+===================================== */
+
+@media (max-width: 950px) {
+  .layout-principal {
+    grid-template-columns: 1fr;
+  }
+
+  .conflitos-container {
+    padding-right: 24px;
+  }
+}
+
+@media (max-width: 650px) {
+  .admin-sidebar {
+    width: 56px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .admin-sidebar.open {
+    width: min(235px, 85vw);
+  }
+
+  .barra-superior {
+    margin-left: 56px;
+    padding: 0 14px;
+  }
+
+  .conflitos-container {
+    width: calc(100% - 56px);
+    padding: 24px 14px;
+    margin-left: 56px;
+  }
+
+  .pagina-header h1 {
+    font-size: 23px;
+  }
+
+  .solicitacoes {
+    grid-template-columns: 1fr;
+  }
+
+  .conflito-topo {
+    flex-direction: column;
+  }
+
+  .busca input {
+    width: 110px;
+  }
+
+  .modal-acoes {
+    flex-direction: column;
+  }
+
+  .modal-acoes button {
+    width: 100%;
+  }
+}

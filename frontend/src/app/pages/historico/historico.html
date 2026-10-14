@@ -1,182 +1,143 @@
 
-<!-- BARRA LATERAL DO ADMINISTRADOR -->
-<aside
-  class="admin-sidebar"
-  [class.open]="sidebarOpen"
-  (mouseenter)="sidebarOpen = true"
-  (mouseleave)="sidebarOpen = false"
->
-  <div class="admin-profile">
-    <div class="admin-avatar">D</div>
+<!-- SIDEBAR COMPARTILHADA DO DAVID -->
+<app-admin-sidebar></app-admin-sidebar>
 
-    <div class="admin-user-info">
-      <strong>David</strong>
-      <small>202420@admin.etecrei.br</small>
-    </div>
+<!-- BARRA SUPERIOR -->
+<header class="barra-superior">
+
+  <div class="barra-marca">
+    <span>⌛</span>
   </div>
 
-  <div class="admin-divider"></div>
+  <div class="barra-acoes">
 
-  <nav class="admin-menu">
-    <button type="button" routerLink="/home" title="Início">
-      <span class="admin-icon">⌂</span>
-      <span class="admin-label">Início</span>
-    </button>
-
-    <button
-      type="button"
-      routerLink="/reserva"
-      title="Registrar uma sala/lab"
+    <!-- EDITAR PERFIL -->
+    <a
+      routerLink="/editar-perfil"
+      class="avatar-admin"
+      title="Editar meu perfil"
+      aria-label="Editar perfil do David"
     >
-      <span class="admin-icon">▱</span>
-      <span class="admin-label">Registrar uma sala/lab</span>
-    </button>
+      D
+    </a>
 
-    <button type="button" title="Registrar funcionário">
-      <span class="admin-icon">♙</span>
-      <span class="admin-label">Registrar funcionário</span>
-    </button>
-
-    <button
-      type="button"
-      routerLink="/historico"
-      class="active"
-      title="Registros"
-    >
-      <span class="admin-icon">▱</span>
-      <span class="admin-label">Registros</span>
-    </button>
-
-    <button type="button" title="Em manutenção">
-      <span class="admin-icon">⚒</span>
-      <span class="admin-label">Em manutenção</span>
-    </button>
-  </nav>
-
-  <div class="admin-divider"></div>
-
-  <nav class="admin-menu">
-    <button type="button" title="Suporte">
-      <span class="admin-icon">♧</span>
-      <span class="admin-label">Suporte</span>
-    </button>
-
-    <button type="button" (click)="sair()" title="Sair">
-      <span class="admin-icon">↪</span>
-      <span class="admin-label">Sair</span>
-    </button>
-  </nav>
-
-  <div class="admin-divider"></div>
-
-  <div class="admin-logo">
-    <span class="admin-icon">⌛</span>
-    <span class="admin-label">PLANNING</span>
   </div>
-</aside>
+
+</header>
 
 <!-- CONTEÚDO DA PÁGINA -->
-<div class="historico-container">
+<main class="pagina-admin">
 
-  <header class="registros-header">
-    <h1>Registros</h1>
-    <p>Acompanhe as reservas de salas e laboratórios.</p>
-  </header>
+  <div class="historico-container">
 
-  <!-- LISTA DE REGISTROS -->
-  <section class="registros-grid">
+    <header class="registros-header">
+      <h1>Registros</h1>
+      <p>Acompanhe as reservas de salas e laboratórios.</p>
+    </header>
 
-    @for (registro of registros; track registro.id) {
+    <!-- LISTA DE REGISTROS -->
+    <section class="registros-grid">
 
-      <article class="registro-card">
+      @for (registro of registros; track registro.id) {
 
-        <div class="card-topo">
-          <div>
-            <span class="card-subtitulo">
-              Reserva #{{ registro.id }}
-            </span>
+        <article class="registro-card">
 
-            <h2>{{ registro.sala }}</h2>
-          </div>
+          <div class="card-topo">
 
-          <span
-            class="status"
-            [class.confirmada]="registro.status === 'confirmada'"
-            [class.pendente]="registro.status === 'pendente'"
-            [class.cancelada]="registro.status === 'cancelada'"
-          >
-            {{ registro.status }}
-          </span>
-        </div>
+            <div>
+              <span class="card-subtitulo">
+                Reserva #{{ registro.id }}
+              </span>
 
-        <div class="registro-informacoes">
-
-          <p>
-            <strong>Data:</strong>
-            {{ registro.data }}
-          </p>
-
-          <p>
-            <strong>Responsável:</strong>
-            {{ registro.responsavel }}
-          </p>
-
-          <p>
-            <strong>Identificação:</strong>
-            {{ registro.identificacao }}
-          </p>
-
-          <p>
-            <strong>Horário:</strong>
-            {{ registro.horario }}
-          </p>
-
-          <p>
-            <strong>Turma:</strong>
-            {{ registro.turma }}
-          </p>
-
-          <p>
-            <strong>Prioridade:</strong>
+              <h2>{{ registro.sala }}</h2>
+            </div>
 
             <span
-              class="prioridade"
-              [class.alta]="registro.prioridade === 'alta'"
-              [class.media]="registro.prioridade === 'media'"
-              [class.baixa]="registro.prioridade === 'baixa'"
+              class="status"
+              [class.confirmada]="registro.status === 'confirmada'"
+              [class.pendente]="registro.status === 'pendente'"
+              [class.cancelada]="registro.status === 'cancelada'"
             >
-              @switch (registro.prioridade) {
-                @case ('alta') { Alta }
-                @case ('media') { Média }
-                @case ('baixa') { Baixa }
-              }
+              {{ registro.status }}
             </span>
-          </p>
 
-        </div>
+          </div>
 
-        <div class="card-acoes">
-          <button
-            type="button"
-            class="btn-ver-mais"
-            (click)="verMais(registro)"
-          >
-            Ver mais
-          </button>
-        </div>
+          <div class="registro-informacoes">
 
-      </article>
+            <p>
+              <strong>Data:</strong>
+              {{ registro.data }}
+            </p>
 
-    }
+            <p>
+              <strong>Responsável:</strong>
+              {{ registro.responsavel }}
+            </p>
 
-  </section>
+            <p>
+              <strong>Identificação:</strong>
+              {{ registro.identificacao }}
+            </p>
 
-</div>
+            <p>
+              <strong>Horário:</strong>
+              {{ registro.horario }}
+            </p>
+
+            <p>
+              <strong>Turma:</strong>
+              {{ registro.turma }}
+            </p>
+
+            <p>
+              <strong>Prioridade:</strong>
+
+              <span
+                class="prioridade"
+                [class.alta]="registro.prioridade === 'alta'"
+                [class.media]="registro.prioridade === 'media'"
+                [class.baixa]="registro.prioridade === 'baixa'"
+              >
+                @switch (registro.prioridade) {
+                  @case ('alta') { Alta }
+                  @case ('media') { Média }
+                  @case ('baixa') { Baixa }
+                }
+              </span>
+            </p>
+
+          </div>
+
+          <div class="card-acoes">
+
+            <button
+              type="button"
+              class="btn-ver-mais"
+              (click)="verMais(registro)"
+            >
+              Ver mais
+            </button>
+
+          </div>
+
+        </article>
+
+      }
+
+    </section>
+
+  </div>
+
+</main>
 
 <!-- MODAL DE DETALHES -->
 @if (registroSelecionado; as registro) {
 
-  <div class="modal-overlay" (click)="fecharDetalhes()">
+  <div
+    class="modal-overlay"
+    (click)="fecharDetalhes()"
+  >
 
     <div
       class="modal-conteudo"
@@ -187,7 +148,10 @@
     >
 
       <div class="modal-topo">
-        <h2 id="titulo-detalhes">Detalhes da reserva</h2>
+
+        <h2 id="titulo-detalhes">
+          Detalhes da reserva
+        </h2>
 
         <button
           type="button"
@@ -197,19 +161,49 @@
         >
           ✕
         </button>
+
       </div>
 
       <div class="modal-informacoes">
-        <p><strong>Reserva:</strong> #{{ registro.id }}</p>
-        <p><strong>Data:</strong> {{ registro.data }}</p>
-        <p><strong>Responsável:</strong> {{ registro.responsavel }}</p>
-        <p><strong>Identificação:</strong> {{ registro.identificacao }}</p>
-        <p><strong>Horário:</strong> {{ registro.horario }}</p>
-        <p><strong>Sala:</strong> {{ registro.sala }}</p>
-        <p><strong>Turma:</strong> {{ registro.turma }}</p>
+
+        <p>
+          <strong>Reserva:</strong>
+          #{{ registro.id }}
+        </p>
+
+        <p>
+          <strong>Data:</strong>
+          {{ registro.data }}
+        </p>
+
+        <p>
+          <strong>Responsável:</strong>
+          {{ registro.responsavel }}
+        </p>
+
+        <p>
+          <strong>Identificação:</strong>
+          {{ registro.identificacao }}
+        </p>
+
+        <p>
+          <strong>Horário:</strong>
+          {{ registro.horario }}
+        </p>
+
+        <p>
+          <strong>Sala:</strong>
+          {{ registro.sala }}
+        </p>
+
+        <p>
+          <strong>Turma:</strong>
+          {{ registro.turma }}
+        </p>
 
         <p>
           <strong>Prioridade:</strong>
+
           @switch (registro.prioridade) {
             @case ('alta') { Alta }
             @case ('media') { Média }
@@ -221,9 +215,11 @@
           <strong>Status:</strong>
           {{ registro.status }}
         </p>
+
       </div>
 
       <div class="modal-acoes">
+
         <button
           type="button"
           class="btn-voltar"
@@ -233,6 +229,7 @@
         </button>
 
         @if (registro.status !== 'cancelada') {
+
           <button
             type="button"
             class="btn-cancelar"
@@ -240,7 +237,9 @@
           >
             Cancelar reserva
           </button>
+
         }
+
       </div>
 
     </div>
