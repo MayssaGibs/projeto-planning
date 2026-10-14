@@ -2,8 +2,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from '../guards/auth.guard';
 import { adminGuard } from '../guards/admin.guard';
-import { RegistrarSalaComponent } from './components/registrar-sala/registrar-sala.component';
-import { AdicionarFuncionarioComponent } from './components/adicionar-funcionario/adicionar-funcionario.component';
 
 export const routes: Routes = [
   {
@@ -68,19 +66,19 @@ export const routes: Routes = [
       .then((m) => m.Historico),
 },
  {
-path: 'admin/registrar-sala',
+path: 'registrar-sala',
   canActivate: [],
   loadComponent: () =>
-    import('./components/registrar-sala/registrar-sala.component')
-      .then((m) => m.RegistrarSalaComponent),
+    import('./pages/registrar-sala/registrar-sala')
+      .then((m) => m.RegistrarSala),
   },
   {
 
-  path: 'admin/adicionarFuncionarioComponent',
+  path: 'adicionar-funcionario',
   canActivate: [],
   loadComponent: () =>
-    import('./components/adicionar-funcionario/adicionar-funcionario.component')
-      .then((m) => m. AdicionarFuncionarioComponent),
+    import('./pages/adicionar-funcionario/adicionar-funcionario')
+      .then((m) => m. AdicionarFuncionario),
   },
     {
 
