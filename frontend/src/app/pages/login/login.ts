@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import {
-  ReactiveFormsModule,
-  FormGroup,
-  FormControl,
-  Validators
-} from '@angular/forms';
+import {ReactiveFormsModule,FormGroup,FormControl,Validators} from '@angular/forms';
+
+
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +28,10 @@ export class Login {
     ])
   });
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   entrar() {
     this.mensagem = '';
@@ -38,20 +39,34 @@ export class Login {
 
     this.formulario.markAllAsTouched();
 
-    // Verifica se os campos são válidos
     if (this.formulario.invalid) {
       this.mensagem = 'Verifique o e-mail e a senha.';
       this.tipoMensagem = 'erro';
       return;
     }
 
-    // Formulário preenchido corretamente
-    this.mensagem = 'Dados preenchidos! Entrando...';
+    const email = this.formulario.value.email ?? '';
+    const senha = this.formulario.value.senha ?? '';
+
+    const loginRealizado = this.authService.login(email, senha);
+
+    if (!loginRealizado) {
+      this.mensagem = 'Não foi possível realizar o login.';
+      this.tipoMensagem = 'erro';
+      return;
+    }
+
+    this.mensagem = 'Login realizado com sucesso!';
     this.tipoMensagem = 'sucesso';
 
-    // Navega para a página inicial
     setTimeout(() => {
-      this.router.navigate(['/home']);
+      if (this.authService.admin()) {
+        // Página inicial do David (administrador)
+        this.router.navigate(['/resolucao-conflitos']);
+      } else {
+        // Página inicial dos usuários comuns (Jaqueliny)
+        this.router.navigate(['/home']);
+      }
     }, 1000);
   }
 

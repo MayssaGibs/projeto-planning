@@ -17,21 +17,34 @@ export class AuthService {
   private readonly chaveUsuario = 'planning-usuario';
   private readonly chaveToken = 'planning-token';
 
+  // Único e-mail de administrador
+  private readonly emailAdmin = 'admin@email.com';
+
   private usuario = signal<Usuario | null>(this.carregarUsuarioSalvo());
   private tokenJwt = signal<string | null>(this.carregarTokenSalvo());
 
   usuarioAtual = computed(() => this.usuario());
-  usuarioLogado = computed(() => this.usuario() !== null && this.tokenJwt() !== null);
+  usuarioLogado = computed(
+    () => this.usuario() !== null && this.tokenJwt() !== null
+  );
   admin = computed(() => this.usuario()?.perfil === 'admin');
   token = computed(() => this.tokenJwt());
 
   login(email: string, senha: string): boolean {
-    if (!email || !senha) {
+    if (!email?.trim() || !senha?.trim()) {
       return false;
     }
 
-    const perfil: PerfilUsuario = email === 'admin@email.com' ? 'admin' : 'usuario';
-    const usuarioLogado: Usuario = { email, perfil };
+    const emailNormalizado = email.trim().toLowerCase();
+
+    // Somente o e-mail do David recebe o perfil admin
+    const perfil: PerfilUsuario =
+      emailNormalizado === this.emailAdmin ? 'admin' : 'usuario';
+
+    const usuarioLogado: Usuario = {
+      email: emailNormalizado,
+      perfil
+    };
 
     const tokenSimulado =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.' +
@@ -67,6 +80,7 @@ export class AuthService {
     if (!this.estaNoNavegador()) {
       return null;
     }
+
     const dadosSalvos = localStorage.getItem(this.chaveUsuario);
 
     if (!dadosSalvos) {
@@ -74,7 +88,19 @@ export class AuthService {
     }
 
     try {
-      return JSON.parse(dadosSalvos) as Usuario;
+      const usuarioSalvo = JSON.parse(dadosSalvos) as Usuario;
+
+      // Recalcula o perfil para não manter permissões antigas
+      const email = usuarioSalvo.email?.trim().toLowerCase();
+
+      if (!email) {
+        return null;
+      }
+
+      return {
+        email,
+        perfil: email === this.emailAdmin ? 'admin' : 'usuario'
+      };
     } catch {
       return null;
     }
@@ -84,21 +110,24 @@ export class AuthService {
     if (!this.estaNoNavegador()) {
       return null;
     }
+
     return localStorage.getItem(this.chaveToken);
   }
 
-  private salvarAutenticacao(usuario: Usuario, token: string) {
+  private salvarAutenticacao(usuario: Usuario, token: string): void {
     if (!this.estaNoNavegador()) {
       return;
     }
+
     localStorage.setItem(this.chaveUsuario, JSON.stringify(usuario));
     localStorage.setItem(this.chaveToken, token);
   }
 
-  private limparAutenticacaoSalva() {
+  private limparAutenticacaoSalva(): void {
     if (!this.estaNoNavegador()) {
       return;
     }
+
     localStorage.removeItem(this.chaveUsuario);
     localStorage.removeItem(this.chaveToken);
   }
