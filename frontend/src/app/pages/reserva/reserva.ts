@@ -34,6 +34,7 @@ export class Reserva {
   localSelecionado = '';
   turmaSelecionada = '';
   prioridadeSelecionada = '';
+  justificativaSelecionada = '';
 
   horarioSelecionado: Horario | null = null;
 
