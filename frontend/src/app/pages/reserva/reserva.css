@@ -743,3 +743,60 @@ app-calendario {
     padding: 25px 18px;
   }
 }
+
+/* =========================
+   JUSTIFICATIVA E BADGE DENTRO DO CAMPO
+========================= */
+
+.justification-wrapper {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.justification-wrapper label {
+  color: #6672c2;
+  font-size: 14px;
+}
+
+.textarea-container {
+  position: relative;
+  width: 100%;
+}
+
+.textarea-container textarea {
+  width: 100%;
+  min-height: 90px;
+
+  padding: 10px 14px 30px 14px; /* Espaço inferior para o aviso não cobrir o texto */
+
+  border: 0;
+  outline: 0;
+  border-radius: 7px;
+
+  background: white;
+  color: #727dc8;
+
+  box-shadow: 0 4px 11px rgba(0, 0, 0, 0.13);
+
+  font-family: inherit;
+  font-size: 13px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.textarea-container textarea::placeholder {
+  color: #b4bbe0;
+}
+
+/* ETIQUETA "RESPOSTA SALVA" DENTRO DO CAMPO */
+.saved-hint {
+  display: block;
+  margin-top: 4px;
+
+  font-size: 11px;
+  font-weight: 500;
+  color: #516e63; /* Verde do sistema */
+  text-align: left;
+}
