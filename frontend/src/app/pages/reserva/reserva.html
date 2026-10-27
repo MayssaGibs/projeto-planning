@@ -133,6 +133,26 @@
               <option value="Baixa">BAIXA ●</option>
             </select>
 
+          <!-- JUSTIFICATIVA DA PRIORIDADE -->
+          <div class="field justification-field">
+
+            <label for="justificativa-reserva">
+              Justificativa da prioridade
+            </label>
+
+            <div class="textarea-container">
+            <textarea
+              id="justificativa-reserva"
+              rows="3"
+              placeholder="Descreva a justificativa..."
+              [(ngModel)]="justificativaSelecionada"
+            ></textarea>
+            @if (justificativaSelecionada) {
+            <small class="saved-hint">✓ Resposta salva</small>
+              }
+              </div>
+              </div>
+
           </div>
 
           <!-- DATAS E HORÁRIOS -->
@@ -349,6 +369,13 @@
       </div>
 
       <div class="confirmation-info">
+        <div class="confirmation-item">
+          <span>Justificativa</span>
+
+          <strong>
+            {{ justificativaSelecionada || 'Não informada' }}
+          </strong>
+        </div>
 
         <div class="confirmation-item">
           <span>
