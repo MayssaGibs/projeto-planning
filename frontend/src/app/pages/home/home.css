@@ -310,13 +310,13 @@
 }
 
 .lesson strong {
-  font-size: 9px;
-  font-weight: normal;
+  font-size: 11px;
+  font-weight: bold;
 }
 
 .lesson span {
   margin-top: 6px;
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .lesson-one {
@@ -329,7 +329,7 @@
   background: #d79ab8;
   border: 1px solid #cf719f;
 
-  color: #5262ad;
+  color: #000000;
 }
 
 .lesson-two {
@@ -342,7 +342,7 @@
   background: #eaf0ff;
   border: 1px solid #9bb2ec;
 
-  color: #5262ad;
+  color: #000000;
 }
 
 /* =========================
@@ -396,8 +396,8 @@ app-calendario {
 .status-section h3 {
   margin: 0;
 
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 700;
   color: #253456;
 }
 
@@ -405,15 +405,15 @@ app-calendario {
   display: block;
   margin-top: 2px;
 
-  font-size: 8px;
-  color: #aaa;
+  font-size: 10px;
+  color: #555555;
 }
 
 .room-title {
   margin: 16px 0 7px;
 
-  color: #4583a7;
-  font-size: 10px;
+  color: #1e4e6d;
+  font-size: 12px;
   font-weight: bold;
 }
 
@@ -477,17 +477,17 @@ app-calendario {
 .status-content {
   display: flex;
   flex-direction: column;
-  color: #4a83a8;
+  color: #1f2d48;
 }
 
 .status-content strong {
-  font-size: 10px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .status-content span {
   margin-top: 2px;
-  font-size: 7px;
+  font-size: 10px;
 }
 
 .maintenance-section {
