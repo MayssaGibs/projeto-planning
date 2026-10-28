@@ -204,11 +204,11 @@
 
   margin-bottom: 5px;
 
-  border: 1px solid #d7cbe1;
+  border: 1px solid #ffffff;
 
   border-radius: 18px;
 
-  background: rgba(255, 255, 255, 0.10);
+  background: #ffffff;
 }
 
 .icone {
@@ -216,7 +216,7 @@
 
   margin-right: 15px;
 
-  color: #ddd4e5;
+  color: #000000;
 
   font-size: 27px;
 
@@ -238,7 +238,7 @@
 
   background: transparent !important;
 
-  color: #ffffff;
+  color: #000000;
 
   font-size: 16px;
 
@@ -246,7 +246,7 @@
 }
 
 .campo input::placeholder {
-  color: #d1c5d9;
+  color: #000000;
 }
 
 /* REMOVE FUNDO BRANCO DO AUTOPREENCHIMENTO */
@@ -256,10 +256,9 @@
 .campo input:-webkit-autofill:focus,
 .campo input:-webkit-autofill:active {
 
-  -webkit-box-shadow:
-    0 0 0 1000px #5b5ca1 inset !important;
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
 
-  -webkit-text-fill-color: #ffffff !important;
+  -webkit-text-fill-color: #000000 !important;
 
   background-color: transparent !important;
 
@@ -276,7 +275,7 @@
 
   margin: 5px 0 10px 5px;
 
-  color: #e8c4c6;
+  color: #ffffff;
 
   font-size: 12px;
 }
@@ -303,7 +302,7 @@
 
   background: #dfb1b7;
 
-  color: #56549a;
+  color: #2b2a52;
 
   font-size: 15px;
 
