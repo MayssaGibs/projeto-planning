@@ -426,23 +426,23 @@ app-calendario {
   margin: 0;
 
   color: #253456;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .status-section > small {
   display: block;
   margin-top: 2px;
 
-  color: #aaa;
-  font-size: 8px;
+  color: #555555;
+  font-size: 10px;
 }
 
 .room-title {
   margin: 15px 0 7px;
 
-  color: #4583a7;
-  font-size: 10px;
+  color: #1e4e6d;
+  font-size: 12px;
   font-weight: bold;
 }
 
@@ -506,17 +506,17 @@ app-calendario {
 .status-content {
   display: flex;
   flex-direction: column;
-  color: #4a83a8;
+  color: #1f2d48;
 }
 
 .status-content strong {
-  font-size: 10px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .status-content span {
   margin-top: 2px;
-  font-size: 7px;
+  font-size: 10px;
 }
 
 /* =========================
