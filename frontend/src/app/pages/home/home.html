@@ -1,10 +1,8 @@
 
 <div class="home-page">
 
-  <!-- BARRA SUPERIOR E MENU LATERAL DA JAQUELINY -->
   <app-funcionario-sidebar></app-funcionario-sidebar>
 
-  <!-- CONTEÚDO -->
   <main class="content">
 
     <!-- DECORAÇÕES -->
@@ -18,7 +16,6 @@
     <!-- BOAS-VINDAS -->
     <section class="welcome">
       <h1>Bem-vinda, Jaqueliny!</h1>
-
       <div class="welcome-decoration">
         <span></span>
         <b>✦</b>
@@ -26,18 +23,53 @@
       </div>
     </section>
 
+    <!-- RESUMO SUPERIOR -->
+    <section class="summary-cards">
+
+      <article class="summary-card">
+        <div class="summary-icon">▦</div>
+        <div class="summary-info">
+          <strong>2</strong>
+          <span>Aulas hoje</span>
+        </div>
+      </article>
+
+      <article class="summary-card">
+        <div class="summary-icon">▣</div>
+        <div class="summary-info">
+          <strong>2</strong>
+          <span>Salas ocupadas</span>
+        </div>
+      </article>
+
+      <article class="summary-card">
+        <div class="summary-icon">✓</div>
+        <div class="summary-info">
+          <strong>0</strong>
+          <span>Conflitos</span>
+        </div>
+      </article>
+
+      <article class="summary-card">
+        <div class="summary-icon">◷</div>
+        <div class="summary-info">
+          <strong>5h</strong>
+          <span>Reservadas esta semana</span>
+        </div>
+      </article>
+
+    </section>
+
     <!-- DASHBOARD -->
     <div class="dashboard">
 
-      <!-- CARD PRINCIPAL -->
+      <!-- QUADRO DE HORÁRIOS -->
       <section class="main-card">
 
-        <!-- RESUMO -->
-        <div class="summary-cards">
+        <div class="summary-cards internal-summary">
 
           <article class="summary-card course">
             <div class="summary-icon">▣</div>
-
             <div class="summary-info">
               <strong>1</strong>
               <span>Cursos</span>
@@ -46,7 +78,6 @@
 
           <article class="summary-card classes">
             <div class="summary-icon">▣</div>
-
             <div class="summary-info">
               <strong>2</strong>
               <span>Turmas</span>
@@ -55,74 +86,39 @@
 
         </div>
 
-        <h2 class="schedule-title">
-          Horários de aulas
-        </h2>
+        <h2 class="schedule-title">Horários de aulas</h2>
 
-        <!-- GRADE DE HORÁRIOS -->
         <div class="schedule">
 
           <!-- CABEÇALHO -->
           <div class="schedule-header">
 
-            <div class="week-label">
-              Semana
-            </div>
-
-            <div>
-              <strong>12</strong>
-              <span>Seg</span>
-            </div>
-
-            <div>
-              <strong>13</strong>
-              <span>Ter</span>
-            </div>
-
-            <div>
-              <strong>14</strong>
-              <span>Qua</span>
-            </div>
-
-            <div>
-              <strong>15</strong>
-              <span>Qui</span>
-            </div>
-
-            <div>
-              <strong>16</strong>
-              <span>Sex</span>
-            </div>
-
-            <div>
-              <strong>17</strong>
-              <span>Sáb</span>
-            </div>
-
-            <div>
-              <strong>19</strong>
-              <span>Dom</span>
-            </div>
+            <div class="week-label">Semana</div>
+            <div><strong>16</strong><span>Seg</span></div>
+            <div><strong>17</strong><span>Ter</span></div>
+            <div><strong>18</strong><span>Qua</span></div>
+            <div><strong>19</strong><span>Qui</span></div>
+            <div><strong>20</strong><span>Sex</span></div>
+            <div><strong>21</strong><span>Sáb</span></div>
+            <div><strong>22</strong><span>Dom</span></div>
 
           </div>
 
-          <!-- CORPO DA GRADE -->
+          <!-- GRADE -->
           <div class="schedule-body">
 
-            <!-- HORÁRIOS -->
             <div class="time-column">
               <span>07:30</span>
               <span>08:30</span>
-              <span>09:45</span>
-              <span>10:00</span>
+              <span>09:30</span>
+              <span>10:30</span>
               <span>11:30</span>
               <span>12:30</span>
-              <span>13:00</span>
-              <span>14:00</span>
-              <span>15:00</span>
+              <span>13:30</span>
+              <span>14:30</span>
+              <span>15:30</span>
             </div>
 
-            <!-- LINHAS E AULAS -->
             <div class="schedule-grid">
 
               <div class="grid-line"></div>
@@ -135,122 +131,113 @@
               <div class="grid-line"></div>
               <div class="grid-line"></div>
 
-              <!-- AULA 1 -->
               <article class="lesson lesson-one">
                 <strong>Informática 01</strong>
-
-                <span>
-                  ◷ 07:30 - 11:30
-                </span>
+                <span>◷ 07:30 - 11:30</span>
               </article>
 
-              <!-- AULA 2 -->
               <article class="lesson lesson-two">
                 <strong>Informática 02</strong>
-
-                <span>
-                  ◷ 11:30 - 12:30
-                </span>
+                <span>◷ 11:30 - 12:30</span>
               </article>
 
             </div>
-
           </div>
-
         </div>
-
       </section>
 
-      <!-- PAINEL DIREITO -->
-      <aside class="right-panel">
-
-        <!-- CALENDÁRIO -->
+      <!-- CALENDÁRIO -->
+      <aside class="calendar-panel">
         <div class="calendar-container">
           <app-calendario></app-calendario>
         </div>
-
-        <!-- SALAS RESERVADAS -->
-        <section class="status-section">
-
-          <h3>Salas reservadas</h3>
-          <small>12 Ago</small>
-
-          <div class="room-title">
-            LAB - A - 01
-          </div>
-
-          <article class="status-card reserved">
-
-            <div class="status-bar"></div>
-
-            <div class="status-icon">
-              !
-            </div>
-
-            <div class="status-content">
-              <strong>Informática 01</strong>
-
-              <span>
-                12 de Agosto - Segunda
-              </span>
-
-              <span>
-                ◷ 07:30 - 11:30
-              </span>
-            </div>
-
-          </article>
-
-        </section>
-
-        <!-- MANUTENÇÃO -->
-        <section class="status-section maintenance-section">
-
-          <h3>Em manutenção</h3>
-
-          <small>
-            DE 12 Ago A 21 Ago
-          </small>
-
-          <article class="status-card maintenance">
-
-            <div class="status-bar"></div>
-
-            <div class="status-icon">
-              !
-            </div>
-
-            <div class="status-content">
-              <strong>
-                Motivo: Troca de lâmpadas
-              </strong>
-
-              <span>
-                12 de Agosto - Segunda
-              </span>
-
-              <span>
-                ◷ 11:30 - 12:30
-              </span>
-            </div>
-
-          </article>
-
-        </section>
-
-        <!-- VER MAIS -->
-        <button
-          class="more-reservations"
-          type="button"
-          routerLink="/reserva"
-        >
-          Ver mais
-        </button>
-
       </aside>
 
     </div>
 
-  </main>
+    <!-- QUADROS INFERIORES -->
+    <section class="bottom-information">
 
+      <!-- PRÓXIMAS AULAS -->
+      <article class="bottom-card">
+        <h3>◷ Próximas Aulas</h3>
+
+        <div class="next-class">
+          <strong>Informática 01</strong>
+          <span>Segunda-feira</span>
+          <span>◷ 07:30 - 11:30</span>
+        </div>
+
+        <div class="next-class">
+          <strong>Informática 02</strong>
+          <span>Quarta-feira</span>
+          <span>◷ 11:30 - 12:30</span>
+        </div>
+      </article>
+
+      <!-- SALAS RESERVADAS -->
+      <article class="bottom-card">
+        <h3>Salas reservadas</h3>
+        <small>16 a 22 de Novembro</small>
+
+        <div class="room-title">LAB - A - 01</div>
+
+        <div class="status-card reserved">
+          <div class="status-bar"></div>
+          <div class="status-icon">!</div>
+
+          <div class="status-content">
+            <strong>Informática 01</strong>
+            <span>16 de Novembro - Segunda</span>
+            <span>◷ 07:30 - 11:30</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- SEU PROGRESSO -->
+      <article class="bottom-card progress-card">
+        <h3>⭐ Seu Progresso</h3>
+
+        <div class="progress-content">
+
+          <div class="progress-circle">
+            <strong>75%</strong>
+          </div>
+
+          <div>
+            <strong>Organização em dia!</strong>
+            <span>Continue assim! ✦</span>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- EM MANUTENÇÃO -->
+      <article class="bottom-card">
+        <h3>Em manutenção</h3>
+        <small>DE 12 Ago A 21 Ago</small>
+
+        <div class="status-card maintenance">
+          <div class="status-bar"></div>
+          <div class="status-icon">!</div>
+
+          <div class="status-content">
+            <strong>Motivo: Troca de lâmpadas</strong>
+            <span>12 de Agosto - Segunda</span>
+            <span>◷ 11:30 - 12:30</span>
+          </div>
+        </div>
+
+        <button
+          class="more-reservations"
+          type="button"
+          routerLink="/reserva">
+          Ver mais
+        </button>
+      </article>
+
+    </section>
+
+  </main>
 </div>
+
