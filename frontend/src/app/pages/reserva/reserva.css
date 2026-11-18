@@ -1,4 +1,3 @@
-
 :host {
   display: block;
 }
@@ -7,46 +6,34 @@
   box-sizing: border-box;
 }
 
-/* =========================
-   PÁGINA
-========================= */
-
+/* PÁGINA */
 .reserva-page {
   min-height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
   background: #f8f3f7;
   color: #253456;
 }
 
-/* =========================
-   CONTEÚDO
-========================= */
-
+/* CONTEÚDO */
 .content {
   position: relative;
   min-height: 100vh;
-
   margin-left: 64px;
-  padding: 85px 25px 25px;
-
+  padding: 95px 25px 35px;
   overflow: hidden;
+  background: #f8f3f7;
 }
 
-/* =========================
-   DECORAÇÕES
-========================= */
-
+/* DECORAÇÕES */
 .decoration {
   position: absolute;
-
   width: 190px;
   height: 190px;
-
   border-radius: 50%;
-
   background: #e1b9c1;
   opacity: 0.85;
   z-index: 0;
+  pointer-events: none;
 }
 
 .decoration-left {
@@ -59,39 +46,33 @@
   right: -85px;
 }
 
-/* =========================
-   TÍTULO
-========================= */
-
+/* TÍTULO */
 .page-title {
   position: relative;
-  z-index: 2;
-
+  z-index: 5;
+  display: block;
   text-align: center;
-  margin-bottom: 20px;
+  margin-top: 0;
+  margin-bottom: 24px;
 }
 
 .page-title h1 {
   display: inline-block;
-
   margin: 0;
-  padding: 9px 28px;
-
-  border-radius: 8px;
-
+  padding: 10px 34px;
+  border-radius: 16px;
   background: #d9d2ed;
   color: #5262ad;
-
-  font-size: 28px;
+  font-size: 22px;
+  font-weight: 700;
 }
 
 .title-decoration {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 18px;
-
-  margin-top: 9px;
+  gap: 16px;
+  margin-top: 8px;
 }
 
 .title-decoration span {
@@ -102,136 +83,120 @@
 
 .title-decoration b {
   color: #5262ad;
-  font-size: 25px;
+  font-size: 24px;
 }
 
-/* =========================
-   LAYOUT
-========================= */
-
+/* LAYOUT */
 .reservation-layout {
   position: relative;
   z-index: 2;
-
   width: min(1200px, calc(100% - 35px));
   margin: 0 auto;
-
   display: grid;
   grid-template-columns: minmax(0, 1fr) 340px;
-  gap: 18px;
+  gap: 22px;
+  align-items: start;
 }
 
-/* =========================
-   CARD PRINCIPAL
-========================= */
-
+/* CARD PRINCIPAL */
 .reservation-card {
   position: relative;
-
   min-width: 0;
-  min-height: 535px;
-
-  padding: 80px 28px 25px;
-
-  background: rgba(255, 255, 255, 0.94);
-  border-radius: 9px;
-
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+  min-height: unset;
+  height: auto;
+  align-self: start;
+  padding: 84px 34px 36px;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 22px;
+  box-shadow: 0 8px 26px rgba(82, 98, 173, 0.08);
 }
 
-/* =========================
-   SELEÇÃO SALAS / LABS
-========================= */
-
+/* SELEÇÃO SALAS / LABS */
 .type-selector {
   position: absolute;
-  top: 22px;
+  top: 24px;
   left: 50%;
-
   transform: translateX(-50%);
-  display: flex;
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 22px;
+  background: #e6def1;
+  gap: 4px;
 }
 
 .type-selector button {
-  width: 63px;
-  height: 42px;
-
-  display: flex;
-  flex-direction: column;
+  min-width: 102px;
+  height: 36px;
+  padding: 0 16px;
+  display: inline-flex;
+  flex-direction: row-reverse;
   align-items: center;
   justify-content: center;
-  gap: 2px;
-
+  gap: 7px;
   border: 0;
-
-  background: #e6def1;
-  color: white;
-
+  border-radius: 18px;
+  background: transparent;
+  color: #5262ad;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.type-selector button:first-child {
-  border-radius: 10px 0 0 10px;
-}
-
+.type-selector button:first-child,
 .type-selector button:last-child {
-  border-radius: 0 10px 10px 0;
+  border-radius: 18px;
 }
 
 .type-selector button.active {
   background: #a795dc;
+  color: white;
+  box-shadow: 0 3px 10px rgba(167, 149, 220, 0.35);
 }
 
 .type-selector small {
-  font-size: 9px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
 }
 
 .type-selector span {
-  font-size: 18px;
+  font-size: 15px;
+  line-height: 1;
 }
 
-/* =========================
-   FORMULÁRIO
-========================= */
-
+/* FORMULÁRIO */
 .form-grid {
-  min-height: 415px;
-
+  min-height: unset;
   display: grid;
   grid-template-columns: 1fr 1fr;
-
-  column-gap: 65px;
-  row-gap: 150px;
-
+  column-gap: 45px;
+  row-gap: 38px;
   align-content: start;
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 8px;
 }
 
 .field label,
 .date-area > label {
   color: #6672c2;
   font-size: 14px;
+  font-weight: 700;
 }
 
 .field select {
   width: 100%;
-  height: 48px;
-
-  padding: 0 14px;
-
-  border: 0;
+  height: 46px;
+  padding: 0 16px;
+  border: 1px solid #ece8f6;
   outline: 0;
-  border-radius: 7px;
-
+  border-radius: 14px;
   background: white;
   color: #727dc8;
-
-  box-shadow: 0 4px 11px rgba(0, 0, 0, 0.13);
+  font-size: 13px;
+  box-shadow: 0 4px 12px rgba(82, 98, 173, 0.07);
   cursor: pointer;
 }
 
@@ -239,10 +204,55 @@
   align-self: start;
 }
 
-/* =========================
-   DATAS
-========================= */
+/* JUSTIFICATIVA */
+.justification-wrapper {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
+.justification-wrapper label {
+  color: #6672c2;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.textarea-container {
+  position: relative;
+  width: 100%;
+}
+
+.textarea-container textarea {
+  width: 100%;
+  min-height: 94px;
+  padding: 12px 16px 28px;
+  border: 1px solid #ece8f6;
+  outline: 0;
+  border-radius: 14px;
+  background: white;
+  color: #727dc8;
+  box-shadow: 0 4px 12px rgba(82, 98, 173, 0.07);
+  font-family: inherit;
+  font-size: 13px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.textarea-container textarea::placeholder {
+  color: #b4bbe0;
+}
+
+.saved-hint {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #516e63;
+  text-align: left;
+}
+
+/* DATAS E SETAS */
 .date-area {
   min-width: 0;
   text-align: center;
@@ -257,24 +267,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-
-  overflow: hidden;
+  gap: 6px;
+  flex-wrap: nowrap;
 }
 
 .date-button {
-  min-width: 43px;
+  min-width: 48px;
   height: 30px;
-
-  padding: 0 5px;
-
+  padding: 0 9px;
   border: 0;
-  border-radius: 8px;
-
+  border-radius: 15px;
   background: #c9a7cb;
   color: #5c506d;
-
-  font-size: 9px;
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
   cursor: pointer;
 }
 
@@ -285,89 +292,84 @@
 
 .date-arrow {
   flex-shrink: 0;
-
-  width: 25px;
-  height: 30px;
-
+  width: 28px;
+  height: 28px;
+  padding: 0;
   border: 0;
-  border-radius: 8px;
-
-  background: #6874c7;
-  color: white;
-
-  font-size: 20px;
+  border-radius: 50% !important;
+  background: #6874c7 !important;
+  color: white !important;
+  font-size: 16px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 }
 
 .date-arrow:disabled {
-  opacity: 0.35;
+  background: #d9d2ed !important;
+  color: #7d83c7 !important;
+  opacity: 1;
   cursor: not-allowed;
 }
 
-/* =========================
-   DISPONIBILIDADE
-========================= */
-
+/* DISPONIBILIDADE */
 .availability {
-  margin-top: 16px;
-
+  margin-top: 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
-
   color: #5965ad;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .availability strong {
-  font-size: 9px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 700;
+  color: #5262ad;
 }
 
 .availability span {
-  margin-top: 4px;
+  margin-top: 3px;
+  font-size: 12px;
+  color: #6672c2;
 }
 
 .availability p {
-  margin: 17px 0 3px;
-
-  color: #444;
-  font-size: 10px;
+  margin: 16px 0 3px;
+  color: #5262ad;
+  font-size: 12.5px;
+  font-weight: 700;
 }
 
 .availability small {
-  color: #555;
-  font-size: 8px;
+  color: #727dc8;
+  font-size: 11px;
 }
 
-/* =========================
-   HORÁRIOS
-========================= */
-
+/* HORÁRIOS */
 .time-options {
   margin-top: 14px;
-
   display: flex;
+  align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 5px;
+  flex-wrap: nowrap;
+  gap: 6px;
 }
 
 .time-options button {
-  min-width: 57px;
+  min-width: 68px;
   height: 29px;
-
-  padding: 0 6px;
-
+  padding: 0 7px;
   border: 0;
-  border-radius: 8px;
-
+  border-radius: 15px;
   background: #cba9cb;
   color: #51485b;
-
-  font-size: 8px;
-
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.22);
+  font-size: 10.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(82, 98, 173, 0.14);
   cursor: pointer;
 }
 
@@ -377,32 +379,31 @@
 }
 
 .time-options button.occupied {
-  background: #e5e5e5;
-  color: #a5a5a5;
-
+  background: #ecebf0;
+  color: #9e9eb2;
   cursor: not-allowed;
   box-shadow: none;
-  opacity: 0.65;
+  opacity: 0.85;
 }
 
-/* =========================
-   PAINEL DIREITO
-========================= */
-
+/* PAINEL DIREITO */
 .right-panel {
   min-width: 0;
-  padding: 8px;
-
-  background: rgba(255, 255, 255, 0.92);
-  border-radius: 10px;
-
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .calendar-container {
   width: 100%;
+  padding: 12px;
   overflow: hidden;
-  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 22px;
+  box-shadow: 0 8px 26px rgba(82, 98, 173, 0.08);
 }
 
 app-calendario {
@@ -410,158 +411,168 @@ app-calendario {
   width: 100%;
 }
 
-/* =========================
-   STATUS
-========================= */
-
+/* STATUS */
+:host ::ng-deep .status-section,
 .status-section {
-  margin-top: 8px;
-  padding: 12px;
-
-  border-radius: 8px;
-  background: #fbf9fa;
+  margin-top: 0;
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 8px 26px rgba(82, 98, 173, 0.08);
 }
 
+:host ::ng-deep .status-section h3,
 .status-section h3 {
   margin: 0;
-
   color: #253456;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
 }
 
+:host ::ng-deep .status-section > small,
 .status-section > small {
   display: block;
   margin-top: 2px;
-
   color: #555555;
-  font-size: 10px;
+  font-size: 11px;
 }
 
+:host ::ng-deep .room-title,
 .room-title {
-  margin: 15px 0 7px;
-
+  margin: 14px 0 8px;
   color: #1e4e6d;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: bold;
 }
 
+:host ::ng-deep .status-card,
 .status-card {
   position: relative;
-  min-height: 58px;
-
+  min-height: 62px;
   display: flex;
   align-items: center;
-
-  padding: 8px 9px 8px 19px;
-
-  border-radius: 6px;
-  background: white;
-
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);
+  padding: 10px 12px 10px 18px;
+  border-radius: 14px;
+  background: #fbf9fa;
+  border: 1px solid #f0edf5;
+  box-shadow: 0 3px 8px rgba(82, 98, 173, 0.07);
 }
 
+:host ::ng-deep .status-bar,
 .status-bar {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-
-  width: 8px;
-  border-radius: 6px 0 0 6px;
+  top: 5px;
+  bottom: 5px;
+  left: 4px;
+  width: 5px;
+  border-radius: 6px;
 }
 
+:host ::ng-deep .reserved .status-bar,
 .reserved .status-bar {
   background: #57d59b;
 }
 
+:host ::ng-deep .maintenance .status-bar,
 .maintenance .status-bar {
   background: #f34d43;
 }
 
+:host ::ng-deep .status-icon,
 .status-icon {
-  width: 19px;
-  height: 19px;
-
-  display: flex;
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  flex-shrink: 0;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  margin-right: 11px;
-
-  border: 1px solid currentColor;
+  margin-right: 12px;
+  border: 1.5px solid currentColor;
   border-radius: 50%;
-
-  font-size: 9px;
+  font-size: 12px;
+  font-weight: bold;
 }
 
+:host ::ng-deep .reserved .status-icon,
 .reserved .status-icon {
   color: #35c887;
 }
 
+:host ::ng-deep .maintenance .status-icon,
 .maintenance .status-icon {
   color: #f34d43;
 }
 
+:host ::ng-deep .status-content,
 .status-content {
   display: flex;
   flex-direction: column;
+  gap: 2px;
   color: #1f2d48;
 }
 
+:host ::ng-deep .status-content strong,
 .status-content strong {
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.status-content span {
-  margin-top: 2px;
-  font-size: 10px;
-}
-
-/* =========================
-   BOTÃO CONFIRMAR
-========================= */
-
-.confirm-button {
-  position: relative;
-  z-index: 2;
-
   display: block;
-
-  width: 185px;
-  height: 36px;
-
-  margin: 14px auto 0;
-
-  border: 0;
-  border-radius: 20px;
-
-  background: #6fc795;
-  color: white;
-
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
 }
 
+:host ::ng-deep .status-content span,
+.status-content span {
+  display: block;
+  font-size: 11px;
+  color: #555555;
+}
+
+/* BOTÃO CONFIRMAR */
+:host ::ng-deep .content > button,
+:host ::ng-deep .confirm-button,
+.confirm-button {
+  position: relative !important;
+  top: -155px !important;
+  z-index: 5;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 205px;
+  height: 40px;
+  margin: 0 auto !important;
+  transform: translateX(-180px);
+  border: 0 !important;
+  border-radius: 24px !important;
+  background: #6fc795 !important;
+  color: white !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(111, 199, 149, 0.35);
+}
+
+:host ::ng-deep .content > button::before,
+:host ::ng-deep .confirm-button::before,
+.confirm-button::before {
+  content: "✓";
+  font-size: 15px;
+  font-weight: bold;
+}
+
+:host ::ng-deep .content > button:hover,
+:host ::ng-deep .confirm-button:hover,
 .confirm-button:hover {
   filter: brightness(0.96);
 }
 
-/* =========================
-   MODAL DE CONFIRMAÇÃO
-========================= */
-
+/* MODAL DE CONFIRMAÇÃO */
 .modal-overlay {
   position: fixed;
   inset: 0;
   z-index: 2500;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 20px;
   background: rgba(26, 30, 62, 0.6);
 }
@@ -569,12 +580,9 @@ app-calendario {
 .confirmation-modal {
   width: 100%;
   max-width: 430px;
-
   padding: 30px;
-
   border-radius: 20px;
   background: white;
-
   text-align: center;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
 }
@@ -582,7 +590,7 @@ app-calendario {
 .confirmation-modal h2 {
   margin: 0;
   color: #5262ad;
-  font-size: 23px;
+  font-size: 20px;
 }
 
 .confirmation-decoration {
@@ -590,7 +598,6 @@ app-calendario {
   align-items: center;
   justify-content: center;
   gap: 15px;
-
   margin: 12px 0 24px;
   color: #5262ad;
 }
@@ -605,7 +612,6 @@ app-calendario {
   display: flex;
   flex-direction: column;
   gap: 12px;
-
   margin-bottom: 25px;
   text-align: left;
 }
@@ -614,14 +620,13 @@ app-calendario {
   display: flex;
   justify-content: space-between;
   gap: 15px;
-
   padding-bottom: 10px;
   border-bottom: 1px solid #eee;
 }
 
 .confirmation-item span {
   color: #73738c;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .confirmation-item strong {
@@ -639,10 +644,8 @@ app-calendario {
 .cancel-button,
 .modal-confirm-button {
   padding: 11px 22px;
-
   border: none;
   border-radius: 20px;
-
   color: white;
   font-size: 12px;
   font-weight: bold;
@@ -657,32 +660,32 @@ app-calendario {
   background: #6fc795;
 }
 
-/* =========================
-   MENSAGEM DE SUCESSO
-========================= */
-
+/* MENSAGEM DE SUCESSO */
 .success-message {
-  position: fixed;
+  position: fixed !important;
   right: 25px;
   bottom: 25px;
+  top: auto !important;
+  left: auto !important;
   z-index: 3000;
-
-  padding: 15px 22px;
-
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content !important;
+  max-width: calc(100vw - 40px);
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 13px 20px;
   border-radius: 12px;
   background: #6fc795;
   color: white;
-
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
-
+  white-space: nowrap;
   box-shadow: 0 5px 18px rgba(0, 0, 0, 0.15);
 }
 
-/* =========================
-   RESPONSIVIDADE
-========================= */
-
+/* RESPONSIVIDADE */
 @media (min-width: 1366px) {
   .reservation-layout {
     width: min(1240px, calc(100% - 60px));
@@ -693,10 +696,6 @@ app-calendario {
   .reservation-layout {
     width: min(1400px, calc(100% - 100px));
     grid-template-columns: minmax(0, 1fr) 360px;
-  }
-
-  .reservation-card {
-    min-height: 550px;
   }
 }
 
@@ -709,6 +708,14 @@ app-calendario {
   .form-grid {
     column-gap: 25px;
     row-gap: 35px;
+  }
+
+  :host ::ng-deep .content > button,
+  :host ::ng-deep .confirm-button,
+  .confirm-button {
+    top: 0 !important;
+    margin: 22px auto 0 !important;
+    transform: none;
   }
 }
 
@@ -739,64 +746,11 @@ app-calendario {
     padding: 0 3px;
   }
 
+  .time-options {
+    flex-wrap: wrap;
+  }
+
   .confirmation-modal {
     padding: 25px 18px;
   }
-}
-
-/* =========================
-   JUSTIFICATIVA E BADGE DENTRO DO CAMPO
-========================= */
-
-.justification-wrapper {
-  margin-top: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.justification-wrapper label {
-  color: #6672c2;
-  font-size: 14px;
-}
-
-.textarea-container {
-  position: relative;
-  width: 100%;
-}
-
-.textarea-container textarea {
-  width: 100%;
-  min-height: 90px;
-
-  padding: 10px 14px 30px 14px; /* Espaço inferior para o aviso não cobrir o texto */
-
-  border: 0;
-  outline: 0;
-  border-radius: 7px;
-
-  background: white;
-  color: #727dc8;
-
-  box-shadow: 0 4px 11px rgba(0, 0, 0, 0.13);
-
-  font-family: inherit;
-  font-size: 13px;
-  resize: vertical;
-  box-sizing: border-box;
-}
-
-.textarea-container textarea::placeholder {
-  color: #b4bbe0;
-}
-
-/* ETIQUETA "RESPOSTA SALVA" DENTRO DO CAMPO */
-.saved-hint {
-  display: block;
-  margin-top: 4px;
-
-  font-size: 11px;
-  font-weight: 500;
-  color: #516e63; /* Verde do sistema */
-  text-align: left;
 }
