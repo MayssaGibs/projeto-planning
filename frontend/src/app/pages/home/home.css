@@ -1,3 +1,4 @@
+
 :host {
   display: block;
 }
@@ -19,11 +20,13 @@
   margin-left: 64px;
   padding: 64px 25px 30px;
   overflow: hidden;
-  /* Estrelas adicionais na lateral direita e inferior na mesma cor #5262ad */
+
+  /* Estrelas adicionais na lateral direita e inferior */
   background-image:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24'%3E%3Cpath fill='%235262ad' d='M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0Z'/%3E%3C/svg%3E"),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%235262ad' d='M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0Z'/%3E%3C/svg%3E"),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24'%3E%3Cpath fill='%235262ad' d='M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0Z'/%3E%3C/svg%3E");
+
   background-repeat: no-repeat;
   background-position:
     calc(100% - 42px) 240px,
@@ -32,6 +35,7 @@
 }
 
 /* MEIOS CÍRCULOS NAS QUINAS SUPERIORES */
+
 .decoration {
   position: absolute;
   width: 190px;
@@ -54,6 +58,7 @@
 }
 
 /* ESTRELAS */
+
 .star {
   position: absolute;
   color: #5262ad;
@@ -78,6 +83,8 @@
   left: 30px;
   font-size: 29px;
 }
+
+/* BOAS-VINDAS */
 
 .welcome {
   position: relative;
@@ -488,60 +495,54 @@ app-calendario {
   background: #8d79c7;
 }
 
-/* PROGRESSO */
+/* MENSAGEM MOTIVACIONAL */
 
-.progress-content {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 20px;
+.motivational-card {
+  background: #fbf9fa;
 }
 
-.progress-circle {
-  width: 82px;
-  height: 82px;
-  flex-shrink: 0;
+.motivational-content {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: conic-gradient(#5262ad 75%, #e8e3ed 75%);
-  position: relative;
+  gap: 12px;
+  margin-top: 18px;
+  padding: 8px;
+  background: transparent;
 }
 
-.progress-circle::before {
-  content: "";
-  position: absolute;
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
-  background: white;
+.motivational-icon {
+  font-size: 40px;
+  flex-shrink: 0;
 }
 
-.progress-circle strong {
-  position: relative;
-  z-index: 1;
-  color: #5262ad;
-  font-size: 16px;
-}
-
-.progress-content > div:last-child {
+.motivational-text {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  align-items: center;
+  text-align: center;
+  color: #253456;
 }
 
-.progress-content > div:last-child strong {
+.motivational-text strong {
   font-size: 12px;
 }
 
-.progress-content > div:last-child span {
+.motivational-text p {
+  margin: 8px 0 2px;
   font-size: 10px;
+  line-height: 1.5;
+}
+
+.motivational-text span {
+  color: #5262ad;
+  font-size: 22px;
 }
 
 /* RESPONSIVIDADE */
 
 @media (min-width: 1600px) {
+
   .dashboard,
   .summary-cards,
   .bottom-information {
@@ -551,9 +552,11 @@ app-calendario {
   .main-card {
     min-height: 450px;
   }
+
 }
 
 @media (max-width: 1000px) {
+
   .dashboard {
     grid-template-columns: 1fr;
   }
@@ -562,9 +565,11 @@ app-calendario {
   .summary-cards:not(.internal-summary) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
 }
 
 @media (max-width: 600px) {
+
   .content {
     padding: 64px 12px 25px;
   }
@@ -603,6 +608,7 @@ app-calendario {
   .lesson-two {
     width: 25%;
   }
+
 }
 
 
