@@ -281,3 +281,212 @@
     margin-left: 10px;
   }
 }
+
+/* ============================================
+   MELHORIA VISUAL — ADMIN MANUTENÇÃO
+   SOMENTE ACRESCENTAR AO FINAL DO CSS
+============================================ */
+
+/* Fundo da página */
+.manutencao-container {
+  background: #f8f3f7;
+  padding-top: 90px;
+  padding-bottom: 50px;
+}
+
+/* Título no estilo da tela Salas em Manutenção */
+.manutencao-title {
+  margin-bottom: 42px;
+}
+
+.manutencao-title h1 {
+  padding: 13px 30px;
+  background: #eee9f8;
+  color: #5262ad;
+  border: 1px solid #f0eaf6;
+  border-radius: 18px;
+  font-size: 17px;
+  letter-spacing: 0;
+  box-shadow: 0 5px 18px rgba(82, 98, 173, 0.08);
+}
+
+/* Decoração abaixo do título */
+.manutencao-decoration {
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.manutencao-decoration span {
+  width: 64px;
+  background: #a99cd2;
+}
+
+.manutencao-decoration strong {
+  color: #6269b5;
+  font-size: 23px;
+}
+
+/* Cartão branco do formulário */
+.form-card {
+  width: min(100%, 750px);
+  padding: 38px 42px;
+  background: #ffffff;
+  color: #2c304e;
+  border: 1px solid #eee8f3;
+  border-radius: 22px;
+  box-shadow: 0 8px 28px rgba(75, 63, 115, 0.08);
+  transition: box-shadow 0.25s ease;
+}
+
+.form-card:hover {
+  box-shadow: 0 12px 32px rgba(75, 63, 115, 0.11);
+}
+
+/* Espaçamento dos campos */
+.form-row {
+  column-gap: 24px;
+}
+
+.form-group {
+  gap: 9px;
+  margin-bottom: 24px;
+}
+
+/* Rótulos */
+.form-group label {
+  color: #6269b5;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.35px;
+}
+
+/* Campos claros e arredondados */
+.form-group input {
+  height: 46px;
+  padding: 0 15px;
+  background: #ffffff;
+  color: #343653;
+  border: 1px solid #e8e3f2;
+  border-radius: 12px;
+  font-size: 13px;
+  box-shadow: 0 3px 10px rgba(75, 63, 115, 0.035);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.form-group input:hover {
+  border-color: #c9bce6;
+  background: #fdfcff;
+}
+
+.form-group input:focus {
+  border-color: #a99cd2;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(169, 156, 210, 0.17);
+}
+
+/* Ícone do calendário */
+.calendar-icon {
+  color: #8a80ce;
+}
+
+/* Área do botão */
+.form-actions {
+  margin-top: 8px;
+  padding-top: 22px;
+  border-top: 1px solid #f0eaf4;
+}
+
+/* Botão salvar no estilo suave da tela de reserva */
+.btn-salvar {
+  min-width: 150px;
+  padding: 12px 25px;
+  background: #80c99a;
+  color: #ffffff;
+  border: none;
+  border-radius: 24px;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 5px 14px rgba(91, 177, 124, 0.18);
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.btn-salvar:hover {
+  background: #6cba88;
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(91, 177, 124, 0.23);
+}
+
+.btn-salvar:active {
+  transform: scale(0.98);
+}
+
+/* Mantém a barra superior e o avatar originais */
+.topbar {
+  background: #5262ad;
+}
+
+.top-avatar {
+  background-color: #e8baca;
+  color: #5262ad;
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+  .manutencao-container {
+    padding: 90px 18px 35px;
+  }
+
+  .manutencao-title {
+    margin-bottom: 30px;
+  }
+
+  .manutencao-title h1 {
+    font-size: 16px;
+    padding: 12px 23px;
+  }
+
+  .form-card {
+    padding: 27px 22px;
+    border-radius: 18px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .form-group.full-width {
+    grid-column: auto;
+  }
+
+  .form-actions {
+    justify-content: center;
+  }
+
+  .btn-salvar {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .manutencao-container {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .form-card {
+    padding: 23px 16px;
+  }
+
+  .manutencao-title h1 {
+    font-size: 15px;
+  }
+}
+

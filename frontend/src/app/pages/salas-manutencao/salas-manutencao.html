@@ -1,4 +1,3 @@
-
 <div class="maintenance-page">
 
   <!-- BARRA SUPERIOR E MENU LATERAL DA JAQUELINY -->
@@ -7,22 +6,33 @@
   <!-- CONTEÚDO PRINCIPAL -->
   <main class="maintenance-content">
 
+    <!-- MEIOS CÍRCULOS INFERIORES -->
+    <div class="corner-circle bottom-left"></div>
+    <div class="corner-circle bottom-right"></div>
+
+    <!-- TÍTULO CENTRALIZADO IGUAL À INSPIRAÇÃO -->
+    <div class="page-title">
+      <h1>Salas em Manutenção</h1>
+
+      <div class="title-decoration">
+        <span></span>
+        <strong>✦</strong>
+        <span></span>
+      </div>
+    </div>
+
     <div class="maintenance-container">
 
-      <!-- CABEÇALHO -->
+      <!-- CABEÇALHO INTERNO -->
       <div class="maintenance-header">
-
-        <div>
-          <h2>SALAS EM MANUTENÇÃO</h2>
-
-          <span>
-            Salas indisponíveis no momento
-          </span>
-        </div>
 
         <div class="maintenance-icon">
           ⚒
         </div>
+
+        <span>
+          Salas indisponíveis no momento
+        </span>
 
       </div>
 
@@ -43,13 +53,11 @@
                 {{ room.name }}
               </strong>
 
-              <span>
-                {{ room.location }}
-              </span>
-
-              <small>
-                {{ room.reason }}
-              </small>
+              <div class="room-details">
+                <span>{{ room.location }}</span>
+                <span class="dot">·</span>
+                <small>{{ room.reason }}</small>
+              </div>
 
             </div>
 

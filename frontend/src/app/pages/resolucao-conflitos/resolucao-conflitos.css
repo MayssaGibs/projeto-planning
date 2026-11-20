@@ -639,3 +639,314 @@
     width: 100%;
   }
 }
+
+/* ============================================
+   MODERNIZAÇÃO DA TELA RESOLUÇÃO DE CONFLITOS
+   ACRÉSCIMO — NÃO APAGAR O CSS ORIGINAL
+============================================ */
+
+/* Fundo e espaçamento da página */
+.conflitos-container {
+  background:
+    radial-gradient(circle at 95% 5%, #d8b8ce38, transparent 25%),
+    #f3f4f8;
+  padding-top: 32px;
+  padding-bottom: 48px;
+}
+
+/* Cabeçalho mais elegante */
+.conflitos-container .pagina-header {
+  padding: 26px 30px;
+  margin-bottom: 28px;
+  background: #ffffff;
+  border: 1px solid #e4e3f0;
+  border-radius: 20px;
+  box-shadow: 0 6px 22px #2c304e0c;
+}
+
+.conflitos-container .pagina-header h1 {
+  color: #41589c;
+  font-size: 29px;
+  letter-spacing: -0.5px;
+}
+
+.conflitos-container .pagina-header .decoracao {
+  color: #a99cd2;
+}
+
+.conflitos-container .pagina-header p {
+  color: #7c82a1;
+  font-size: 15px;
+}
+
+/* Painel central */
+.conflitos-container .painel-conflitos {
+  padding: 25px;
+  background: #ffffff;
+  color: #2c304e;
+  border: 1px solid #e2e2f0;
+  border-radius: 20px;
+  box-shadow: 0 6px 24px #2c304e0c;
+}
+
+/* Título e contador */
+.conflitos-container .painel-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  text-align: left;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #e8e6f2;
+}
+
+.conflitos-container .painel-titulo h2 {
+  color: #41589c;
+  font-size: 16px;
+}
+
+.conflitos-container .painel-titulo span {
+  padding: 8px 12px;
+  background: #eeedf9;
+  color: #41589c;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* Cards individuais dos conflitos */
+.conflitos-container .conflito-card {
+  padding: 21px;
+  background: #ffffff;
+  color: #2c304e;
+  border: 1px solid #e4e2f1;
+  border-left: 4px solid #7983c1;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px #2c304e09;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.conflitos-container .conflito-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 22px #2c304e12;
+}
+
+.conflitos-container .conflito-topo strong {
+  color: #343f76;
+  font-size: 16px;
+}
+
+.conflitos-container .conflito-topo p {
+  color: #7c82a1;
+  line-height: 1.6;
+}
+
+/* Status do conflito */
+.conflitos-container .status-conflito {
+  background: #fff0d9;
+  color: #875c32;
+  border-radius: 20px;
+  padding: 7px 12px;
+}
+
+.conflitos-container .status-conflito.resolvido {
+  background: #def5e7;
+  color: #28784f;
+}
+
+/* Solicitações A e B */
+.conflitos-container .solicitacoes {
+  gap: 14px;
+}
+
+.conflitos-container .solicitacao {
+  padding: 18px;
+  background: #f8f7fd;
+  color: #2c304e;
+  border: 1px solid #e6e2f3;
+  border-radius: 13px;
+}
+
+.conflitos-container .solicitacao h3 {
+  color: #41589c;
+  padding-bottom: 11px;
+  border-bottom: 1px solid #e5e2f1;
+}
+
+.conflitos-container .solicitacao p {
+  color: #626985;
+  line-height: 1.7;
+}
+
+.conflitos-container .solicitacao .prioridade.alta {
+  display: inline-block;
+  padding: 4px 9px;
+  background: #fbe5eb;
+  color: #a34255;
+  border-radius: 20px;
+}
+
+.conflitos-container .solicitacao .prioridade.baixa {
+  display: inline-block;
+  padding: 4px 9px;
+  background: #e6e9fb;
+  color: #41589c;
+  border-radius: 20px;
+}
+
+/* Botão de aprovação */
+.conflitos-container .btn-aprovar {
+  padding: 11px 18px;
+  background: #59c98d;
+  color: #16452c;
+  border-radius: 10px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.conflitos-container .btn-aprovar:hover:not(:disabled) {
+  background: #48b77a;
+  transform: translateY(-1px);
+}
+
+/* Painel lateral */
+.conflitos-container .painel-direito {
+  background: #ffffff;
+  color: #2c304e;
+  border: 1px solid #e2e2f0;
+  border-radius: 18px;
+  box-shadow: 0 6px 22px #2c304e0c;
+}
+
+/* Calendário */
+.conflitos-container .calendario {
+  padding: 22px 16px;
+}
+
+.conflitos-container .calendario-cabecalho strong {
+  color: #343f76;
+  font-size: 15px;
+}
+
+.conflitos-container .calendario-cabecalho button {
+  width: 32px;
+  height: 32px;
+  background: #eeedf9;
+  color: #41589c;
+  border-radius: 9px;
+  font-size: 21px;
+}
+
+.conflitos-container .calendario-cabecalho button:hover {
+  background: #dedcf5;
+}
+
+.conflitos-container .dia-semana {
+  padding: 8px 0;
+  color: #7c82a1;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.conflitos-container .dia-calendario {
+  border-radius: 8px;
+  color: #454b6c;
+  transition: background 0.2s ease;
+}
+
+.conflitos-container .dia-calendario.hoje {
+  background: #5262ad;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Manutenção */
+.conflitos-container .manutencao {
+  padding: 20px 16px;
+  background: #ffffff;
+  border-top: 1px solid #e5e2f1;
+}
+
+.conflitos-container .manutencao h2 {
+  color: #343f76;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.conflitos-container .manutencao-item {
+  padding: 13px;
+  background: #fff6f3;
+  border: 1px solid #f2e1e1;
+  border-radius: 12px;
+}
+
+.conflitos-container .alerta-manutencao {
+  display: grid;
+  place-items: center;
+  min-width: 30px;
+  min-height: 30px;
+  padding: 0;
+  border: none;
+  border-radius: 9px;
+  background: #fbe5eb;
+  color: #bd5665;
+}
+
+.conflitos-container .manutencao-item strong {
+  color: #343f76;
+}
+
+.conflitos-container .manutencao-item p {
+  color: #7c6480;
+  line-height: 1.5;
+}
+
+.conflitos-container .manutencao-item small {
+  color: #a34f57;
+}
+
+/* Modal de aprovação */
+.modal-conteudo {
+  border: 1px solid #e5e2f1;
+  border-radius: 20px;
+  box-shadow: 0 20px 55px #20254430;
+}
+
+.modal-conteudo h2 {
+  color: #41589c;
+}
+
+.modal-conteudo .modal-aviso {
+  padding: 12px;
+  background: #fbeef2;
+  color: #8c5968;
+  border-radius: 10px;
+}
+
+/* Responsividade adicional */
+@media (max-width: 950px) {
+  .conflitos-container .painel-direito {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+
+@media (max-width: 650px) {
+  .conflitos-container .pagina-header {
+    padding: 22px 16px;
+  }
+
+  .conflitos-container .painel-conflitos {
+    padding: 16px;
+  }
+
+  .conflitos-container .painel-direito {
+    grid-template-columns: 1fr;
+  }
+
+  .conflitos-container .painel-titulo {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+

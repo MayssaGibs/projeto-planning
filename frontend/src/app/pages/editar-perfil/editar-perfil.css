@@ -509,3 +509,159 @@
   }
 
 }
+
+/* ============================================
+   NOVO VISUAL EXCLUSIVO DO DAVID
+   A JAQUELINY PERMANECE COM O VISUAL ORIGINAL
+============================================ */
+
+.pagina-perfil:not(.perfil-funcionario) .perfil-container {
+  padding-top: 28px;
+  background:
+    radial-gradient(circle at 95% 5%, #e9c4cf55, transparent 25%),
+    #faf3f7;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .perfil-container h1 {
+  color: #343f76;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .perfil-card {
+  width: min(100%, 1000px);
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 30px;
+  padding: 30px;
+
+  background: #ffffff;
+  color: #343f76;
+
+  border: 1px solid #d9d5fb;
+  border-radius: 24px;
+
+  box-shadow: 0 8px 24px #343f7612;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .coluna-foto {
+  padding: 18px 12px;
+
+  background: #f0edfc;
+  border-radius: 18px;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .foto-grande {
+  border: 4px solid #ffffff;
+  box-shadow: 0 4px 12px #343f7615;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .btn-foto {
+  color: #4e5da4;
+  border-color: #4e5da4;
+  background: #ffffff;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .btn-foto:hover {
+  background: #e7e4ff;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .etiqueta-perfil {
+  background: #4e5da4;
+  color: #ffffff;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .coluna-dados h2 {
+  color: #343f76;
+  border-bottom-color: #e2def5;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .campo label {
+  color: #343f76;
+  font-weight: 600;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .campo input,
+.pagina-perfil:not(.perfil-funcionario) .campo select {
+  background: #f8f7fd;
+  color: #343f76;
+  border: 1px solid #dedbf1;
+  border-radius: 11px;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .campo input::placeholder {
+  color: #9699b6;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .campo input:focus,
+.pagina-perfil:not(.perfil-funcionario) .campo select:focus {
+  border-color: #4e5da4;
+  box-shadow: 0 0 0 3px #4e5da41c;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .campo input[readonly] {
+  background: #eeedf7;
+  color: #777e9e;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .campo-senha button {
+  color: #4e5da4;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .btn-senha {
+  background: #4e5da4;
+  color: #ffffff;
+  border-radius: 20px;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .btn-senha:hover {
+  background: #343f76;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .acoes {
+  justify-content: flex-end;
+  border-top-color: #e2def5;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .btn-salvar {
+  background: #80d0a0;
+  color: #214f3a;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .btn-salvar:hover {
+  background: #65c78c;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .btn-cancelar {
+  background: #e9c4cf;
+  color: #783e54;
+}
+
+.pagina-perfil:not(.perfil-funcionario) .btn-cancelar:hover {
+  background: #dfb0bf;
+}
+
+/* RESPONSIVIDADE EXCLUSIVA DO DAVID */
+
+@media (max-width: 850px) {
+  .pagina-perfil:not(.perfil-funcionario) .perfil-card {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+  }
+
+  .pagina-perfil:not(.perfil-funcionario) .coluna-foto {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .pagina-perfil:not(.perfil-funcionario) .perfil-container {
+    padding: 20px 14px 45px;
+  }
+
+  .pagina-perfil:not(.perfil-funcionario) .perfil-card {
+    padding: 22px 16px;
+  }
+}
+
