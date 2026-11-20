@@ -1,28 +1,17 @@
-
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { Calendario } from '../../components/calendario/calendario';
 import { FuncionarioSidebar } from '../../components/funcionario-sidebar/funcionario-sidebar';
-
 import { ReservaService, Horario } from '../../services/reserva';
 
 @Component({
   selector: 'app-reserva',
   standalone: true,
-  imports: [
-    Calendario,
-    FormsModule,
-    FuncionarioSidebar
-  ],
+  imports: [Calendario, FormsModule, FuncionarioSidebar],
   templateUrl: './reserva.html',
   styleUrl: './reserva.css'
 })
 export class Reserva {
-
-  // =========================
-  // DADOS DA RESERVA
-  // =========================
 
   tipoReserva: 'sala' | 'laboratorio' = 'sala';
 
@@ -38,47 +27,29 @@ export class Reserva {
 
   horarioSelecionado: Horario | null = null;
 
-  // =========================
-  // DATAS
-  // =========================
+  modoReserva: 'unica' | 'mensal' = 'unica';
+  mesSelecionado = '';
 
   datasDisponiveis: Date[] = [];
-  dataSelecionada: Date = new Date();
+  datasSelecionadas: Date[] = [];
 
   inicioDatas = 0;
   quantidadeDatasVisiveis = 5;
 
-  // =========================
-  // CONFIRMAÇÃO
-  // =========================
-
   modalConfirmacaoAberto = false;
   mensagemSucesso = false;
 
-  constructor(
-    private reservaService: ReservaService
-  ) {
+  constructor(private reservaService: ReservaService) {
     this.salas = this.reservaService.getSalas();
     this.laboratorios = this.reservaService.getLaboratorios();
     this.turmas = this.reservaService.getTurmas();
     this.horarios = this.reservaService.getHorarios();
-
     this.gerarDatas();
   }
 
-  // =========================
-  // TÍTULO DA PÁGINA
-  // =========================
-
   get titulo(): string {
-    return this.tipoReserva === 'sala'
-      ? 'Reserva de sala'
-      : 'Reserva de laboratório';
+    return this.tipoReserva === 'sala' ? 'Reserva de sala' : 'Reserva de laboratório';
   }
-
-  // =========================
-  // SALAS E LABORATÓRIOS
-  // =========================
 
   selecionarTipo(tipo: 'sala' | 'laboratorio'): void {
     this.tipoReserva = tipo;
@@ -86,187 +57,169 @@ export class Reserva {
     this.horarioSelecionado = null;
   }
 
-  // =========================
-  // HORÁRIOS
-  // =========================
-
   selecionarHorario(horario: Horario): void {
-    if (horario.ocupado) {
-      return;
-    }
-
+    if (horario.ocupado) return;
     this.horarioSelecionado = horario;
   }
 
   get horariosDisponiveis(): number {
-    return this.horarios.filter(
-      horario => !horario.ocupado
-    ).length;
+    return this.horarios.filter(h => !h.ocupado).length;
   }
-
-  // =========================
-  // GERAR DATAS DISPONÍVEIS
-  // =========================
 
   gerarDatas(): void {
     const hoje = new Date();
-
     this.datasDisponiveis = [];
-
     for (let i = 0; i < 14; i++) {
       const data = new Date(hoje);
-
       data.setDate(hoje.getDate() + i);
-
       this.datasDisponiveis.push(data);
     }
-
     this.inicioDatas = 0;
   }
 
-  // =========================
-  // MOSTRAR 5 DATAS POR VEZ
-  // =========================
-
   get datasVisiveis(): Date[] {
-    return this.datasDisponiveis.slice(
-      this.inicioDatas,
-      this.inicioDatas + this.quantidadeDatasVisiveis
-    );
+    return this.datasDisponiveis.slice(this.inicioDatas, this.inicioDatas + this.quantidadeDatasVisiveis);
   }
 
-  // =========================
-  // VOLTAR DATAS
-  // =========================
-
-  voltarDatas(): void {
-    if (this.inicioDatas > 0) {
-      this.inicioDatas--;
-    }
-  }
-
-  // =========================
-  // AVANÇAR DATAS
-  // =========================
+  voltarDatas(): void { if (this.inicioDatas > 0) this.inicioDatas--; }
 
   avancarDatas(): void {
-    if (
-      this.inicioDatas + this.quantidadeDatasVisiveis <
-      this.datasDisponiveis.length
-    ) {
+    if (this.inicioDatas + this.quantidadeDatasVisiveis < this.datasDisponiveis.length) {
       this.inicioDatas++;
     }
   }
 
-  // =========================
-  // SELECIONAR DATA
-  // =========================
-
   selecionarData(data: Date): void {
-    this.dataSelecionada = data;
-    this.horarioSelecionado = null;
+    if (this.isDataSelecionada(data)) {
+      this.datasSelecionadas = this.datasSelecionadas.filter(
+        d => d.getDate() !== data.getDate() || d.getMonth() !== data.getMonth() || d.getFullYear() !== data.getFullYear()
+      );
+    } else {
+      this.datasSelecionadas = [...this.datasSelecionadas, new Date(data)].sort((a, b) => a.getTime() - b.getTime());
+    }
   }
 
-  // =========================
-  // VERIFICAR DATA SELECIONADA
-  // =========================
-
   isDataSelecionada(data: Date): boolean {
-    return (
-      data.getDate() === this.dataSelecionada.getDate() &&
-      data.getMonth() === this.dataSelecionada.getMonth() &&
-      data.getFullYear() === this.dataSelecionada.getFullYear()
+    return this.datasSelecionadas.some(
+      d => d.getDate() === data.getDate() && d.getMonth() === data.getMonth() && d.getFullYear() === data.getFullYear()
     );
   }
 
-  // =========================
-  // FORMATAR DATA DO BOTÃO
-  // =========================
-
   formatarDataBotao(data: Date, index: number): string {
-    if (index === 0) {
-      return 'Hoje';
-    }
-
-    if (index === 1) {
-      return 'Amanhã';
-    }
-
-    return data.toLocaleDateString('pt-BR', {
-      day: '2-digit',
-      month: 'short'
-    });
+    if (index === 0) return 'Hoje';
+    if (index === 1) return 'Amanhã';
+    return data.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' });
   }
-
-  // =========================
-  // FORMATAR DATA COMPLETA
-  // =========================
 
   formatarDataCompleta(data: Date): string {
     return data.toLocaleDateString('pt-BR');
   }
 
-  // =========================
-  // ABRIR CONFIRMAÇÃO
-  // =========================
-
-  abrirConfirmacao(): void {
-    if (
-      !this.localSelecionado ||
-      !this.turmaSelecionada ||
-      !this.horarioSelecionado
-    ) {
-      alert(
-        'Selecione a sala/laboratório, a turma e um horário.'
-      );
-      return;
-    }
-
-    if (this.horarioSelecionado.ocupado) {
-      alert('Este horário já está ocupado.');
-      return;
-    }
-
-    this.modalConfirmacaoAberto = true;
+  formatarDataISO(data: Date): string {
+    const ano = data.getFullYear();
+    const mes = String(data.getMonth() + 1).padStart(2, '0');
+    const dia = String(data.getDate()).padStart(2, '0');
+    return `${ano}-${mes}-${dia}`;
   }
 
-  // =========================
-  // CANCELAR CONFIRMAÇÃO
-  // =========================
+  formatarMesCompleto(mesAno: string): string {
+    if (!mesAno) return '';
+    const [ano, mes] = mesAno.split('-').map(Number);
+    return new Date(ano, mes - 1, 1).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+  }
+
+  trocarModo(modo: 'unica' | 'mensal'): void {
+    this.modoReserva = modo;
+    if (modo === 'mensal') this.datasSelecionadas = [];
+    else this.mesSelecionado = '';
+  }
+
+  private gerarDatasDoMes(mesAno: string): string[] {
+    const [anoStr, mesStr] = mesAno.split('-');
+    const ano = Number(anoStr);
+    const mes = Number(mesStr) - 1;
+    const datas: string[] = [];
+    const ultimoDia = new Date(ano, mes + 1, 0).getDate();
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+    for (let dia = 1; dia <= ultimoDia; dia++) {
+      const data = new Date(ano, mes, dia);
+      if (data < hoje) continue;
+      datas.push(this.formatarDataISO(data));
+    }
+    return datas;
+  }
+
+  abrirConfirmacao(): void {
+    if (!this.localSelecionado || !this.turmaSelecionada || !this.horarioSelecionado) {
+      alert('Selecione o local, a turma e um horário.'); return;
+    }
+    if (this.horarioSelecionado.ocupado) {
+      alert('Este horário já está ocupado.'); return;
+    }
+    if (this.modoReserva === 'unica' && this.datasSelecionadas.length === 0) {
+      alert('Selecione pelo menos uma data.'); return;
+    }
+    if (this.modoReserva === 'mensal' && !this.mesSelecionado) {
+      alert('Selecione o mês para a reserva mensal.'); return;
+    }
+    this.modalConfirmacaoAberto = true;
+  }
 
   cancelarConfirmacao(): void {
     this.modalConfirmacaoAberto = false;
   }
 
-  // =========================
-  // CONFIRMAR RESERVA
-  // =========================
-
   confirmarReserva(): void {
-    if (!this.horarioSelecionado) {
-      return;
+    if (!this.horarioSelecionado) return;
+
+    const horario = `${this.horarioSelecionado.inicio} - ${this.horarioSelecionado.fim}`;
+    let datasFormatadas: string[] = [];
+
+    if (this.modoReserva === 'unica') {
+      if (this.datasSelecionadas.length === 0) { alert('Selecione pelo menos uma data.'); return; }
+      datasFormatadas = this.datasSelecionadas.map(d => this.formatarDataISO(d));
+    } else {
+      if (!this.mesSelecionado) { alert('Selecione o mês.'); return; }
+      datasFormatadas = this.gerarDatasDoMes(this.mesSelecionado);
+      if (datasFormatadas.length === 0) { alert('O mês selecionado não tem datas válidas.'); return; }
     }
 
-    if (this.horarioSelecionado.ocupado) {
-      this.modalConfirmacaoAberto = false;
-      alert('Este horário já está ocupado.');
-      return;
-    }
+    const professorSorteado = this.reservaService.getProfessorAleatorio();
 
-    // Marca o horário como ocupado na lista atual.
-    this.horarioSelecionado.ocupado = true;
+    const dadosParaSalvar = {
+      // CORREÇÃO DO ERRO DE TIPAGEM AQUI
+      tipo: (this.tipoReserva === 'sala' ? 'Sala' : 'Laboratório') as 'Sala' | 'Laboratório',
+      local: this.localSelecionado,
+      turma: this.turmaSelecionada,
+      responsavel: professorSorteado,
+      turno: 'Não informado',
+      horario: horario,
+      prioridade: (this.prioridadeSelecionada || 'Baixa') as 'Alta' | 'Média' | 'Baixa',
+      justificativa: this.justificativaSelecionada || undefined
+    };
 
-    // Fecha o modal de confirmação.
+    console.log('Salvando reserva:', dadosParaSalvar);
+
+    const resultado = this.reservaService.adicionarReservasEmLote(dadosParaSalvar, datasFormatadas);
+
     this.modalConfirmacaoAberto = false;
 
-    // Exibe mensagem de sucesso.
-    this.mensagemSucesso = true;
+    if (resultado.criadas.length > 0) this.mensagemSucesso = true;
 
-    // Limpa o horário selecionado.
+    if (resultado.conflitos.length > 0) {
+      alert(`Foram criadas ${resultado.criadas.length} reserva(s).\n\nNão foi possível reservar ${resultado.conflitos.length} data(s) por conflito:\n` + resultado.conflitos.join(', '));
+    }
+
+    if (resultado.criadas.length === 0) return;
+
+    this.datasSelecionadas = [];
     this.horarioSelecionado = null;
+    this.localSelecionado = '';
+    this.turmaSelecionada = '';
+    this.prioridadeSelecionada = '';
+    this.justificativaSelecionada = '';
 
-    setTimeout(() => {
-      this.mensagemSucesso = false;
-    }, 3000);
+    setTimeout(() => { this.mensagemSucesso = false; }, 3000);
   }
 }
