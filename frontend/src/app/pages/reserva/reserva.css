@@ -102,7 +102,6 @@
 .reservation-card {
   position: relative;
   min-width: 0;
-  min-height: unset;
   height: auto;
   align-self: start;
   padding: 84px 34px 36px;
@@ -141,11 +140,6 @@
   transition: all 0.2s ease;
 }
 
-.type-selector button:first-child,
-.type-selector button:last-child {
-  border-radius: 18px;
-}
-
 .type-selector button.active {
   background: #a795dc;
   color: white;
@@ -165,7 +159,6 @@
 
 /* FORMULÁRIO */
 .form-grid {
-  min-height: unset;
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 45px;
@@ -177,6 +170,11 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  min-width: 0;
+}
+
+.field-full {
+  grid-column: 1 / -1;
 }
 
 .field label,
@@ -200,22 +198,9 @@
   cursor: pointer;
 }
 
-.priority-field {
-  align-self: start;
-}
-
 /* JUSTIFICATIVA */
-.justification-wrapper {
-  margin-top: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.justification-wrapper label {
-  color: #6672c2;
-  font-size: 14px;
-  font-weight: 700;
+.justification-field {
+  min-width: 0;
 }
 
 .textarea-container {
@@ -296,9 +281,9 @@
   height: 28px;
   padding: 0;
   border: 0;
-  border-radius: 50% !important;
-  background: #6874c7 !important;
-  color: white !important;
+  border-radius: 50%;
+  background: #6874c7;
+  color: white;
   font-size: 16px;
   line-height: 1;
   display: inline-flex;
@@ -308,8 +293,8 @@
 }
 
 .date-arrow:disabled {
-  background: #d9d2ed !important;
-  color: #7d83c7 !important;
+  background: #d9d2ed;
+  color: #7d83c7;
   opacity: 1;
   cursor: not-allowed;
 }
@@ -412,7 +397,6 @@ app-calendario {
 }
 
 /* STATUS */
-:host ::ng-deep .status-section,
 .status-section {
   margin-top: 0;
   padding: 18px;
@@ -421,7 +405,6 @@ app-calendario {
   box-shadow: 0 8px 26px rgba(82, 98, 173, 0.08);
 }
 
-:host ::ng-deep .status-section h3,
 .status-section h3 {
   margin: 0;
   color: #253456;
@@ -429,7 +412,6 @@ app-calendario {
   font-weight: 700;
 }
 
-:host ::ng-deep .status-section > small,
 .status-section > small {
   display: block;
   margin-top: 2px;
@@ -437,7 +419,6 @@ app-calendario {
   font-size: 11px;
 }
 
-:host ::ng-deep .room-title,
 .room-title {
   margin: 14px 0 8px;
   color: #1e4e6d;
@@ -445,7 +426,6 @@ app-calendario {
   font-weight: bold;
 }
 
-:host ::ng-deep .status-card,
 .status-card {
   position: relative;
   min-height: 62px;
@@ -458,7 +438,6 @@ app-calendario {
   box-shadow: 0 3px 8px rgba(82, 98, 173, 0.07);
 }
 
-:host ::ng-deep .status-bar,
 .status-bar {
   position: absolute;
   top: 5px;
@@ -468,17 +447,14 @@ app-calendario {
   border-radius: 6px;
 }
 
-:host ::ng-deep .reserved .status-bar,
 .reserved .status-bar {
   background: #57d59b;
 }
 
-:host ::ng-deep .maintenance .status-bar,
 .maintenance .status-bar {
   background: #f34d43;
 }
 
-:host ::ng-deep .status-icon,
 .status-icon {
   width: 22px;
   height: 22px;
@@ -494,17 +470,14 @@ app-calendario {
   font-weight: bold;
 }
 
-:host ::ng-deep .reserved .status-icon,
 .reserved .status-icon {
   color: #35c887;
 }
 
-:host ::ng-deep .maintenance .status-icon,
 .maintenance .status-icon {
   color: #f34d43;
 }
 
-:host ::ng-deep .status-content,
 .status-content {
   display: flex;
   flex-direction: column;
@@ -512,14 +485,12 @@ app-calendario {
   color: #1f2d48;
 }
 
-:host ::ng-deep .status-content strong,
 .status-content strong {
   display: block;
   font-size: 13px;
   font-weight: 700;
 }
 
-:host ::ng-deep .status-content span,
 .status-content span {
   display: block;
   font-size: 11px;
@@ -527,40 +498,30 @@ app-calendario {
 }
 
 /* BOTÃO CONFIRMAR */
-:host ::ng-deep .content > button,
-:host ::ng-deep .confirm-button,
 .confirm-button {
-  position: relative !important;
-  top: -155px !important;
-  z-index: 5;
-  display: flex !important;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   width: 205px;
   height: 40px;
-  margin: 0 auto !important;
-  transform: translateX(-180px);
-  border: 0 !important;
-  border-radius: 24px !important;
-  background: #6fc795 !important;
-  color: white !important;
-  font-size: 14px !important;
-  font-weight: 700 !important;
+  margin: 28px auto 0;
+  border: 0;
+  border-radius: 24px;
+  background: #6fc795;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
   cursor: pointer;
   box-shadow: 0 6px 16px rgba(111, 199, 149, 0.35);
 }
 
-:host ::ng-deep .content > button::before,
-:host ::ng-deep .confirm-button::before,
 .confirm-button::before {
   content: "✓";
   font-size: 15px;
   font-weight: bold;
 }
 
-:host ::ng-deep .content > button:hover,
-:host ::ng-deep .confirm-button:hover,
 .confirm-button:hover {
   filter: brightness(0.96);
 }
@@ -662,19 +623,15 @@ app-calendario {
 
 /* MENSAGEM DE SUCESSO */
 .success-message {
-  position: fixed !important;
+  position: fixed;
   right: 25px;
   bottom: 25px;
-  top: auto !important;
-  left: auto !important;
   z-index: 3000;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: fit-content !important;
+  width: fit-content;
   max-width: calc(100vw - 40px);
-  height: auto !important;
-  min-height: 0 !important;
   padding: 13px 20px;
   border-radius: 12px;
   background: #6fc795;
@@ -683,6 +640,77 @@ app-calendario {
   font-weight: bold;
   white-space: nowrap;
   box-shadow: 0 5px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* TOGGLE DE MODO (única / mensal) */
+.mode-selector {
+  display: inline-flex;
+  margin: 0 auto 18px;
+  padding: 4px;
+  border-radius: 22px;
+  background: #e6def1;
+  gap: 4px;
+}
+
+.mode-selector button {
+  min-width: 130px;
+  height: 34px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 18px;
+  background: transparent;
+  color: #5262ad;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mode-selector button.active {
+  background: #a795dc;
+  color: white;
+  box-shadow: 0 3px 10px rgba(167, 149, 220, 0.35);
+}
+
+/* INPUT DE MÊS */
+.month-input {
+  width: 100%;
+  max-width: 260px;
+  height: 46px;
+  margin: 0 auto;
+  padding: 0 16px;
+  border: 1px solid #ece8f6;
+  outline: 0;
+  border-radius: 14px;
+  background: white;
+  color: #5262ad;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(82, 98, 173, 0.07);
+  cursor: pointer;
+}
+
+.month-input:focus {
+  border-color: #a795dc;
+  box-shadow: 0 4px 12px rgba(167, 149, 220, 0.25);
+}
+
+/* DICA DO MÊS */
+.month-hint {
+  display: block;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #f3f0fa;
+  color: #5262ad;
+  font-size: 11.5px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.month-hint strong {
+  color: #343e78;
 }
 
 /* RESPONSIVIDADE */
@@ -708,14 +736,6 @@ app-calendario {
   .form-grid {
     column-gap: 25px;
     row-gap: 35px;
-  }
-
-  :host ::ng-deep .content > button,
-  :host ::ng-deep .confirm-button,
-  .confirm-button {
-    top: 0 !important;
-    margin: 22px auto 0 !important;
-    transform: none;
   }
 }
 
