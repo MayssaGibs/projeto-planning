@@ -1,4 +1,3 @@
-
 /* =====================================
    CONFIGURAÇÕES GERAIS
 ===================================== */
@@ -219,7 +218,10 @@
   width: calc(100% - 64px);
   max-width: 1280px;
   margin: 0 auto;
-  padding: 28px 32px 50px 96px;
+  padding: 32px 32px 48px 96px;
+  background:
+    radial-gradient(circle at 95% 5%, #d8b8ce38, transparent 25%),
+    #f3f4f8;
 }
 
 .pagina-header {
@@ -253,33 +255,88 @@
 }
 
 /* =====================================
+   BOTÕES (PADRÃO ÚNICO — IGUAL AO HISTÓRICO)
+===================================== */
+
+.btn-aprovar,
+.btn-voltar {
+  padding: 12px 18px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-aprovar {
+  background: #3d9a3d;
+  color: #ffffff;
+}
+
+.btn-aprovar:hover:not(:disabled) {
+  background: #338433;
+  transform: translateY(-1px);
+}
+
+.btn-aprovar:disabled {
+  background: #a9cfa9;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
+.btn-voltar {
+  background: #ffffff;
+  color: #5262ad;
+  border-color: #cfc8ee;
+}
+
+.btn-voltar:hover {
+  background: #f6f4fd;
+}
+
+/* =====================================
    PAINEL PRINCIPAL DE CONFLITOS
 ===================================== */
 
 .painel-conflitos {
   min-width: 0;
   min-height: 500px;
-  padding: 25px 18px;
-  border-radius: 9px;
-  background: #2d3b6d;
-  color: #ffffff;
+  padding: 25px;
+  background: #ffffff;
+  color: #2c304e;
+  border: 1px solid #e2e2f0;
+  border-radius: 20px;
+  box-shadow: 0 6px 24px #2c304e0c;
 }
 
 .painel-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
   margin-bottom: 24px;
-  text-align: center;
+  padding-bottom: 18px;
+  text-align: left;
+  border-bottom: 1px solid #e8e6f2;
 }
 
 .painel-titulo h2 {
-  margin: 0 0 8px;
-  color: #ffffff;
+  margin: 0;
+  color: #41589c;
   font-size: 16px;
   font-weight: 700;
 }
 
 .painel-titulo span {
-  color: #dce2ff;
+  padding: 8px 12px;
+  background: #eeedf9;
+  color: #41589c;
+  border-radius: 20px;
   font-size: 12px;
+  font-weight: 600;
 }
 
 /* =====================================
@@ -288,10 +345,19 @@
 
 .conflito-card {
   margin-bottom: 16px;
-  padding: 16px;
-  border-radius: 9px;
-  background: #4d5da2;
-  color: #ffffff;
+  padding: 21px;
+  background: #ffffff;
+  color: #2c304e;
+  border: 1px solid #e4e2f1;
+  border-left: 4px solid #7983c1;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px #2c304e09;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.conflito-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 22px #2c304e12;
 }
 
 .conflito-topo {
@@ -301,30 +367,31 @@
 }
 
 .conflito-topo strong {
-  color: #ffffff;
-  font-size: 14px;
+  color: #343f76;
+  font-size: 16px;
 }
 
 .conflito-topo p {
   margin: 8px 0 15px;
-  color: #e6eaff;
+  color: #7c82a1;
   font-size: 12px;
+  line-height: 1.6;
 }
 
 .status-conflito {
   align-self: flex-start;
-  padding: 6px 10px;
-  border-radius: 15px;
-  background: #e8baca;
-  color: #703c5d;
+  padding: 7px 12px;
+  border-radius: 20px;
+  background: #fff0d9;
+  color: #875c32;
   font-size: 11px;
   font-weight: bold;
   white-space: nowrap;
 }
 
 .status-conflito.resolvido {
-  background: #78cda0;
-  color: #18482d;
+  background: #def5e7;
+  color: #28784f;
 }
 
 /* =====================================
@@ -334,29 +401,32 @@
 .solicitacoes {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 14px;
 }
 
 .solicitacao {
   min-width: 0;
-  padding: 16px;
-  border-radius: 8px;
-  background: #40518c;
-  color: #ffffff;
+  padding: 18px;
+  background: #f8f7fd;
+  color: #2c304e;
+  border: 1px solid #e6e2f3;
+  border-radius: 13px;
 }
 
 .solicitacao h3 {
   margin: 0 0 14px;
-  color: #ffffff;
+  padding-bottom: 11px;
+  color: #41589c;
   font-size: 14px;
   font-weight: 700;
+  border-bottom: 1px solid #e5e2f1;
 }
 
 .solicitacao p {
   margin: 8px 0;
-  color: #f1f3ff;
+  color: #626985;
   font-size: 12px;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 .prioridade {
@@ -364,54 +434,68 @@
 }
 
 .solicitacao .prioridade.alta {
-  color: #ffb0b0;
+  display: inline-block;
+  padding: 4px 9px;
+  background: #fbe5eb;
+  color: #a34255;
+  border-radius: 20px;
 }
 
 .solicitacao .prioridade.baixa {
-  color: #8ff0b5;
+  display: inline-block;
+  padding: 4px 9px;
+  background: #e6e9fb;
+  color: #41589c;
+  border-radius: 20px;
 }
 
 /* =====================================
-   BOTÕES
+   BOTÕES DO CARD (APROVAR A / APROVAR B)
 ===================================== */
 
 .acoes-conflito {
   display: flex;
   justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
   margin-top: 16px;
 }
 
-.btn-aprovar,
-.btn-cancelar {
-  padding: 10px 16px;
-  border: none;
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s ease;
+/* Botões do card: tons suaves e diferentes (o verde forte fica só no modal) */
+
+/* Aprovar solicitação A: verde suave */
+.acoes-conflito .btn-aprovar:nth-child(1) {
+  background: #e3f4ea;
+  color: #2c7a4f;
+  border: 1px solid #bfe3cd;
 }
 
-.btn-aprovar {
-  background: #59c98d;
-  color: #16452c;
+.acoes-conflito .btn-aprovar:nth-child(1):hover:not(:disabled) {
+  background: #d3eddd;
+  border-color: #a6d6ba;
 }
 
-.btn-aprovar:hover:not(:disabled) {
-  background: #48b77a;
+/* Aprovar solicitação B: roxo suave */
+.acoes-conflito .btn-aprovar:nth-child(2) {
+  background: #eeedf9;
+  color: #41589c;
+  border: 1px solid #d3d0ee;
 }
 
-.btn-aprovar:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+.acoes-conflito .btn-aprovar:nth-child(2):hover:not(:disabled) {
+  background: #e0def5;
+  border-color: #c2bee6;
 }
 
-.btn-cancelar {
-  background: #e9b9ca;
-  color: #60354b;
+.acoes-conflito .btn-aprovar:hover:not(:disabled) {
+  transform: translateY(-1px);
 }
 
-.btn-cancelar:hover {
-  background: #dca4ba;
+/* Conflito resolvido: botão desativado (precisa vir por último) */
+.acoes-conflito .btn-aprovar:disabled {
+  background: #f1f3f6;
+  color: #9aa0b4;
+  border-color: #e3e5ee;
 }
 
 /* =====================================
@@ -420,10 +504,11 @@
 
 .painel-direito {
   overflow: hidden;
-  border-radius: 9px;
-  background: #3f4f83;
-  color: #ffffff;
-  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.15);
+  background: #ffffff;
+  color: #2c304e;
+  border: 1px solid #e2e2f0;
+  border-radius: 18px;
+  box-shadow: 0 6px 22px #2c304e0c;
 }
 
 /* =====================================
@@ -431,7 +516,7 @@
 ===================================== */
 
 .calendario {
-  padding: 20px 12px;
+  padding: 22px 16px;
 }
 
 .calendario-cabecalho {
@@ -442,17 +527,24 @@
 }
 
 .calendario-cabecalho strong {
-  color: #ffffff;
-  font-size: 14px;
+  color: #343f76;
+  font-size: 15px;
   text-transform: capitalize;
 }
 
 .calendario-cabecalho button {
+  width: 32px;
+  height: 32px;
   border: none;
-  background: transparent;
-  color: #d5dcfa;
-  font-size: 24px;
+  border-radius: 9px;
+  background: #eeedf9;
+  color: #41589c;
+  font-size: 21px;
   cursor: pointer;
+}
+
+.calendario-cabecalho button:hover {
+  background: #dedcf5;
 }
 
 .calendario-grade {
@@ -463,21 +555,24 @@
 }
 
 .dia-semana {
-  color: #f0f1fa;
-  font-size: 9px;
+  padding: 8px 0;
+  color: #7c82a1;
+  font-size: 10px;
+  font-weight: 700;
 }
 
 .dia-calendario {
   padding: 9px 0;
-  border-radius: 4px;
-  color: #d3daf6;
+  border-radius: 8px;
+  color: #454b6c;
   font-size: 10px;
+  transition: background 0.2s ease;
 }
 
 .dia-calendario.hoje {
-  background: #5869ae;
+  background: #5262ad;
   color: #ffffff;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .dia-calendario.vazio {
@@ -490,15 +585,16 @@
 
 .manutencao {
   min-height: 220px;
-  padding: 16px 12px;
-  border-top: 4px solid #2d3b6d;
+  padding: 20px 16px;
+  background: #ffffff;
+  border-top: 1px solid #e5e2f1;
 }
 
 .manutencao h2 {
   margin: 0 0 14px;
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: normal;
+  color: #343f76;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .manutencao-item {
@@ -506,21 +602,25 @@
   align-items: center;
   gap: 12px;
   margin-bottom: 10px;
-  padding: 12px;
-  border-radius: 8px;
-  background: #f8f6f8;
-  color: #4564a2;
+  padding: 13px;
+  background: #fff6f3;
+  border: 1px solid #f2e1e1;
+  border-radius: 12px;
 }
 
 .alerta-manutencao {
-  padding: 10px;
-  border-left: 5px solid #ff4141;
-  color: #ff4141;
+  display: grid;
+  place-items: center;
+  min-width: 30px;
+  min-height: 30px;
+  border-radius: 9px;
+  background: #fbe5eb;
+  color: #bd5665;
   font-weight: bold;
 }
 
 .manutencao-item strong {
-  color: #4564a2;
+  color: #343f76;
   font-size: 12px;
 }
 
@@ -528,12 +628,20 @@
 .manutencao-item small {
   display: block;
   margin: 5px 0;
-  color: #5262ad;
   font-size: 10px;
 }
 
+.manutencao-item p {
+  color: #7c6480;
+  line-height: 1.5;
+}
+
+.manutencao-item small {
+  color: #a34f57;
+}
+
 /* =====================================
-   MODAL DE CONFIRMAÇÃO
+   MODAL DE CONFIRMAÇÃO (IGUAL AO HISTÓRICO)
 ===================================== */
 
 .modal-overlay {
@@ -544,39 +652,82 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background: rgba(30, 18, 49, 0.55);
+  background: rgba(40, 30, 70, 0.55);
 }
 
 .modal-conteudo {
-  width: 100%;
-  max-width: 460px;
+  width: 520px;
+  max-width: 92vw;
   padding: 28px;
-  border-radius: 18px;
   background: #ffffff;
-  text-align: center;
-  box-shadow: 0 16px 48px rgba(30, 18, 49, 0.22);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.modal-conteudo h2 {
-  margin-top: 0;
+.modal-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.modal-topo h2 {
+  margin: 0;
   color: #5262ad;
-  font-size: 23px;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: left;
 }
 
-.modal-conteudo p {
-  color: #625a70;
-  line-height: 1.6;
+.btn-fechar {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: #ece8fa;
+  color: #5262ad;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.modal-aviso {
-  font-size: 13px;
+.btn-fechar:hover {
+  background: #ded8f5;
+}
+
+.modal-informacoes p {
+  margin: 0 0 14px;
+  color: #333333;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.modal-informacoes strong {
+  color: #1f2d48;
+}
+
+/* Quem será aprovada */
+.modal-informacoes .aviso-aprovada {
+  padding: 10px 14px;
+  background: #e8f5e8;
+  color: #2e6b2e;
+  border-radius: 10px;
+}
+
+/* Quem será recusada */
+.modal-informacoes .modal-aviso {
+  padding: 10px 14px;
+  background: #fbeef0;
+  color: #8a3a4a;
+  border-radius: 10px;
 }
 
 .modal-acoes {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 12px;
-  margin-top: 24px;
+  margin-top: 28px;
 }
 
 /* =====================================
@@ -590,6 +741,12 @@
 
   .conflitos-container {
     padding-right: 24px;
+  }
+
+  .painel-direito {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
   }
 }
 
@@ -631,322 +788,32 @@
     width: 110px;
   }
 
-  .modal-acoes {
+  .painel-conflitos {
+    padding: 16px;
+  }
+
+  .painel-direito {
+    grid-template-columns: 1fr;
+  }
+
+  .painel-titulo {
+    align-items: flex-start;
     flex-direction: column;
+  }
+
+  .acoes-conflito {
+    flex-direction: column;
+  }
+
+  .acoes-conflito button {
+    width: 100%;
+  }
+
+  .modal-acoes {
+    flex-direction: column-reverse;
   }
 
   .modal-acoes button {
     width: 100%;
   }
 }
-
-/* ============================================
-   MODERNIZAÇÃO DA TELA RESOLUÇÃO DE CONFLITOS
-   ACRÉSCIMO — NÃO APAGAR O CSS ORIGINAL
-============================================ */
-
-/* Fundo e espaçamento da página */
-.conflitos-container {
-  background:
-    radial-gradient(circle at 95% 5%, #d8b8ce38, transparent 25%),
-    #f3f4f8;
-  padding-top: 32px;
-  padding-bottom: 48px;
-}
-
-/* Cabeçalho mais elegante */
-.conflitos-container .pagina-header {
-  padding: 26px 30px;
-  margin-bottom: 28px;
-  background: #ffffff;
-  border: 1px solid #e4e3f0;
-  border-radius: 20px;
-  box-shadow: 0 6px 22px #2c304e0c;
-}
-
-.conflitos-container .pagina-header h1 {
-  color: #41589c;
-  font-size: 29px;
-  letter-spacing: -0.5px;
-}
-
-.conflitos-container .pagina-header .decoracao {
-  color: #a99cd2;
-}
-
-.conflitos-container .pagina-header p {
-  color: #7c82a1;
-  font-size: 15px;
-}
-
-/* Painel central */
-.conflitos-container .painel-conflitos {
-  padding: 25px;
-  background: #ffffff;
-  color: #2c304e;
-  border: 1px solid #e2e2f0;
-  border-radius: 20px;
-  box-shadow: 0 6px 24px #2c304e0c;
-}
-
-/* Título e contador */
-.conflitos-container .painel-titulo {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  text-align: left;
-  padding-bottom: 18px;
-  border-bottom: 1px solid #e8e6f2;
-}
-
-.conflitos-container .painel-titulo h2 {
-  color: #41589c;
-  font-size: 16px;
-}
-
-.conflitos-container .painel-titulo span {
-  padding: 8px 12px;
-  background: #eeedf9;
-  color: #41589c;
-  border-radius: 20px;
-  font-weight: 600;
-}
-
-/* Cards individuais dos conflitos */
-.conflitos-container .conflito-card {
-  padding: 21px;
-  background: #ffffff;
-  color: #2c304e;
-  border: 1px solid #e4e2f1;
-  border-left: 4px solid #7983c1;
-  border-radius: 16px;
-  box-shadow: 0 4px 14px #2c304e09;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.conflitos-container .conflito-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 9px 22px #2c304e12;
-}
-
-.conflitos-container .conflito-topo strong {
-  color: #343f76;
-  font-size: 16px;
-}
-
-.conflitos-container .conflito-topo p {
-  color: #7c82a1;
-  line-height: 1.6;
-}
-
-/* Status do conflito */
-.conflitos-container .status-conflito {
-  background: #fff0d9;
-  color: #875c32;
-  border-radius: 20px;
-  padding: 7px 12px;
-}
-
-.conflitos-container .status-conflito.resolvido {
-  background: #def5e7;
-  color: #28784f;
-}
-
-/* Solicitações A e B */
-.conflitos-container .solicitacoes {
-  gap: 14px;
-}
-
-.conflitos-container .solicitacao {
-  padding: 18px;
-  background: #f8f7fd;
-  color: #2c304e;
-  border: 1px solid #e6e2f3;
-  border-radius: 13px;
-}
-
-.conflitos-container .solicitacao h3 {
-  color: #41589c;
-  padding-bottom: 11px;
-  border-bottom: 1px solid #e5e2f1;
-}
-
-.conflitos-container .solicitacao p {
-  color: #626985;
-  line-height: 1.7;
-}
-
-.conflitos-container .solicitacao .prioridade.alta {
-  display: inline-block;
-  padding: 4px 9px;
-  background: #fbe5eb;
-  color: #a34255;
-  border-radius: 20px;
-}
-
-.conflitos-container .solicitacao .prioridade.baixa {
-  display: inline-block;
-  padding: 4px 9px;
-  background: #e6e9fb;
-  color: #41589c;
-  border-radius: 20px;
-}
-
-/* Botão de aprovação */
-.conflitos-container .btn-aprovar {
-  padding: 11px 18px;
-  background: #59c98d;
-  color: #16452c;
-  border-radius: 10px;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.conflitos-container .btn-aprovar:hover:not(:disabled) {
-  background: #48b77a;
-  transform: translateY(-1px);
-}
-
-/* Painel lateral */
-.conflitos-container .painel-direito {
-  background: #ffffff;
-  color: #2c304e;
-  border: 1px solid #e2e2f0;
-  border-radius: 18px;
-  box-shadow: 0 6px 22px #2c304e0c;
-}
-
-/* Calendário */
-.conflitos-container .calendario {
-  padding: 22px 16px;
-}
-
-.conflitos-container .calendario-cabecalho strong {
-  color: #343f76;
-  font-size: 15px;
-}
-
-.conflitos-container .calendario-cabecalho button {
-  width: 32px;
-  height: 32px;
-  background: #eeedf9;
-  color: #41589c;
-  border-radius: 9px;
-  font-size: 21px;
-}
-
-.conflitos-container .calendario-cabecalho button:hover {
-  background: #dedcf5;
-}
-
-.conflitos-container .dia-semana {
-  padding: 8px 0;
-  color: #7c82a1;
-  font-size: 10px;
-  font-weight: 700;
-}
-
-.conflitos-container .dia-calendario {
-  border-radius: 8px;
-  color: #454b6c;
-  transition: background 0.2s ease;
-}
-
-.conflitos-container .dia-calendario.hoje {
-  background: #5262ad;
-  color: #ffffff;
-  font-weight: 700;
-}
-
-/* Manutenção */
-.conflitos-container .manutencao {
-  padding: 20px 16px;
-  background: #ffffff;
-  border-top: 1px solid #e5e2f1;
-}
-
-.conflitos-container .manutencao h2 {
-  color: #343f76;
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.conflitos-container .manutencao-item {
-  padding: 13px;
-  background: #fff6f3;
-  border: 1px solid #f2e1e1;
-  border-radius: 12px;
-}
-
-.conflitos-container .alerta-manutencao {
-  display: grid;
-  place-items: center;
-  min-width: 30px;
-  min-height: 30px;
-  padding: 0;
-  border: none;
-  border-radius: 9px;
-  background: #fbe5eb;
-  color: #bd5665;
-}
-
-.conflitos-container .manutencao-item strong {
-  color: #343f76;
-}
-
-.conflitos-container .manutencao-item p {
-  color: #7c6480;
-  line-height: 1.5;
-}
-
-.conflitos-container .manutencao-item small {
-  color: #a34f57;
-}
-
-/* Modal de aprovação */
-.modal-conteudo {
-  border: 1px solid #e5e2f1;
-  border-radius: 20px;
-  box-shadow: 0 20px 55px #20254430;
-}
-
-.modal-conteudo h2 {
-  color: #41589c;
-}
-
-.modal-conteudo .modal-aviso {
-  padding: 12px;
-  background: #fbeef2;
-  color: #8c5968;
-  border-radius: 10px;
-}
-
-/* Responsividade adicional */
-@media (max-width: 950px) {
-  .conflitos-container .painel-direito {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: start;
-  }
-}
-
-@media (max-width: 650px) {
-  .conflitos-container .pagina-header {
-    padding: 22px 16px;
-  }
-
-  .conflitos-container .painel-conflitos {
-    padding: 16px;
-  }
-
-  .conflitos-container .painel-direito {
-    grid-template-columns: 1fr;
-  }
-
-  .conflitos-container .painel-titulo {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-}
-
