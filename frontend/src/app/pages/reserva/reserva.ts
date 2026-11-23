@@ -38,6 +38,7 @@ export class Reserva {
 
   modalConfirmacaoAberto = false;
   mensagemSucesso = false;
+  salvando = false; 
 
   constructor(private reservaService: ReservaService) {
     this.salas = this.reservaService.getSalas();
@@ -90,6 +91,11 @@ export class Reserva {
   }
 
   selecionarData(data: Date): void {
+    if (this.modoReserva === 'mensal') {
+      this.modoReserva = 'unica';
+      this.mesSelecionado = '';
+    }
+
     if (this.isDataSelecionada(data)) {
       this.datasSelecionadas = this.datasSelecionadas.filter(
         d => d.getDate() !== data.getDate() || d.getMonth() !== data.getMonth() || d.getFullYear() !== data.getFullYear()
@@ -130,24 +136,11 @@ export class Reserva {
 
   trocarModo(modo: 'unica' | 'mensal'): void {
     this.modoReserva = modo;
-    if (modo === 'mensal') this.datasSelecionadas = [];
-    else this.mesSelecionado = '';
-  }
-
-  private gerarDatasDoMes(mesAno: string): string[] {
-    const [anoStr, mesStr] = mesAno.split('-');
-    const ano = Number(anoStr);
-    const mes = Number(mesStr) - 1;
-    const datas: string[] = [];
-    const ultimoDia = new Date(ano, mes + 1, 0).getDate();
-    const hoje = new Date();
-    hoje.setHours(0, 0, 0, 0);
-    for (let dia = 1; dia <= ultimoDia; dia++) {
-      const data = new Date(ano, mes, dia);
-      if (data < hoje) continue;
-      datas.push(this.formatarDataISO(data));
+    if (modo === 'mensal') {
+      this.datasSelecionadas = [];
+    } else {
+      this.mesSelecionado = '';
     }
-    return datas;
   }
 
   abrirConfirmacao(): void {
@@ -171,47 +164,59 @@ export class Reserva {
   }
 
   confirmarReserva(): void {
+    if (this.salvando) return;
     if (!this.horarioSelecionado) return;
 
     const horario = `${this.horarioSelecionado.inicio} - ${this.horarioSelecionado.fim}`;
-    let datasFormatadas: string[] = [];
-
-    if (this.modoReserva === 'unica') {
-      if (this.datasSelecionadas.length === 0) { alert('Selecione pelo menos uma data.'); return; }
-      datasFormatadas = this.datasSelecionadas.map(d => this.formatarDataISO(d));
-    } else {
-      if (!this.mesSelecionado) { alert('Selecione o mês.'); return; }
-      datasFormatadas = this.gerarDatasDoMes(this.mesSelecionado);
-      if (datasFormatadas.length === 0) { alert('O mês selecionado não tem datas válidas.'); return; }
-    }
-
-    const professorSorteado = this.reservaService.getProfessorAleatorio();
 
     const dadosParaSalvar = {
-      // CORREÇÃO DO ERRO DE TIPAGEM AQUI
       tipo: (this.tipoReserva === 'sala' ? 'Sala' : 'Laboratório') as 'Sala' | 'Laboratório',
       local: this.localSelecionado,
       turma: this.turmaSelecionada,
-      responsavel: professorSorteado,
+      responsavel: 'Jaqueliny Silva',
       turno: 'Não informado',
       horario: horario,
       prioridade: (this.prioridadeSelecionada || 'Baixa') as 'Alta' | 'Média' | 'Baixa',
       justificativa: this.justificativaSelecionada || undefined
     };
 
-    console.log('Salvando reserva:', dadosParaSalvar);
+    this.salvando = true;
 
-    const resultado = this.reservaService.adicionarReservasEmLote(dadosParaSalvar, datasFormatadas);
+    if (this.modoReserva === 'unica') {
+      if (this.datasSelecionadas.length === 0) { 
+        alert('Selecione pelo menos uma data.'); 
+        this.salvando = false; 
+        return; 
+      }
+      const datasFormatadas = this.datasSelecionadas.map(d => this.formatarDataISO(d));
+      const resultado = this.reservaService.adicionarReservasEmLote(dadosParaSalvar, datasFormatadas);
+      
+      this.modalConfirmacaoAberto = false;
+      this.salvando = false;
+      
+      if (resultado.criadas.length > 0) this.mensagemSucesso = true;
+      if (resultado.conflitos.length > 0) {
+        alert(`Foram criadas ${resultado.criadas.length} reserva(s).\n\nNão foi possível reservar ${resultado.conflitos.length} data(s) por conflito.`);
+      }
 
-    this.modalConfirmacaoAberto = false;
+    } else {
+      if (!this.mesSelecionado) { 
+        alert('Selecione o mês.'); 
+        this.salvando = false; 
+        return; 
+      }
+      
+      const resultado = this.reservaService.adicionarReservaMensal(dadosParaSalvar, this.mesSelecionado);
+      
+      this.modalConfirmacaoAberto = false;
+      this.salvando = false;
 
-    if (resultado.criadas.length > 0) this.mensagemSucesso = true;
-
-    if (resultado.conflitos.length > 0) {
-      alert(`Foram criadas ${resultado.criadas.length} reserva(s).\n\nNão foi possível reservar ${resultado.conflitos.length} data(s) por conflito:\n` + resultado.conflitos.join(', '));
+      if (resultado) {
+        this.mensagemSucesso = true;
+      } else {
+        alert('Já existe uma reserva para este mês neste local e horário.');
+      }
     }
-
-    if (resultado.criadas.length === 0) return;
 
     this.datasSelecionadas = [];
     this.horarioSelecionado = null;
@@ -219,6 +224,8 @@ export class Reserva {
     this.turmaSelecionada = '';
     this.prioridadeSelecionada = '';
     this.justificativaSelecionada = '';
+    this.mesSelecionado = '';
+    this.modoReserva = 'unica';
 
     setTimeout(() => { this.mensagemSucesso = false; }, 3000);
   }

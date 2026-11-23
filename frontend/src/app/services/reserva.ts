@@ -32,16 +32,6 @@ export class ReservaService {
   private laboratorios = ['LAB - A - 01', 'LAB - A - 02', 'LAB - B - 01'];
   private turmas = ['INFORMÁTICA 01', 'INFORMÁTICA 02'];
 
-  // LISTA DE PROFESSORES PARA SORTEAR (ENFEITE)
-  private professores = [
-    'Jaqueliny Silva',
-    'Maria Oliveira',
-    'Pedro Santos',
-    'Ana Costa',
-    'Carlos Mendes',
-    'Fernanda Lima'
-  ];
-
   private horarios: Horario[] = [
     { inicio: '07:30', fim: '08:30', ocupado: true },
     { inicio: '08:30', fim: '09:45', ocupado: false },
@@ -105,8 +95,10 @@ export class ReservaService {
 
     const criadas: Reserva[] = [];
     const conflitos: string[] = [];
+    
+    const datasUnicas = [...new Set(datas)];
 
-    for (const data of datas) {
+    for (const data of datasUnicas) {
       const reserva = this.adicionarReserva({ ...dados, data });
       if (reserva) {
         criadas.push(reserva);
@@ -116,6 +108,41 @@ export class ReservaService {
     }
 
     return { criadas, conflitos };
+  }
+
+  // MÉTODO NOVO: Cria 1 único card que representa o mês inteiro
+  adicionarReservaMensal(
+    dados: Omit<Reserva, 'id' | 'status' | 'criadaEm' | 'data'>,
+    mesAno: string 
+  ): Reserva | null {
+    const reservas = this.reservasSignal();
+    const [anoStr, mesStr] = mesAno.split('-');
+    const ano = Number(anoStr);
+    const mes = Number(mesStr) - 1;
+    const ultimoDia = new Date(ano, mes + 1, 0).getDate();
+    const dataInicio = `${anoStr}-${mesStr}-01`;
+    const dataFim = `${anoStr}-${mesStr}-${String(ultimoDia).padStart(2, '0')}`;
+
+    const conflito = reservas.some(reserva => 
+      reserva.local === dados.local &&
+      reserva.horario === dados.horario &&
+      reserva.status !== 'Recusada' &&
+      reserva.data >= dataInicio &&
+      reserva.data <= dataFim
+    );
+
+    if (conflito) return null;
+
+    const novaReserva: Reserva = {
+      ...dados,
+      id: crypto.randomUUID(),
+      status: 'Pendente',
+      criadaEm: new Date().toISOString(),
+      data: `${mesAno}-MENSAL`, 
+    };
+
+    this.salvarReservas([...reservas, novaReserva]);
+    return novaReserva;
   }
 
   alterarStatus(id: string, status: Reserva['status']): void {
@@ -136,9 +163,4 @@ export class ReservaService {
   getLaboratorios(): string[] { return this.laboratorios; }
   getTurmas(): string[] { return this.turmas; }
   getHorarios(): Horario[] { return this.horarios; }
-  
-  getProfessorAleatorio(): string {
-    const index = Math.floor(Math.random() * this.professores.length);
-    return this.professores[index];
-  }
 }

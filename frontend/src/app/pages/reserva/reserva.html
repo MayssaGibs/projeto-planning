@@ -107,7 +107,7 @@
 
             <!-- MODO ÚNICO -->
             @if (modoReserva === 'unica') {
-              <label>Escolha uma data</label>
+              <label>Escolha as datas</label>
 
               <div class="date-options">
                 <button type="button" class="date-arrow"
@@ -182,7 +182,6 @@
                 </button>
               }
             </div>
-
           </div>
 
         </div>
@@ -282,13 +281,17 @@
         </div>
         <div class="confirmation-item">
           <span>Responsável</span>
-          <strong>Jaqueliny</strong>
+          <strong>Jaqueliny Silva</strong>
         </div>
       </div>
 
       <div class="confirmation-actions">
         <button type="button" class="cancel-button" (click)="cancelarConfirmacao()">CANCELAR</button>
-        <button type="button" class="modal-confirm-button" (click)="confirmarReserva()">CONFIRMAR</button>
+        <button type="button" class="modal-confirm-button" 
+        (click)="confirmarReserva()" 
+        [disabled]="salvando">
+  CONFIRMAR
+</button>
       </div>
 
     </section>
