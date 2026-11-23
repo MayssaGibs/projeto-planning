@@ -1,4 +1,3 @@
-
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth';
@@ -6,6 +5,7 @@ import { AdminSidebar } from '../../components/admin-sidebar/admin-sidebar';
 
 type StatusSolicitacao = 'Pendente' | 'Aprovada' | 'Rejeitada';
 type StatusConflito = 'Pendente' | 'Resolvido';
+type EscolhaSolicitacao = 'A' | 'B';
 
 interface Solicitacao {
   id: number;
@@ -45,6 +45,7 @@ export class ResolucaoConflitos {
 
   modalAberto = false;
   conflitoSelecionado: Conflito | null = null;
+  escolhaSelecionada: EscolhaSolicitacao = 'A';
 
   conflitos: Conflito[] = [
     {
@@ -171,23 +172,46 @@ export class ResolucaoConflitos {
     ).length;
   }
 
-  abrirModal(conflito: Conflito): void {
+  // SOLICITAÇÃO ESCOLHIDA PARA SER APROVADA
+  get solicitacaoAprovada(): Solicitacao | null {
+    if (!this.conflitoSelecionado) return null;
+
+    return this.escolhaSelecionada === 'A'
+      ? this.conflitoSelecionado.solicitacaoA
+      : this.conflitoSelecionado.solicitacaoB;
+  }
+
+  // SOLICITAÇÃO QUE SERÁ RECUSADA
+  get solicitacaoRejeitada(): Solicitacao | null {
+    if (!this.conflitoSelecionado) return null;
+
+    return this.escolhaSelecionada === 'A'
+      ? this.conflitoSelecionado.solicitacaoB
+      : this.conflitoSelecionado.solicitacaoA;
+  }
+
+  abrirModal(conflito: Conflito, escolha: EscolhaSolicitacao): void {
     if (conflito.status === 'Resolvido') return;
 
     this.conflitoSelecionado = conflito;
+    this.escolhaSelecionada = escolha;
     this.modalAberto = true;
   }
 
   fecharModal(): void {
     this.modalAberto = false;
     this.conflitoSelecionado = null;
+    this.escolhaSelecionada = 'A';
   }
 
   confirmarAprovacao(): void {
-    if (!this.conflitoSelecionado) return;
+    const aprovada = this.solicitacaoAprovada;
+    const rejeitada = this.solicitacaoRejeitada;
 
-    this.conflitoSelecionado.solicitacaoA.status = 'Aprovada';
-    this.conflitoSelecionado.solicitacaoB.status = 'Rejeitada';
+    if (!this.conflitoSelecionado || !aprovada || !rejeitada) return;
+
+    aprovada.status = 'Aprovada';
+    rejeitada.status = 'Rejeitada';
     this.conflitoSelecionado.status = 'Resolvido';
 
     this.fecharModal();
