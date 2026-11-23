@@ -72,6 +72,13 @@ export class Historico {
   }
 
   private formatarDataBR(dataISO: string): string {
+    if (dataISO.includes('MENSAL')) {
+      const [ano, mes] = dataISO.split('-');
+      const data = new Date(Number(ano), Number(mes) - 1, 1);
+      const mesNome = data.toLocaleDateString('pt-BR', { month: 'long' });
+      return `Mês de ${mesNome.charAt(0).toUpperCase() + mesNome.slice(1)} (Mensal)`;
+    }
+    
     const [ano, mes, dia] = dataISO.split('-');
     return `${dia}/${mes}/${ano}`;
   }
