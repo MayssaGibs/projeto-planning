@@ -1,4 +1,3 @@
-
 /* =====================================
    CONFIGURAÇÕES GERAIS
 ===================================== */
@@ -247,6 +246,11 @@
   color: #15803d;
 }
 
+.prioridade.nao-informada {
+  background: #f1ebfa;
+  color: #9a8caf;
+}
+
 /* =====================================
    BOTÃO VER MAIS
 ===================================== */
@@ -279,6 +283,25 @@
 
 .btn-ver-mais:hover {
   background: #3e4c92;
+}
+
+/* =====================================
+   MENSAGEM SEM REGISTROS
+===================================== */
+
+.sem-registros {
+  grid-column: 1 / -1;
+
+  padding: 40px 20px;
+  margin: 0;
+
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px dashed #d8cbe9;
+
+  text-align: center;
+  font-size: 15px;
+  color: #9a8caf;
 }
 
 /* =====================================
@@ -376,7 +399,9 @@
 }
 
 .btn-voltar,
-.btn-cancelar {
+.btn-cancelar,
+.btn-aprovar,
+.btn-recusar {
   padding: 11px 18px;
   border-radius: 10px;
 
@@ -403,6 +428,26 @@
 
 .btn-cancelar:hover {
   background: #b91c1c;
+}
+
+.btn-aprovar {
+  border: none;
+  background: #16a34a;
+  color: white;
+}
+
+.btn-aprovar:hover {
+  background: #15803d;
+}
+
+.btn-recusar {
+  border: none;
+  background: #f59e0b;
+  color: white;
+}
+
+.btn-recusar:hover {
+  background: #d97706;
 }
 
 /* =====================================
@@ -443,7 +488,9 @@
   }
 
   .btn-voltar,
-  .btn-cancelar {
+  .btn-cancelar,
+  .btn-aprovar,
+  .btn-recusar {
     width: 100%;
   }
 }

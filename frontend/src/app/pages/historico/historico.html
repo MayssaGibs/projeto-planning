@@ -1,17 +1,13 @@
-
 <!-- SIDEBAR COMPARTILHADA DO DAVID -->
 <app-admin-sidebar></app-admin-sidebar>
 
 <!-- BARRA SUPERIOR -->
 <header class="barra-superior">
-
   <div class="barra-marca">
     <span>⌛</span>
   </div>
 
   <div class="barra-acoes">
-
-    <!-- EDITAR PERFIL -->
     <a
       routerLink="/editar-perfil"
       class="avatar-admin"
@@ -20,16 +16,12 @@
     >
       D
     </a>
-
   </div>
-
 </header>
 
 <!-- CONTEÚDO DA PÁGINA -->
 <main class="pagina-admin">
-
   <div class="historico-container">
-
     <header class="registros-header">
       <h1>Registros</h1>
       <p>Acompanhe as reservas de salas e laboratórios.</p>
@@ -37,18 +29,14 @@
 
     <!-- LISTA DE REGISTROS -->
     <section class="registros-grid">
-
-      @for (registro of registros; track registro.id) {
-
+      
+      @for (registro of registros; track $index) {
         <article class="registro-card">
-
           <div class="card-topo">
-
             <div>
               <span class="card-subtitulo">
-                Reserva #{{ registro.id }}
+                Reserva {{ registro.identificacao }}
               </span>
-
               <h2>{{ registro.sala }}</h2>
             </div>
 
@@ -60,57 +48,34 @@
             >
               {{ registro.status }}
             </span>
-
           </div>
 
           <div class="registro-informacoes">
-
-            <p>
-              <strong>Data:</strong>
-              {{ registro.data }}
-            </p>
-
-            <p>
-              <strong>Responsável:</strong>
-              {{ registro.responsavel }}
-            </p>
-
-            <p>
-              <strong>Identificação:</strong>
-              {{ registro.identificacao }}
-            </p>
-
-            <p>
-              <strong>Horário:</strong>
-              {{ registro.horario }}
-            </p>
-
-            <p>
-              <strong>Turma:</strong>
-              {{ registro.turma }}
-            </p>
-
+            <p><strong>Data:</strong> {{ registro.data }}</p>
+            <p><strong>Responsável:</strong> {{ registro.responsavel }}</p>
+            <p><strong>Horário:</strong> {{ registro.horario }}</p>
+            <p><strong>Turma:</strong> {{ registro.turma }}</p>
             <p>
               <strong>Prioridade:</strong>
-
               <span
                 class="prioridade"
                 [class.alta]="registro.prioridade === 'alta'"
                 [class.media]="registro.prioridade === 'media'"
                 [class.baixa]="registro.prioridade === 'baixa'"
+                [class.nao-informada]="registro.prioridade === 'nao-informada'"
               >
                 @switch (registro.prioridade) {
                   @case ('alta') { Alta }
                   @case ('media') { Média }
                   @case ('baixa') { Baixa }
+                  @default { Não informada }
                 }
               </span>
             </p>
-
+            <p><strong>Justificativa:</strong> {{ registro.justificativa }}</p>
           </div>
 
           <div class="card-acoes">
-
             <button
               type="button"
               class="btn-ver-mais"
@@ -118,27 +83,21 @@
             >
               Ver mais
             </button>
-
           </div>
-
         </article>
+      }
 
+      @if (registros.length === 0) {
+        <p class="sem-registros">Nenhuma reserva registrada ainda.</p>
       }
 
     </section>
-
   </div>
-
 </main>
 
 <!-- MODAL DE DETALHES -->
 @if (registroSelecionado; as registro) {
-
-  <div
-    class="modal-overlay"
-    (click)="fecharDetalhes()"
-  >
-
+  <div class="modal-overlay" (click)="fecharDetalhes()">
     <div
       class="modal-conteudo"
       role="dialog"
@@ -146,13 +105,8 @@
       aria-labelledby="titulo-detalhes"
       (click)="$event.stopPropagation()"
     >
-
       <div class="modal-topo">
-
-        <h2 id="titulo-detalhes">
-          Detalhes da reserva
-        </h2>
-
+        <h2 id="titulo-detalhes">Detalhes da reserva</h2>
         <button
           type="button"
           class="btn-fechar"
@@ -161,89 +115,48 @@
         >
           ✕
         </button>
-
       </div>
 
       <div class="modal-informacoes">
-
-        <p>
-          <strong>Reserva:</strong>
-          #{{ registro.id }}
-        </p>
-
-        <p>
-          <strong>Data:</strong>
-          {{ registro.data }}
-        </p>
-
-        <p>
-          <strong>Responsável:</strong>
-          {{ registro.responsavel }}
-        </p>
-
-        <p>
-          <strong>Identificação:</strong>
-          {{ registro.identificacao }}
-        </p>
-
-        <p>
-          <strong>Horário:</strong>
-          {{ registro.horario }}
-        </p>
-
-        <p>
-          <strong>Sala:</strong>
-          {{ registro.sala }}
-        </p>
-
-        <p>
-          <strong>Turma:</strong>
-          {{ registro.turma }}
-        </p>
-
+        <p><strong>Reserva:</strong> {{ registro.identificacao }}</p>
+        <p><strong>Data:</strong> {{ registro.data }}</p>
+        <p><strong>Responsável:</strong> {{ registro.responsavel }}</p>
+        <p><strong>Horário:</strong> {{ registro.horario }}</p>
+        <p><strong>Sala:</strong> {{ registro.sala }}</p>
+        <p><strong>Turma:</strong> {{ registro.turma }}</p>
         <p>
           <strong>Prioridade:</strong>
-
           @switch (registro.prioridade) {
             @case ('alta') { Alta }
             @case ('media') { Média }
             @case ('baixa') { Baixa }
+            @default { Não informada }
           }
         </p>
-
-        <p>
-          <strong>Status:</strong>
-          {{ registro.status }}
-        </p>
-
+        <p><strong>Justificativa:</strong> {{ registro.justificativa }}</p>
+        <p><strong>Status:</strong> {{ registro.status }}</p>
       </div>
 
       <div class="modal-acoes">
-
-        <button
-          type="button"
-          class="btn-voltar"
-          (click)="fecharDetalhes()"
-        >
+        <button type="button" class="btn-voltar" (click)="fecharDetalhes()">
           Voltar
         </button>
 
-        @if (registro.status !== 'cancelada') {
-
-          <button
-            type="button"
-            class="btn-cancelar"
-            (click)="cancelarReserva(registro)"
-          >
-            Cancelar reserva
+        @if (registro.status === 'pendente') {
+          <button type="button" class="btn-recusar" (click)="recusarReserva(registro)">
+            Recusar
           </button>
-
+          <button type="button" class="btn-aprovar" (click)="aprovarReserva(registro)">
+            Aprovar
+          </button>
         }
 
+        @if (registro.status === 'confirmada') {
+          <button type="button" class="btn-cancelar" (click)="cancelarReserva(registro)">
+            Excluir reserva
+          </button>
+        }
       </div>
-
     </div>
-
   </div>
-
 }

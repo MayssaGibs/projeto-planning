@@ -1,7 +1,5 @@
-
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-
 import { Calendario } from '../../components/calendario/calendario';
 import { FuncionarioSidebar } from '../../components/funcionario-sidebar/funcionario-sidebar';
 

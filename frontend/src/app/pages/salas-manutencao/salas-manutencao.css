@@ -1,4 +1,3 @@
-
 :host {
   display: block;
 }
@@ -13,26 +12,98 @@
 
 .maintenance-page {
   min-height: 100vh;
-
   background: #f8f3f7;
   color: #253456;
-
   font-family: Arial, Helvetica, sans-serif;
 }
 
 /* ============================================
-   ÁREA PRINCIPAL
+   ÁREA PRINCIPAL, MEIOS CÍRCULOS E ESTRELAS (100% CSS)
 ============================================ */
 
 .maintenance-content {
+  position: relative;
+  overflow: hidden;
   min-height: 100vh;
 
   margin-left: 64px;
-  padding: 105px 35px 40px;
+  padding: 95px 35px 50px;
 
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: #f8f3f7;
+  background-image:
+    /* Estrelas de 4 pontas nas laterais e perto do título na sua cor #5865b3 / #777bbd */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'%3E%3Cpath fill='%235865b3' d='M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0Z'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'%3E%3Cpath fill='%23777bbd' d='M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0Z'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24'%3E%3Cpath fill='%23777bbd' d='M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0Z'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'%3E%3Cpath fill='%235865b3' d='M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0Z'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23777bbd' d='M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0Z'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24'%3E%3Cpath fill='%235865b3' d='M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0Z'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24'%3E%3Cpath fill='%235865b3' d='M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0Z'/%3E%3C/svg%3E"),
+    /* 4 Meios círculos nos cantos (superior esquerdo, superior direito, inferior esquerdo, inferior direito) */
+    radial-gradient(circle at -10px 60px, #f2dddd 95px, transparent 96px),
+    radial-gradient(circle at calc(100% + 5px) 55px, #f2dddd 95px, transparent 96px),
+    radial-gradient(circle at 10px calc(100% + 10px), #f2dddd 105px, transparent 106px),
+    radial-gradient(circle at calc(100% - 20px) calc(100% + 15px), #f2dddd 115px, transparent 116px);
+  background-repeat: no-repeat;
+  background-position:
+    115px 115px,
+    310px 110px,
+    calc(100% - 310px) 150px,
+    calc(100% - 140px) 105px,
+    32px 370px,
+    40px 610px,
+    calc(100% - 95px) 620px,
+    0 0,
+    0 0,
+    0 0,
+    0 0;
+}
+
+/* ============================================
+   TÍTULO CENTRALIZADO
+============================================ */
+
+.page-title {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.page-title h1 {
+  margin: 0;
+  padding: 12px 38px;
+  background: #eeeaf7;
+  color: #555ca6;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(85, 92, 166, 0.10);
+}
+
+.title-decoration {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.title-decoration span {
+  width: 75px;
+  height: 1px;
+  background: #777bbd;
+}
+
+.title-decoration strong {
+  color: #5865b3;
+  font-size: 20px;
+  line-height: 1;
 }
 
 /* ============================================
@@ -40,45 +111,42 @@
 ============================================ */
 
 .maintenance-container {
+  position: relative;
+  z-index: 2;
   width: 100%;
-  max-width: 1100px;
+  max-width: 860px;
 
-  padding: 22px;
+  padding: 26px 28px 30px;
 
   background: #ffffff;
+  border-radius: 22px;
 
-  border-radius: 12px;
-
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
 /* ============================================
-   CABEÇALHO
+   CABEÇALHO INTERNO
 ============================================ */
 
 .maintenance-header {
   display: flex;
-
   align-items: center;
-  justify-content: space-between;
+  gap: 12px;
 
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .maintenance-header h2 {
   margin: 0 0 4px;
-
   color: #555ca6;
-
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
 }
 
 .maintenance-header span {
-  color: #999;
-
-  font-size: 10px;
+  color: #555ca6;
+  font-size: 14.5px;
+  font-weight: 700;
 }
 
 /* ============================================
@@ -90,17 +158,14 @@
   height: 36px;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
   border-radius: 50%;
-
   background: #eeeaf7;
-
   color: #5865b3;
 
-  font-size: 17px;
+  font-size: 18px;
 }
 
 /* ============================================
@@ -109,10 +174,8 @@
 
 .rooms-list {
   display: flex;
-
   flex-direction: column;
-
-  gap: 9px;
+  gap: 14px;
 }
 
 /* ============================================
@@ -121,18 +184,21 @@
 
 .room-card {
   display: flex;
-
   align-items: center;
+  gap: 18px;
 
-  gap: 12px;
+  padding: 16px 20px;
 
-  padding: 11px 12px;
-
-  border-radius: 8px;
-
+  border-radius: 16px;
   background: #f8f7fa;
-
   border: 1px solid #eeeef3;
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.room-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(85, 92, 166, 0.08);
 }
 
 /* ============================================
@@ -140,23 +206,20 @@
 ============================================ */
 
 .room-number {
-  width: 42px;
-  height: 42px;
+  width: 54px;
+  height: 54px;
 
   flex-shrink: 0;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
-  border-radius: 7px;
-
+  border-radius: 14px;
   background: #777bbd;
-
   color: white;
 
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 700;
 }
 
@@ -169,28 +232,35 @@
   min-width: 0;
 
   display: flex;
-
   flex-direction: column;
-
-  gap: 2px;
+  gap: 5px;
 }
 
 .room-info strong {
   color: #444;
+  font-size: 15.5px;
+  font-weight: 700;
+}
 
-  font-size: 11px;
+.room-details {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .room-info span {
-  color: #888;
-
-  font-size: 9px;
+  color: #555;
+  font-size: 13px;
 }
 
 .room-info small {
-  color: #aaa;
+  color: #555;
+  font-size: 13px;
+}
 
-  font-size: 8px;
+.room-details .dot {
+  font-weight: 700;
 }
 
 /* ============================================
@@ -198,17 +268,15 @@
 ============================================ */
 
 .room-status {
-  padding: 5px 8px;
+  padding: 8px 18px;
 
-  border-radius: 12px;
-
+  border-radius: 16px;
   background: #f2dddd;
-
   color: #a35e68;
 
-  font-size: 7px;
+  font-size: 11px;
   font-weight: 700;
-
+  letter-spacing: 0.4px;
   white-space: nowrap;
 }
 
@@ -218,43 +286,36 @@
 
 .empty-maintenance {
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
 
-  padding: 30px;
+  padding: 35px;
 
   color: #999;
-
   text-align: center;
 }
 
 .empty-maintenance span {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 
   border-radius: 50%;
-
   background: #e2f1e7;
-
   color: #4b9063;
 
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .empty-maintenance p {
   margin: 0;
-
-  font-size: 10px;
+  font-size: 14px;
 }
 
 /* ============================================
@@ -264,11 +325,11 @@
 @media (max-width: 768px) {
 
   .maintenance-content {
-    padding: 90px 15px 25px;
+    padding: 85px 15px 30px;
   }
 
   .maintenance-container {
-    padding: 16px;
+    padding: 18px;
   }
 
   .room-card {
@@ -276,24 +337,26 @@
   }
 
   .room-status {
-    margin-left: 54px;
+    margin-left: 72px;
   }
 
 }
 
 @media (max-width: 480px) {
 
-  .maintenance-header h2 {
-    font-size: 12px;
+  .page-title h1 {
+    font-size: 17px;
+    padding: 10px 26px;
   }
 
   .room-number {
-    width: 38px;
-    height: 38px;
+    width: 46px;
+    height: 46px;
+    font-size: 14px;
   }
 
   .room-status {
-    margin-left: 50px;
+    margin-left: 64px;
   }
 
 }

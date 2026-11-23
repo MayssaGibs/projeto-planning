@@ -64,46 +64,25 @@ body {
   position: relative;
   z-index: 2;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 26px;
+  gap: 10px;
   margin-bottom: 18px;
 }
 
-.ampulheta {
-  width: 65px;
-  height: 85px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 62px;
-  color: #e7c0c4;
+.logo-imagem {
+  width: 150px;
+  height: auto;
+  display: block;
 }
 
-.linha {
-  width: 1px;
-  height: 125px;
-  background: #ac8b9f;
-}
-
-.titulo {
-  text-align: left;
-}
-
-.titulo h1 {
+.subtitulo {
   margin: 0;
-  color: #5b5ca1;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 55px;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-.titulo p {
-  margin: 8px 0 0;
   color: #5b5ca1;
   font-size: 12px;
   letter-spacing: 4px;
+  text-align: center;
 }
 
 /* CARD LOGIN */
@@ -262,22 +241,14 @@ body {
   }
 
   .logo {
-    gap: 15px;
+    gap: 8px;
   }
 
-  .ampulheta {
-    font-size: 45px;
+  .logo-imagem {
+    width: 120px;
   }
 
-  .linha {
-    height: 90px;
-  }
-
-  .titulo h1 {
-    font-size: 38px;
-  }
-
-  .titulo p {
+  .subtitulo {
     font-size: 8px;
     letter-spacing: 2px;
   }

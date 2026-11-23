@@ -1,446 +1,294 @@
-
 <div class="reserva-page">
 
-  <!-- BARRA SUPERIOR E MENU LATERAL DA JAQUELINY -->
   <app-funcionario-sidebar></app-funcionario-sidebar>
 
-  <!-- CONTEÚDO -->
   <main class="content">
 
-    <!-- DECORAÇÕES -->
     <div class="decoration decoration-left"></div>
     <div class="decoration decoration-right"></div>
 
-    <!-- TÍTULO -->
     <section class="page-title">
       <h1>{{ titulo }}</h1>
-
       <div class="title-decoration">
-        <span></span>
-        <b>✦</b>
-        <span></span>
+        <span></span><b>✦</b><span></span>
       </div>
     </section>
 
     <div class="reservation-layout">
 
-      <!-- CARD PRINCIPAL -->
       <section class="reservation-card">
 
-        <!-- ESCOLHA SALA OU LAB -->
         <div class="type-selector">
-
-          <button
-            type="button"
-            [class.active]="tipoReserva === 'sala'"
-            (click)="selecionarTipo('sala')"
-          >
-            <small>Salas</small>
-            <span>▤</span>
+          <button type="button"
+                  [class.active]="tipoReserva === 'sala'"
+                  (click)="selecionarTipo('sala')">
+            <small>Salas</small><span>▤</span>
           </button>
-
-          <button
-            type="button"
-            [class.active]="tipoReserva === 'laboratorio'"
-            (click)="selecionarTipo('laboratorio')"
-          >
-            <small>Labs</small>
-            <span>♙</span>
+          <button type="button"
+                  [class.active]="tipoReserva === 'laboratorio'"
+                  (click)="selecionarTipo('laboratorio')">
+            <small>Labs</small><span>♙</span>
           </button>
-
         </div>
 
-        <!-- FORMULÁRIO -->
         <div class="form-grid">
 
-          <!-- SALAS / LABORATÓRIOS -->
+          <!-- LOCAL -->
           <div class="field">
-
             <label for="local-reserva">
-              {{
-                tipoReserva === 'sala'
-                  ? 'Salas disponíveis'
-                  : 'Laboratórios'
-              }}
+              {{ tipoReserva === 'sala' ? 'Salas disponíveis' : 'Laboratórios' }}
             </label>
-
-            <select
-              id="local-reserva"
-              [(ngModel)]="localSelecionado"
-            >
-              <option value="">
-                Selecione uma opção
-              </option>
-
+            <select id="local-reserva" [(ngModel)]="localSelecionado">
+              <option value="">Selecione uma opção</option>
               @if (tipoReserva === 'sala') {
                 @for (sala of salas; track sala) {
-                  <option [value]="sala">
-                    {{ sala }}
-                  </option>
+                  <option [value]="sala">{{ sala }}</option>
                 }
               } @else {
-                @for (laboratorio of laboratorios; track laboratorio) {
-                  <option [value]="laboratorio">
-                    {{ laboratorio }}
-                  </option>
+                @for (lab of laboratorios; track lab) {
+                  <option [value]="lab">{{ lab }}</option>
                 }
               }
-
             </select>
-
           </div>
 
-          <!-- TURMAS -->
+          <!-- TURMA -->
           <div class="field">
-
             <label for="turma-reserva">Turmas</label>
-
-            <select
-              id="turma-reserva"
-              [(ngModel)]="turmaSelecionada"
-            >
-              <option value="">
-                Selecione uma opção
-              </option>
-
+            <select id="turma-reserva" [(ngModel)]="turmaSelecionada">
+              <option value="">Selecione uma opção</option>
               @for (turma of turmas; track turma) {
-                <option [value]="turma">
-                  {{ turma }}
-                </option>
+                <option [value]="turma">{{ turma }}</option>
               }
-
             </select>
-
           </div>
 
           <!-- PRIORIDADE -->
-          <div class="field priority-field">
-
-            <label for="prioridade-reserva">
-              Nível de prioridade
-            </label>
-
-            <select
-              id="prioridade-reserva"
-              [(ngModel)]="prioridadeSelecionada"
-            >
-              <option value="">
-                Selecione uma opção
-              </option>
-
+          <div class="field">
+            <label for="prioridade-reserva">Nível de prioridade</label>
+            <select id="prioridade-reserva" [(ngModel)]="prioridadeSelecionada">
+              <option value="">Selecione uma opção</option>
               <option value="Alta">ALTA ●</option>
               <option value="Média">MÉDIA ●</option>
               <option value="Baixa">BAIXA ●</option>
             </select>
+          </div>
 
-          <!-- JUSTIFICATIVA DA PRIORIDADE -->
-          <div class="field justification-field">
-
-            <label for="justificativa-reserva">
-              Justificativa da prioridade
-            </label>
-
+          <!-- JUSTIFICATIVA -->
+          <div class="field justification-field field-full">
+            <label for="justificativa-reserva">Justificativa da prioridade</label>
             <div class="textarea-container">
-            <textarea
-              id="justificativa-reserva"
-              rows="3"
-              placeholder="Descreva a justificativa..."
-              [(ngModel)]="justificativaSelecionada"
-            ></textarea>
-            @if (justificativaSelecionada) {
-            <small class="saved-hint">✓ Resposta salva</small>
+              <textarea id="justificativa-reserva"
+                        rows="3"
+                        placeholder="Descreva a justificativa..."
+                        [(ngModel)]="justificativaSelecionada"></textarea>
+              @if (justificativaSelecionada) {
+                <small class="saved-hint">✓ Resposta salva</small>
               }
-              </div>
-              </div>
-
+            </div>
           </div>
 
           <!-- DATAS E HORÁRIOS -->
-          <div class="date-area">
+          <div class="field date-area field-full">
 
-            <label>Escolha uma data</label>
-
-            <div class="date-options">
-
-              <button
-                type="button"
-                class="date-arrow"
-                (click)="voltarDatas()"
-                [disabled]="inicioDatas === 0"
-                aria-label="Datas anteriores"
-              >
-                ‹
+            <!-- TOGGLE DE MODO -->
+            <div class="mode-selector">
+              <button type="button"
+                      [class.active]="modoReserva === 'unica'"
+                      (click)="trocarModo('unica')">
+                Reserva única
               </button>
-
-              @for (data of datasVisiveis; track data.getTime()) {
-                <button
-                  type="button"
-                  class="date-button"
-                  [class.selected-date]="isDataSelecionada(data)"
-                  (click)="selecionarData(data)"
-                >
-                  {{
-                    formatarDataBotao(
-                      data,
-                      inicioDatas + $index
-                    )
-                  }}
-                </button>
-              }
-
-              <button
-                type="button"
-                class="date-arrow"
-                (click)="avancarDatas()"
-                [disabled]="
-                  inicioDatas + quantidadeDatasVisiveis >=
-                  datasDisponiveis.length
-                "
-                aria-label="Próximas datas"
-              >
-                ›
+              <button type="button"
+                      [class.active]="modoReserva === 'mensal'"
+                      (click)="trocarModo('mensal')">
+                Reserva mensal
               </button>
-
             </div>
+
+            <!-- MODO ÚNICO -->
+            @if (modoReserva === 'unica') {
+              <label>Escolha uma data</label>
+
+              <div class="date-options">
+                <button type="button" class="date-arrow"
+                        (click)="voltarDatas()"
+                        [disabled]="inicioDatas === 0"
+                        aria-label="Datas anteriores">‹</button>
+
+                @for (data of datasVisiveis; track data.getTime()) {
+                  <button type="button" class="date-button"
+                          [class.selected-date]="isDataSelecionada(data)"
+                          (click)="selecionarData(data)">
+                    {{ formatarDataBotao(data, inicioDatas + $index) }}
+                  </button>
+                }
+
+                <button type="button" class="date-arrow"
+                        (click)="avancarDatas()"
+                        [disabled]="inicioDatas + quantidadeDatasVisiveis >= datasDisponiveis.length"
+                        aria-label="Próximas datas">›</button>
+              </div>
+            }
+
+            <!-- MODO MENSAL -->
+            @if (modoReserva === 'mensal') {
+              <label for="mes-reserva">Escolha o mês</label>
+
+              <input
+                id="mes-reserva"
+                type="month"
+                class="month-input"
+                [(ngModel)]="mesSelecionado"
+              />
+
+              @if (mesSelecionado) {
+                <small class="month-hint">
+                  📅 Serão reservadas todas as datas de
+                  <strong>{{ formatarMesCompleto(mesSelecionado) }}</strong>
+                  (exceto datas passadas e em conflito).
+                </small>
+              }
+            }
 
             <!-- DISPONIBILIDADE -->
             <div class="availability">
-
               <strong>
-                {{
-                  localSelecionado ||
-                  (
-                    tipoReserva === 'sala'
-                      ? 'Sala - 112'
-                      : 'Laboratório - A - 01'
-                  )
-                }}
+                {{ localSelecionado || (tipoReserva === 'sala' ? 'Sala - 112' : 'Laboratório - A - 01') }}
               </strong>
-
               <span>
-                {{ formatarDataCompleta(dataSelecionada) }}
+                @if (modoReserva === 'unica') {
+                  {{ datasSelecionadas.length
+                      ? datasSelecionadas.length + ' data(s) selecionada(s)'
+                      : 'Nenhuma data selecionada' }}
+                } @else {
+                  {{ mesSelecionado
+                      ? 'Mês: ' + formatarMesCompleto(mesSelecionado)
+                      : 'Nenhum mês selecionado' }}
+                }
               </span>
-
-              <p>
-                {{ horariosDisponiveis }} horários disponíveis
-              </p>
-
-              <small>
-                Selecione um horário abaixo
-              </small>
-
+              <p>{{ horariosDisponiveis }} horários disponíveis</p>
+              <small>Selecione um horário abaixo</small>
             </div>
 
             <!-- HORÁRIOS -->
             <div class="time-options">
-
               @for (horario of horarios; track horario.inicio) {
-                <button
-                  type="button"
-                  [disabled]="horario.ocupado"
-                  [class.occupied]="horario.ocupado"
-                  [class.selected-time]="horarioSelecionado === horario"
-                  (click)="selecionarHorario(horario)"
-                >
+                <button type="button"
+                        [disabled]="horario.ocupado"
+                        [class.occupied]="horario.ocupado"
+                        [class.selected-time]="horarioSelecionado === horario"
+                        (click)="selecionarHorario(horario)">
                   {{ horario.inicio }} - {{ horario.fim }}
                 </button>
               }
-
             </div>
 
           </div>
 
         </div>
 
+        <button type="button" class="confirm-button" (click)="abrirConfirmacao()">
+          CONFIRMAR
+        </button>
+
       </section>
 
-      <!-- PAINEL DIREITO -->
       <aside class="right-panel">
 
-        <!-- CALENDÁRIO -->
         <div class="calendar-container">
           <app-calendario></app-calendario>
         </div>
 
-        <!-- SALAS RESERVADAS -->
         <section class="status-section">
-
           <h3>Salas reservadas</h3>
           <small>12 Ago</small>
-
-          <div class="room-title">
-            LAB - A - 01
-          </div>
-
+          <div class="room-title">LAB - A - 01</div>
           <article class="status-card reserved">
-
             <div class="status-bar"></div>
-
             <div class="status-icon">!</div>
-
             <div class="status-content">
               <strong>Informática 01</strong>
-
-              <span>
-                12 de Agosto - Segunda
-              </span>
-
-              <span>
-                ◷ 07:30 - 11:30
-              </span>
+              <span>12 de Agosto - Segunda</span>
+              <span>◷ 07:30 - 11:30</span>
             </div>
-
           </article>
-
         </section>
 
-        <!-- MANUTENÇÃO -->
         <section class="status-section">
-
           <h3>Em manutenção</h3>
-
-          <small>
-            DE 12 Ago A 21 Ago
-          </small>
-
+          <small>DE 12 Ago A 21 Ago</small>
           <article class="status-card maintenance">
-
             <div class="status-bar"></div>
-
             <div class="status-icon">!</div>
-
             <div class="status-content">
-              <strong>
-                Motivo: Troca de lâmpadas
-              </strong>
-
-              <span>
-                12 de Agosto - Segunda
-              </span>
-
-              <span>
-                ◷ 11:30 - 12:30
-              </span>
+              <strong>Motivo: Troca de lâmpadas</strong>
+              <span>12 de Agosto - Segunda</span>
+              <span>◷ 11:30 - 12:30</span>
             </div>
-
           </article>
-
         </section>
 
       </aside>
 
     </div>
-
-    <!-- BOTÃO PRINCIPAL -->
-    <button
-      type="button"
-      class="confirm-button"
-      (click)="abrirConfirmacao()"
-    >
-      CONFIRMAR
-    </button>
-
   </main>
-
 </div>
 
 <!-- MODAL DE CONFIRMAÇÃO -->
 @if (modalConfirmacaoAberto) {
-  <div
-    class="modal-overlay"
-    (click)="cancelarConfirmacao()"
-  >
-    <section
-      class="confirmation-modal"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="titulo-confirmacao"
-      (click)="$event.stopPropagation()"
-    >
+  <div class="modal-overlay" (click)="cancelarConfirmacao()">
+    <section class="confirmation-modal" role="dialog" aria-modal="true"
+             aria-labelledby="titulo-confirmacao"
+             (click)="$event.stopPropagation()">
 
-      <h2 id="titulo-confirmacao">
-        Confirme sua reserva
-      </h2>
+      <h2 id="titulo-confirmacao">Confirme sua reserva</h2>
 
       <div class="confirmation-decoration">
-        <span></span>
-        <b>✦</b>
-        <span></span>
+        <span></span><b>✦</b><span></span>
       </div>
 
       <div class="confirmation-info">
         <div class="confirmation-item">
           <span>Justificativa</span>
-
-          <strong>
-            {{ justificativaSelecionada || 'Não informada' }}
-          </strong>
+          <strong>{{ justificativaSelecionada || 'Não informada' }}</strong>
         </div>
-
         <div class="confirmation-item">
-          <span>
-            {{ tipoReserva === 'sala' ? 'Sala' : 'Laboratório' }}
-          </span>
-
+          <span>{{ tipoReserva === 'sala' ? 'Sala' : 'Laboratório' }}</span>
           <strong>{{ localSelecionado }}</strong>
         </div>
-
         <div class="confirmation-item">
           <span>Turma</span>
           <strong>{{ turmaSelecionada }}</strong>
         </div>
-
         <div class="confirmation-item">
           <span>Prioridade</span>
-
-          <strong>
-            {{ prioridadeSelecionada || 'Não informada' }}
-          </strong>
+          <strong>{{ prioridadeSelecionada || 'Não informada' }}</strong>
         </div>
-
         <div class="confirmation-item">
-          <span>Data</span>
-
+          <span>{{ modoReserva === 'unica' ? 'Datas' : 'Mês' }}</span>
           <strong>
-            {{ formatarDataCompleta(dataSelecionada) }}
+            @if (modoReserva === 'unica') {
+              @for (data of datasSelecionadas; track data.getTime(); let i = $index) {
+                {{ formatarDataCompleta(data) }}{{ i < datasSelecionadas.length - 1 ? ', ' : '' }}
+              }
+            } @else {
+              {{ formatarMesCompleto(mesSelecionado) }} (mês inteiro)
+            }
           </strong>
         </div>
-
         <div class="confirmation-item">
           <span>Horário</span>
-
-          <strong>
-            {{ horarioSelecionado?.inicio }}
-            -
-            {{ horarioSelecionado?.fim }}
-          </strong>
+          <strong>{{ horarioSelecionado?.inicio }} - {{ horarioSelecionado?.fim }}</strong>
         </div>
-
         <div class="confirmation-item">
           <span>Responsável</span>
           <strong>Jaqueliny</strong>
         </div>
-
       </div>
 
       <div class="confirmation-actions">
-
-        <button
-          type="button"
-          class="cancel-button"
-          (click)="cancelarConfirmacao()"
-        >
-          CANCELAR
-        </button>
-
-        <button
-          type="button"
-          class="modal-confirm-button"
-          (click)="confirmarReserva()"
-        >
-          CONFIRMAR
-        </button>
-
+        <button type="button" class="cancel-button" (click)="cancelarConfirmacao()">CANCELAR</button>
+        <button type="button" class="modal-confirm-button" (click)="confirmarReserva()">CONFIRMAR</button>
       </div>
 
     </section>
@@ -449,10 +297,5 @@
 
 <!-- MENSAGEM DE SUCESSO -->
 @if (mensagemSucesso) {
-  <div
-    class="success-message"
-    role="status"
-  >
-    ✓ Reserva realizada com sucesso!
-  </div>
+  <div class="success-message" role="status">✓ Reserva realizada com sucesso!</div>
 }

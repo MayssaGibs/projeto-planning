@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
 export interface Horario {
   inicio: string;
@@ -6,69 +6,139 @@ export interface Horario {
   ocupado: boolean;
 }
 
+export interface Reserva {
+  id: string;
+  tipo: 'Sala' | 'Laboratório';
+  local: string;
+  turma: string;
+  responsavel: string;
+  data: string;
+  turno: string;
+  horario: string;
+  status: 'Pendente' | 'Aprovada' | 'Recusada';
+  criadaEm: string;
+  prioridade?: 'Alta' | 'Média' | 'Baixa';
+  justificativa?: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class ReservaService {
 
-  private salas = [
-    'SALA 112',
-    'SALA 113',
-    'SALA 114',
-  ];
+  private readonly STORAGE_KEY = 'planning_reservas';
 
-  private laboratorios = [
-    'LAB - A - 01',
-    'LAB - A - 02',
-    'LAB - B - 01',
-  ];
+  private salas = ['SALA 112', 'SALA 113', 'SALA 114'];
+  private laboratorios = ['LAB - A - 01', 'LAB - A - 02', 'LAB - B - 01'];
+  private turmas = ['INFORMÁTICA 01', 'INFORMÁTICA 02'];
 
-  private turmas = [
-    'INFORMÁTICA 01',
-    'INFORMÁTICA 02',
+  // LISTA DE PROFESSORES PARA SORTEAR (ENFEITE)
+  private professores = [
+    'Jaqueliny Silva',
+    'Maria Oliveira',
+    'Pedro Santos',
+    'Ana Costa',
+    'Carlos Mendes',
+    'Fernanda Lima'
   ];
 
   private horarios: Horario[] = [
-    {
-      inicio: '07:30',
-      fim: '08:30',
-      ocupado: true,
-    },
-    {
-      inicio: '08:30',
-      fim: '09:45',
-      ocupado: false,
-    },
-    {
-      inicio: '10:00',
-      fim: '11:30',
-      ocupado: false,
-    },
-    {
-      inicio: '14:40',
-      fim: '15:20',
-      ocupado: true,
-    },
-    {
-      inicio: '15:35',
-      fim: '16:20',
-      ocupado: false,
-    },
+    { inicio: '07:30', fim: '08:30', ocupado: true },
+    { inicio: '08:30', fim: '09:45', ocupado: false },
+    { inicio: '10:00', fim: '11:30', ocupado: false },
+    { inicio: '14:40', fim: '15:20', ocupado: true },
+    { inicio: '15:35', fim: '16:20', ocupado: false },
   ];
 
-  getSalas(): string[] {
-    return this.salas;
+  private reservasSignal = signal<Reserva[]>(this.carregarReservas());
+  reservas = this.reservasSignal.asReadonly();
+
+  private carregarReservas(): Reserva[] {
+    if (typeof localStorage === 'undefined') return [];
+    try {
+      const dados = localStorage.getItem(this.STORAGE_KEY);
+      return dados ? JSON.parse(dados) : [];
+    } catch {
+      return [];
+    }
   }
 
-  getLaboratorios(): string[] {
-    return this.laboratorios;
+  private salvarReservas(reservas: Reserva[]): void {
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(reservas));
+    this.reservasSignal.set(reservas);
   }
 
-  getTurmas(): string[] {
-    return this.turmas;
+  listarReservas(): Reserva[] {
+    return this.reservasSignal();
   }
 
-  getHorarios(): Horario[] {
-    return this.horarios;
+  adicionarReserva(
+    dados: Omit<Reserva, 'id' | 'status' | 'criadaEm'>
+  ): Reserva | null {
+
+    const reservas = this.reservasSignal();
+
+    const conflito = reservas.some(reserva =>
+      reserva.local === dados.local &&
+      reserva.data === dados.data &&
+      reserva.horario === dados.horario &&
+      reserva.status !== 'Recusada'
+    );
+
+    if (conflito) return null;
+
+    const novaReserva: Reserva = {
+      ...dados,
+      id: crypto.randomUUID(),
+      status: 'Pendente',
+      criadaEm: new Date().toISOString(),
+    };
+
+    this.salvarReservas([...reservas, novaReserva]);
+    return novaReserva;
+  }
+
+  adicionarReservasEmLote(
+    dados: Omit<Reserva, 'id' | 'status' | 'criadaEm' | 'data'>,
+    datas: string[]
+  ): { criadas: Reserva[]; conflitos: string[] } {
+
+    const criadas: Reserva[] = [];
+    const conflitos: string[] = [];
+
+    for (const data of datas) {
+      const reserva = this.adicionarReserva({ ...dados, data });
+      if (reserva) {
+        criadas.push(reserva);
+      } else {
+        conflitos.push(data);
+      }
+    }
+
+    return { criadas, conflitos };
+  }
+
+  alterarStatus(id: string, status: Reserva['status']): void {
+    const reservasAtualizadas = this.reservasSignal().map(reserva =>
+      reserva.id === id ? { ...reserva, status } : reserva
+    );
+    this.salvarReservas(reservasAtualizadas);
+  }
+
+  cancelarReserva(id: string): void {
+    const reservasAtualizadas = this.reservasSignal().filter(
+      reserva => reserva.id !== id
+    );
+    this.salvarReservas(reservasAtualizadas);
+  }
+
+  getSalas(): string[] { return this.salas; }
+  getLaboratorios(): string[] { return this.laboratorios; }
+  getTurmas(): string[] { return this.turmas; }
+  getHorarios(): Horario[] { return this.horarios; }
+  
+  getProfessorAleatorio(): string {
+    const index = Math.floor(Math.random() * this.professores.length);
+    return this.professores[index];
   }
 }
