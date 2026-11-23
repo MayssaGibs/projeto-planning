@@ -30,7 +30,6 @@
   padding: 105px 45px 50px;
 
   background-color: #f8f5f8;
-  /* Estrelas de 4 pontas posicionadas nas quinas e laterais como na Home */
   background-image:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24'%3E%3Cpath fill='%235865b3' d='M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0Z'/%3E%3C/svg%3E"),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%235865b3' d='M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0Z'/%3E%3C/svg%3E"),
@@ -79,19 +78,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
   margin-bottom: 36px;
 }
 
 .agenda-title h1 {
   margin: 0;
   padding: 12px 34px;
-
   background: #a99bd8;
   color: #3f477d;
-
   border-radius: 16px;
-
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -101,14 +96,12 @@
   display: flex;
   align-items: center;
   gap: 14px;
-
   margin-top: 16px;
 }
 
 .agenda-decoration span {
   width: 75px;
   height: 1px;
-
   background: #7b76bd;
 }
 
@@ -125,10 +118,8 @@
   position: relative;
   z-index: 2;
   width: min(100%, 740px);
-
   margin: 0 auto;
   padding: 30px 32px;
-
   background: #555ca6;
   border-radius: 22px;
   color: white;
@@ -137,9 +128,7 @@
 
 .today-card h2 {
   margin: 0 0 24px;
-
   text-align: center;
-
   color: #e7c2c8;
   font-size: 18px;
   font-weight: 700;
@@ -164,15 +153,11 @@
 
 .info-label {
   min-height: 26px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   text-align: center;
-
   color: #d6d5ee;
-
   font-size: 12px;
   line-height: 14px;
   font-weight: 600;
@@ -181,15 +166,11 @@
 .info-value {
   width: 100%;
   padding: 9px 12px;
-
   background: #777bbd;
   border: 1px solid #a4a6d5;
   border-radius: 14px;
-
   text-align: center;
-
   color: #f5f4fa;
-
   font-size: 13px;
   font-weight: 700;
   white-space: nowrap;
@@ -208,20 +189,14 @@
 
 .schedule {
   width: fit-content;
-
   margin: 30px auto 0;
-
   display: flex;
   align-items: center;
   gap: 7px;
-
   padding: 8px 24px;
-
   background: #e6c5ca;
   color: #3f477d;
-
   border-radius: 20px;
-
   font-size: 13px;
   font-weight: 700;
 }
@@ -245,14 +220,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   gap: 12px;
   margin-bottom: 14px;
 }
 
 .list-header h2 {
   margin: 0;
-
   color: #555ca6;
   font-size: 16px;
   font-weight: 700;
@@ -267,20 +240,14 @@
   z-index: 5;
   border: none;
   padding: 9px 20px;
-
   border-radius: 16px;
-
   background: #a99bd8;
   color: #3f477d;
-
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
   pointer-events: auto;
-
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .add-button:hover {
@@ -302,13 +269,10 @@
   display: flex;
   align-items: center;
   gap: 18px;
-
   margin-bottom: 12px;
   padding: 16px 20px;
-
   background: white;
   border-radius: 18px;
-
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -321,16 +285,13 @@
 
 .schedule-time {
   min-width: 95px;
-
   color: #5865b3;
-
   font-size: 14px;
   font-weight: 700;
 }
 
 .schedule-content {
   flex: 1;
-
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -353,9 +314,7 @@
 
 .schedule-status {
   padding: 6px 14px;
-
   border-radius: 14px;
-
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
@@ -371,16 +330,20 @@
   color: #a66d42;
 }
 
+/* ADICIONADO: ESTILO PARA RECUSADO */
+.schedule-status.refused {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
 /* =========================
    LISTA VAZIA
 ========================= */
 
 .empty-schedules {
   padding: 28px;
-
   border-radius: 18px;
   background: white;
-
   color: #73738c;
   font-size: 14px;
   text-align: center;

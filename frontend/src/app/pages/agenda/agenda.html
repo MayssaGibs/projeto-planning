@@ -1,4 +1,3 @@
-
 <div class="agenda-page">
 
   <!-- BARRA SUPERIOR E SIDEBAR DA JAQUELINY -->
@@ -27,34 +26,25 @@
 
         <!-- TURMAS -->
         <div class="info-item">
-          <span class="info-label">
-            TURMAS
-          </span>
-
+          <span class="info-label">TURMAS</span>
           <div class="info-value">
-            INFORMÁTICA 01
+            {{ schedules.length > 0 ? schedules[0].className : 'Nenhuma' }}
           </div>
         </div>
 
         <!-- SALAS -->
         <div class="info-item">
-          <span class="info-label">
-            SALAS
-          </span>
-
+          <span class="info-label">SALAS</span>
           <div class="info-value">
-            111
+            {{ schedules.length > 0 ? schedules[0].room : '—' }}
           </div>
         </div>
 
         <!-- LABORATÓRIOS -->
         <div class="info-item">
-          <span class="info-label">
-            LABORATÓRIOS RESERVADOS
-          </span>
-
+          <span class="info-label">LABORATÓRIOS RESERVADOS</span>
           <div class="info-value">
-            LAB - A - 01
+            {{ schedules.length > 0 ? (schedules[0].lab || 'Nenhum') : 'Nenhum' }}
           </div>
         </div>
 
@@ -63,11 +53,10 @@
       <!-- HORÁRIO -->
       <div class="schedule">
         <span class="clock-icon">◷</span>
-
         <span>
           {{
             schedules.length > 0
-              ? schedules[0].time
+              ? schedules[0].date + ' - ' + schedules[0].time
               : 'Sem agendamentos'
           }}
         </span>
@@ -79,17 +68,10 @@
     <section class="agenda-list">
 
       <div class="list-header">
-
         <h2>PRÓXIMOS AGENDAMENTOS</h2>
-
-        <button
-          type="button"
-          class="add-button"
-          (click)="newSchedule()"
-        >
+        <button type="button" class="add-button" (click)="newSchedule()">
           + Novo
         </button>
-
       </div>
 
       @for (schedule of filteredSchedules; track schedule.id) {
@@ -101,27 +83,19 @@
           </div>
 
           <div class="schedule-content">
-
-            <strong>
-              {{ schedule.className }}
-            </strong>
-
-            <span>
-              Sala {{ schedule.room }}
-            </span>
-
+            <strong>{{ schedule.className }}</strong>
+            <span>{{ schedule.date }} | {{ schedule.room }}</span>
             @if (schedule.lab) {
-              <span>
-                {{ schedule.lab }}
-              </span>
+              <span>{{ schedule.lab }}</span>
             }
-
           </div>
 
+          <!-- STATUS DO AGENDAMENTO -->
           <div
             class="schedule-status"
             [class.confirmed]="schedule.status === 'confirmado'"
             [class.pending]="schedule.status === 'pendente'"
+            [class.refused]="schedule.status === 'recusado'"
           >
             {{ schedule.status }}
           </div>
@@ -129,11 +103,9 @@
         </article>
 
       } @empty {
-
         <div class="empty-schedules">
           Nenhum agendamento encontrado.
         </div>
-
       }
 
     </section>
