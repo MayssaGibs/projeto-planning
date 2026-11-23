@@ -1,4 +1,3 @@
-
 <!-- SIDEBAR COMPARTILHADA DO ADMINISTRADOR -->
 <app-admin-sidebar></app-admin-sidebar>
 
@@ -94,11 +93,15 @@
               </p>
 
               <p>
-                Prioridade:
-                <span class="prioridade alta">
-                  {{ conflito.solicitacaoA.prioridade }}
-                </span>
-              </p>
+  Prioridade:
+  <span
+    class="prioridade"
+    [class.alta]="conflito.solicitacaoA.prioridade === 'Alta'"
+    [class.baixa]="conflito.solicitacaoA.prioridade === 'Baixa'"
+  >
+    {{ conflito.solicitacaoA.prioridade }}
+  </span>
+</p>>
 
               <p>
                 Status:
@@ -120,13 +123,16 @@
                 {{ conflito.solicitacaoB.turma }}
               </p>
 
-              <p>
-                Prioridade:
-                <span class="prioridade baixa">
-                  {{ conflito.solicitacaoB.prioridade }}
-                </span>
-              </p>
-
+             <p>
+  Prioridade:
+  <span
+    class="prioridade"
+    [class.alta]="conflito.solicitacaoB.prioridade === 'Alta'"
+    [class.baixa]="conflito.solicitacaoB.prioridade === 'Baixa'"
+  >
+    {{ conflito.solicitacaoB.prioridade }}
+  </span>
+</p>
               <p>
                 Status:
                 {{ conflito.solicitacaoB.status }}
@@ -135,19 +141,29 @@
 
           </div>
 
+          <!-- BOTÕES: ESCOLHER QUAL SOLICITAÇÃO APROVAR -->
           <div class="acoes-conflito">
-            <button
-              type="button"
-              class="btn-aprovar"
-              [disabled]="conflito.status === 'Resolvido'"
-              (click)="abrirModal(conflito)"
-            >
-              {{
-                conflito.status === 'Resolvido'
-                  ? 'Conflito resolvido'
-                  : 'Aprovar solicitação A'
-              }}
-            </button>
+            @if (conflito.status === 'Resolvido') {
+              <button type="button" class="btn-aprovar" disabled>
+                Conflito resolvido
+              </button>
+            } @else {
+              <button
+                type="button"
+                class="btn-aprovar"
+                (click)="abrirModal(conflito, 'A')"
+              >
+                Aprovar solicitação A
+              </button>
+
+              <button
+                type="button"
+                class="btn-aprovar"
+                (click)="abrirModal(conflito, 'B')"
+              >
+                Aprovar solicitação B
+              </button>
+            }
           </div>
 
         </section>
@@ -230,10 +246,7 @@
 
 <!-- MODAL DE CONFIRMAÇÃO -->
 @if (modalAberto && conflitoSelecionado; as conflito) {
-  <div
-    class="modal-overlay"
-    (click)="fecharModal()"
-  >
+  <div class="modal-overlay" (click)="fecharModal()">
     <div
       class="modal-conteudo"
       role="dialog"
@@ -241,42 +254,45 @@
       aria-labelledby="titulo-modal"
       (click)="$event.stopPropagation()"
     >
-      <h2 id="titulo-modal">
-        Confirmar aprovação
-      </h2>
-
-      <p>
-        Deseja aprovar a solicitação de
-        <strong>
-          {{ conflito.solicitacaoA.responsavel }}
-        </strong>
-        para a {{ conflito.sala }}?
-      </p>
-
-      <p class="modal-aviso">
-        A solicitação de
-        {{ conflito.solicitacaoB.responsavel }}
-        será rejeitada.
-      </p>
-
-      <div class="modal-acoes">
+      <div class="modal-topo">
+        <h2 id="titulo-modal">Confirmar aprovação</h2>
         <button
           type="button"
-          class="btn-cancelar"
+          class="btn-fechar"
+          aria-label="Fechar"
           (click)="fecharModal()"
         >
-          Voltar
-        </button>
-
-        <button
-          type="button"
-          class="btn-aprovar"
-          (click)="confirmarAprovacao()"
-        >
-          Confirmar aprovação
+          ✕
         </button>
       </div>
 
+      <div class="modal-informacoes">
+        <p><strong>Sala:</strong> {{ conflito.sala }}</p>
+        <p><strong>Data:</strong> {{ conflito.data }}</p>
+        <p><strong>Horário:</strong> {{ conflito.horario }}</p>
+
+        <p class="aviso-aprovada">
+          <strong>Será aprovada:</strong>
+          {{ solicitacaoAprovada?.responsavel }}
+          ({{ solicitacaoAprovada?.turma }})
+        </p>
+
+        <p class="modal-aviso">
+          <strong>Será recusada:</strong>
+          {{ solicitacaoRejeitada?.responsavel }}
+          ({{ solicitacaoRejeitada?.turma }})
+        </p>
+      </div>
+
+      <div class="modal-acoes">
+        <button type="button" class="btn-voltar" (click)="fecharModal()">
+          Voltar
+        </button>
+
+        <button type="button" class="btn-aprovar" (click)="confirmarAprovacao()">
+          Confirmar aprovação
+        </button>
+      </div>
     </div>
   </div>
 }
